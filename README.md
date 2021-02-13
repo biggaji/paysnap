@@ -1,2 +1,2 @@
-# Paystack-Tutorial
-Experimenting with  different payStack features
+# A payment transfer app
+Built using paystack
