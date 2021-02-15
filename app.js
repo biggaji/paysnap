@@ -4,62 +4,31 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const cookieParser = require("cookie-parser");
-
+const hbs = require("express-handlebars");
+const path = require("path");
+const indexRouter = require("./src/routes/index");
 // application middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 
-// sample data
+// set up static file directory
+app.use(express.static(path.join(__dirname, "public")));
 
-// const crypto_coins = [
-//     {
-//         name: "Bitcoin",
-//         abbr: "BTC"
-//     },
-//     {
-//         name: "Etherum",
-//         abbr: "ETH"
-//     },
-//     {
-//         name: "Litecoin",
-//         abbr: "LTC"
-//     },
-//     {
-//         name: "Dogecoin",
-//         abbr: "DOGE"
-//     },
-//     {
-//         name: "Bitcoin Cash",
-//         abbr: "BTCASH"
-//     }
-// ];
+// setup template engine
+app.engine("handlebars", hbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
+app.set("views", path.join(__dirname, "views"));
 
+// app routers
+app.use('/', indexRouter);
 
-// // get all coins
+// 404 page error handler
 
-// app.get('/', (req, res) => {
-//     res.send(crypto_coins);
-// });
-
-// // get a coin by abbr
-// app.get('/:abbr', async (req, res) => {
-//     const { abbr } = req.params;
-
-//     // res.send(coin);
-// });
-
-// // create a coin
-// app.post('/create_coin', (req, res) => {
-//     const { name, abbr } = req.body;
-//     res.json({
-//         "message": "Coins created successfully",
-//         "status": "success",
-//         "name": name,
-//         "abbr": abbr
-//     });
-// })
+app.use((req, res, next) => {
+    res.render('404', { pageTitle: "Page Not Found" });
+})
 
 const PORT = process.env.PORT || 4000;
 
