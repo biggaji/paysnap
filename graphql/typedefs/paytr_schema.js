@@ -27,12 +27,20 @@ const typeDefs = gql`
     }
 
     type Query {
+        "Get a single paytr user"
         Paytr_user(paytr_id:String!):Paytr_user
+        "Get Tobi Ajibade Bio"
         me:String!
     }
 
     type Mutation {
+        "Create a paytr account"
         createPaytrAccount(firstname:String!,lastname:String!,email:String!,paytr_username:String!password:String!): Paytr_user
+
+        "Login into a paytr account"
+        login(email:String!,password:String!): Paytr_user
+
+
         # initializeTransaction():Paytr_transaction
     }
 `;
