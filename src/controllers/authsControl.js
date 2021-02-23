@@ -78,6 +78,7 @@ exports.create_account = async (req, res) => {
             })
                 .then(paytr_user => {
                     // Redirect to the activation page
+                    // store user email in cookie
                 })
                 .catch(e => {
                     // Error from the fetch api
