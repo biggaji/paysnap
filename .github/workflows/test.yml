@@ -1,6 +1,6 @@
 name: test paytr
 
-on:push
+on: push
 
 jobs:
   test-app:
