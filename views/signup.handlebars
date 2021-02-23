@@ -1,0 +1,45 @@
+<section class="paytr_form_container">
+    <form action="/create_account" method="post">
+        <div class="paytr_form_wrapper">
+            <label for="fname">Firstname</label><br>
+            <input type="text" name="firstname" id="fname">
+        </div>
+        <div class="paytr_form_wrapper">
+            <label for="lname">Lastname</label><br>
+            <input type="text" name="lastname" id="lname">
+        </div>
+        <div class="paytr_form_wrapper">
+            <label for="mail">Email Address</label><br>
+            <input type="email" name="email" id="mail">
+            <div class="email-validator-message" aria-live="polite"></div>
+        </div>
+        <div class="paytr_form_wrapper">
+            <label for="uname">username</label><br>
+            <input type="text" name="username" id="uname">
+            <div class="username-validator-message" aria-live="polite"></div>
+        </div>
+        <div class="paytr_form_wrapper">
+            <label for="pwd">Password</label><br>
+            <input type="password" name="password" id="pwd">
+            <div class="password-validator-message" aria-live="polite"></div>
+        </div>
+        <div class="paytr_form_wrapper">
+            <label for="cpwd">Confirm Password</label><br>
+            <input type="password" name="c_password" id="cpwd">
+            <div class="c-password-validator-message" aria-live="polite"></div>
+        </div>
+        <div class="paytr_form_wrapper">
+            <input type="hidden" name="_csrf" value="{{csrfToken}}">
+        </div>
+        <div class="paytr_form_btn_wrapper">
+            <button type="submit">Create account</button>
+        </div>
+        <div class="legal_check">
+            <input type="checkbox" name="legal_authorize" id="legal">
+            <label for="legal"></label>
+        </div>
+    </form>
+    <div class="cta_user">
+        <P>Already have an account? <a href="/signin">Login</a> instead!</P>
+    </div>
+</section>

@@ -1,0 +1,23 @@
+<section class="paytr_activate_container">
+    <form action="/activate" method="post">
+        <div class="paytr_form_wrapper">
+            <label for="verify">Enter the token sent to your email address <span
+                    class="paytr_hash_mail">{{email_excerpt}}</span></label><br>
+            <input type="text" name="activate_k" id="verify">
+        </div>
+        <div class="paytr_form_wrapper">
+            <input type="hidden" name="csrf_token" value="">
+        </div>
+    </form>
+    <div class="cta_user">
+        <form action="/resend_activate" method="post">
+            <div class="paytr_form_wrapper">
+                <input type="hidden" name="csrf_token" value="">
+            </div>
+            <div class="paytr_form_wrapper">
+                <label for="pwd">Didn't get token?</label><br>
+                <button type="submit">Resend</button>
+            </div>
+        </form>
+    </div>
+</section>
