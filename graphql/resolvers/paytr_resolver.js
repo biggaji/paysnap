@@ -17,6 +17,9 @@ const resolvers = {
         login: async (_, args, ctx) => {
             // 
         },
+        initializeTransaction: async (_, args, ctx) => {
+            // Initialize transaction
+        }
     }
 }
 

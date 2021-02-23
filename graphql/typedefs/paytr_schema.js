@@ -29,7 +29,8 @@ const typeDefs = gql`
     type Query {
         "Get a single paytr user"
         Paytr_user(paytr_id:String!):Paytr_user
-        "Get Tobi Ajibade Bio"
+
+        "Get the software engineer bio"
         me:String!
     }
 
@@ -40,8 +41,8 @@ const typeDefs = gql`
         "Login into a paytr account"
         login(email:String!,password:String!): Paytr_user
 
-
-        # initializeTransaction():Paytr_transaction
+        "Initialize a transaction on paytr"
+        initializeTransaction(paytr_sender_username:String!,paytr_receiver_username:String!,paytr_amount_sent:String!): Paytr_transaction
     }
 `;
 
