@@ -10,8 +10,8 @@ const resolvers = {
     },
 
     Mutation: {
-        createPaytrAccount: async (_, args, ctx) => {
-            const user = await createUser(args);
+        createPaytrAccount: async (_, { input }, ctx) => {
+            const user = await createUser(input);
             return user;
         },
         login: async (_, args, ctx) => {

@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/biggaji/paytr#readme",
   "dependencies": {
+    "apollo-server-cache-redis": "^1.2.3",
     "apollo-server-express": "^2.21.0",
     "axios": "^0.21.1",
     "bcryptjs": "^2.4.3",
@@ -44,6 +45,7 @@
     "pg": "^8.5.1"
   },
   "devDependencies": {
+    "apollo-server-testing": "^2.21.0",
     "chai": "^4.3.0",
     "chai-http": "^4.3.0",
     "mocha": "^8.3.0",
