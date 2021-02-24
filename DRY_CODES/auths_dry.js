@@ -38,8 +38,8 @@ exports.createUser = async (userdata) => {
     // insert data into database
 
     try {
-        const paytr_user = await db.query(`INSERT INTO paytr_users (firstname,lastname,email_address,paytr_username,password,v_token) VALUES ($1,$2,$3,$4,$5,$6)
-        RETURNING firstname, lastname, email_address`, [firstname, lastname, email, paytr_usernam, hashedPassword, v_token]);
+        const paytr_user = await db.query(`INSERT INTO paytr_users (firstname,lastname,email,paytr_username,password,v_token) VALUES ($1,$2,$3,$4,$5,$6)
+        RETURNING firstname, lastname, email`, [firstname, lastname, email, paytr_usernam, hashedPassword, v_token]);
 
         const user = paytr_user.rows[0];
 
@@ -47,7 +47,7 @@ exports.createUser = async (userdata) => {
 
         const mailContents = {
             from: `Paytr Support <herityjohnny14@gmail.com>`,
-            to: `${user.email_address}`,
+            to: `${user.email}`,
             subject: `Hi ${user.firstname} ${user.lastname}, please activate your Paytr account`,
             html: ` <div style="width: 90%, margin: 1.5rem auto, padding: 0.7rem 1rem, text-align:center, background-color:#f1f4f7">
                     <h2>Account Verification</h2>
