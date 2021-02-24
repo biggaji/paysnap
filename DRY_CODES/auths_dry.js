@@ -49,18 +49,18 @@ exports.createUser = async (userdata) => {
             from: `Paytr Support <herityjohnny14@gmail.com>`,
             to: `${user.email}`,
             subject: `Hi ${user.firstname} ${user.lastname}, please activate your Paytr account`,
-            html: ` <div style="width: 90%, margin: 1.5rem auto, padding: 0.7rem 1rem, text-align:center, background-color:#f1f4f7">
+            html: ` <div>
                     <h2>Account Verification</h2>
-                    <p style="line-height:1.4">Hello,</p>
-                    <p style="line-height:1.4">Thank you for choosing Paytr! Please activate your account using the verifcation code below.</p>
-                    <p style="font-weight:bold">${v_token}</p>
-                    <p style="line-height:1.4">If you do not sign up for a Paytr account, you can simply disregard this email.</p>
-                    <p style="line-height:1.4">Happy Transacting!</p>
-                    <p style="line-height:1.4">The Paytr Team</p>
+                    <p>Hello,</p>
+                    <p>Thank you for choosing Paytr! Please activate your account using the verifcation code below.</p>
+                    <p>${v_token}</p>
+                    <p>If you do not sign up for a Paytr account, you can simply disregard this email.</p>
+                    <p>Happy Transacting!</p>
+                    <p>The Paytr Team</p>
                     </div>
-                    <div style="width: 90%, margin: 1.5rem auto, padding: 1rem 1rem, text-align-center">
-                    <h3 style="color: #555">Problems or questions?</h3>
-                    <p><a href="mailto:herityjohnny14@gmail.com" style="text-decoration: none, text-align:center, color:black">support@paytr.com</a></p>
+                    <div>
+                    <h3>Problems or questions?</h3>
+                    <p><a href="mailto:herityjohnny14@gmail.com">support@paytr.com</a></p>
                     </div>`
         }
 
@@ -79,4 +79,22 @@ exports.createUser = async (userdata) => {
         console.log(error)
         throw error;
     }
+}
+
+
+exports.activateUser = async (token) => {
+    /**
+     * @author Tobi Ajibade
+     * @param {String} - A verification token to activate user
+     * @return {Object} - A activated user object
+     */
+
+    //  take the schema and verify it matches the one in the db and check if it hasnt expiried!
+
+    const v_token = await db.query(`SELECT v_token FROM paytr_users WHERE v_token = $1`, [token]);
+
+    console.log(v_token.rows[0].v_token);
+
+    // check if token is not null, then update the verified property
+    // else return null
 }
