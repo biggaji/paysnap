@@ -1,5 +1,5 @@
 const { typeDefs } = require("../typedefs/paytr_schema");
-const { createUser } = require("../../DRY_CODES/auths_dry");
+const { createUser, activateUser } = require("../../DRY_CODES/auths_dry");
 
 const resolvers = {
     Query: {
@@ -14,12 +14,20 @@ const resolvers = {
             const user = await createUser(input);
             return user;
         },
-        login: async (_, args, ctx) => {
-            // 
+
+        activatePaytrAccount: async (_, { token }, ctx) => {
+            // activate user
+            const activated = await activateUser(token);
+            return activated;
         },
+
+        login: async (_, args, ctx) => {
+            //  Log user in
+        },
+
         initializeTransaction: async (_, args, ctx) => {
             // Initialize transaction
-        }
+        },
     }
 }
 
