@@ -34,9 +34,21 @@ const typeDefs = gql`
         me:String!
     }
 
+    # Input types 
+
+    "Input for creating a paytr account"
+    input CreatePaytrAccountInputs {
+        firstname:String!
+        lastname:String!
+        email:String!
+        paytr_username:String!
+        password:String!
+    }
+
+
     type Mutation {
         "Create a paytr account"
-        createPaytrAccount(firstname:String!,lastname:String!,email:String!,paytr_username:String!password:String!): Paytr_user
+        createPaytrAccount(input:CreatePaytrAccountInputs): Paytr_user
 
         "Login into a paytr account"
         login(email:String!,password:String!): Paytr_user
