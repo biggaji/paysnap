@@ -89,12 +89,23 @@ exports.activateUser = async (token) => {
      * @return {Object} - A activated user object
      */
 
-    //  take the schema and verify it matches the one in the db and check if it hasnt expiried!
+    //  take the token and verify it matches the one in the db and check if it hasn't expiried || === to null!
 
-    const v_token = await db.query(`SELECT v_token FROM paytr_users WHERE v_token = $1`, [token]);
-
-    console.log(v_token.rows[0].v_token);
+    const validateToken = await db.query(`SELECT v_token, email FROM paytr_users WHERE v_token = $1`, [token]);
 
     // check if token is not null, then update the verified property
     // else return null
+
+    if (validateToken.rowCount > 0 && validateToken.rowCount !== 0 && validateToken.rows[0].v_token !== null) {
+        // update verified to true
+        const activated = await db.query(`UPDATE paytr_users SET verified = $1 WHERE email = $2 RETURNING verified`, ['t', `${validateToken.rows[0].email}`]);
+        return activated.rows[0];
+    } else {
+        return null;
+    }
+}
+
+
+exports.login = async (req, res) => {
+    // do the maths
 }

@@ -22,7 +22,7 @@ exports.renderDashboard = (req, res) => {
  * paytr dependecies
  */
 
-const { checkUser } = require("../../DRY_CODES/auths_dry");
+const { checkUser, activateUser } = require("../../DRY_CODES/auths_dry");
 const Joi = require("joi");
 const fetch = require("node-fetch");
 /**
@@ -31,6 +31,7 @@ const fetch = require("node-fetch");
  * @param {object} res 
  */
 
+const GRAPHQL_URL = "localhost:5000/graphql";
 
 exports.create_account = async (req, res) => {
     /**
@@ -62,13 +63,12 @@ exports.create_account = async (req, res) => {
     if (user.rowCount === 0 && user.rows.length === 0) {
         // User not found, --> register the new user
         try {
-            const GRAPHQL_URL = "localhost:5000/graphql";
             fetch(GRAPHQL_URL, {
                 method: "POST",
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({
                     query: `mutation createUser {
-                        createPaytrUser(firstname: "${firstname}",lastname: "${lastname}",email: "${email}",paytr_username: "${username}",password: "${password}") {
+                        createPaytrUser(input:{firstname: "${firstname}",lastname: "${lastname}",email: "${email}",paytr_username: "${username}",password: "${password}"}) {
                             firstname
                             lastname
                             email
@@ -77,6 +77,7 @@ exports.create_account = async (req, res) => {
                 })
             })
                 .then(paytr_user => {
+                    // convert to response to json
                     // Redirect to the activation page
                     // store user email in cookie
                 })
@@ -90,5 +91,48 @@ exports.create_account = async (req, res) => {
     } else {
         // res.send("User Found!");
         res.redirect('/');
+    }
+}
+
+exports.activate_account = async (req, res) => {
+    /**
+     *
+     *  
+    */
+
+    const tokenSchema = Joi.object().keys({
+        token: Joi.string().trim().length(6)
+    });
+
+    const { error, value } = tokenSchema.validate(req.body);
+
+    // check for error
+
+    if (error) {
+        console.log(error);
+    } else {
+        // send token to graphql Server
+
+        const { token } = value;
+
+        fetch(GRAPHQL_URL, {
+            method: 'POST',
+            headers: { 'Content-type': 'application/json' },
+            data: JSON.stringify({
+                query: `
+                mutation activateUser {
+                    activatePaytrAccount(token: "${token}") {
+                        verified
+                    }
+                }`
+            })
+        })
+            .then(verified => {
+                // sign with jwt
+                // if verified redirect to dashboard
+            })
+            .catch(e => {
+                console.log("Activation error : ", e);
+            })
     }
 }

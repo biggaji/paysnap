@@ -46,14 +46,17 @@ const typeDefs = gql`
     }
     
     "Interface for mutation error response"
-    interface MutationErrorResponse {
-        code: Int
-        errorMessage:String
-    }
+    # interface MutationErrorResponse {
+    #     code: Int
+    #     errorMessage:String
+    # }
 
     type Mutation {
         "Create a paytr account"
         createPaytrAccount(input:CreatePaytrAccountInputs): Paytr_user
+
+        "Activate a paytr account"
+        activatePaytrAccount(token:String!): Paytr_user
 
         "Login into a paytr account"
         login(email:String!,password:String!): Paytr_user
