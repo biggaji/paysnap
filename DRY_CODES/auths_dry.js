@@ -11,7 +11,7 @@ exports.checkUser = async (email) => {
     */
 
     // check user in the database
-    const user = await db.query('SELECT * FROM paytr_users WHERE email_address = $1', [email]);
+    const user = await db.query('SELECT * FROM paytr_users WHERE email = $1', [email]);
 
     return user;
 }
@@ -106,6 +106,10 @@ exports.activateUser = async (token) => {
 }
 
 
-exports.login = async (req, res) => {
+exports.login = async (args) => {
     // do the maths
+    const { email, password } = args;
+
+    // insert into DATABASE
+    const user = await db.query(`SELECT FROM paytr_users WHERE email = $1 `, [email, password]);
 }

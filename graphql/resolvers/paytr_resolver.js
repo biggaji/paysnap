@@ -3,15 +3,18 @@ const { createUser, activateUser } = require("../../DRY_CODES/auths_dry");
 
 const resolvers = {
     Query: {
-        Paytr_user: (_, { paytr_id }) => {
-
+        checkEmail: async (_, { email }, ctx) => {
+            // 
         },
-        me: () => "My name is Tobi Ajibade. I am a software engineer and ceo of Paytr",
+        checkUsername: async (_, { paytr_username }, ctx) => {
+            // 
+        }
     },
 
     Mutation: {
         createPaytrAccount: async (_, { input }, ctx) => {
             const user = await createUser(input);
+            console.log(ctx)
             return user;
         },
 

@@ -10,8 +10,8 @@ const authRouter = require("./src/routes/auths");
 const { ApolloServer } = require("apollo-server-express");
 const { typeDefs } = require("./graphql/typedefs/paytr_schema");
 const { resolvers } = require("./graphql/resolvers/paytr_resolver");
-const flash = require("connect-flash");
 const session = require("express-session");
+const flash = require("connect-flash");
 
 
 /**
@@ -22,8 +22,7 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({ req, res }) => {
-        req,
-            res
+        req, res
     }
 });
 

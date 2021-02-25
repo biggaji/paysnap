@@ -1,7 +1,7 @@
 // all auths front-end routes handlers
 
 exports.renderSignup = (req, res) => {
-    res.render("signup", { pageTitle: "Create a paytr account", csrfToken: req.csrfToken() });
+    res.render("signup", { pageTitle: "Create a paytr account", csrfToken: req.csrfToken(), errorMessage: req.flash('error'), successMessage: req.flash('success') });
 }
 
 exports.renderSignin = (req, res) => {
@@ -9,7 +9,35 @@ exports.renderSignin = (req, res) => {
 }
 
 exports.renderActivate = (req, res) => {
-    res.render("activate", { pageTitle: "Activate your paytr account" });
+    const email = req.cookies.p_email;
+    //hash part of password before sending to Ui
+    let firstParts = email.slice(0, 2);
+    let tobehashed = email.slice(2, email.indexOf('@') - email.length);
+    let lastParts = email.match(/\D{1}[a-z]+\D{1}[a-z]{2,}$/gi);
+    let helperArr = [];
+
+    let splitChar = tobehashed.split("");
+
+    // loop through and replace with *
+
+    for (let i = 0; i < splitChar.length; i++) {
+        let asterisks = splitChar[i].replace(splitChar[i], '*');
+        helperArr.push(asterisks);
+    }
+
+    // concate the strind back using Array.reduce()
+
+    function concateMail(...arr) {
+        return arr.reduce((acc, curr) => {
+            return acc + curr;
+        });
+    }
+
+    // invoke the function
+
+    let hashedEmail = concateMail(firstParts, ...helperArr, lastParts);
+
+    res.render("activate", { pageTitle: "Activate your paytr account", hashedEmail: hashedEmail });
 }
 
 exports.renderDashboard = (req, res) => {
@@ -31,7 +59,7 @@ const fetch = require("node-fetch");
  * @param {object} res 
  */
 
-const GRAPHQL_URL = "localhost:5000/graphql";
+const GRAPHQL_URL = "http://localhost:5000/graphql";
 
 exports.create_account = async (req, res) => {
     /**
@@ -56,6 +84,10 @@ exports.create_account = async (req, res) => {
 
     const { firstname, lastname, email, username, password } = value;
 
+    if (error) {
+        console.log(error.details[0].message)
+    }
+
     // check if users exists 
 
     const user = await checkUser(email);
@@ -68,7 +100,7 @@ exports.create_account = async (req, res) => {
                 headers: { "Content-type": "application/json" },
                 body: JSON.stringify({
                     query: `mutation createUser {
-                        createPaytrUser(input:{firstname: "${firstname}",lastname: "${lastname}",email: "${email}",paytr_username: "${username}",password: "${password}"}) {
+                        createPaytrAccount(input:{firstname: "${firstname}",lastname: "${lastname}",email: "${email}",paytr_username: "${username}",password: "${password}"}) {
                             firstname
                             lastname
                             email
@@ -78,19 +110,27 @@ exports.create_account = async (req, res) => {
             })
                 .then(paytr_user => {
                     // convert to response to json
+                    return paytr_user.json();
+                })
+                .then(data => {
                     // Redirect to the activation page
                     // store user email in cookie
+                    res.cookie("p_email", data.data.createPaytrAccount.email, { httpOnly: true });
+                    res.redirect('/activate');
                 })
                 .catch(e => {
                     // Error from the fetch api
-                    console.log("Fetch api error ::", e);
+                    req.flash('error', 'An error occured!');
+                    console.log('fetch error : ', e);
                 });
         } catch (e) {
             console.log("authControl-error : : ", e);
         }
     } else {
         // res.send("User Found!");
-        res.redirect('/');
+        // send back error message to signup router
+        req.flash('success', 'User already exist, please login');
+        res.redirect('/create_account');
     }
 }
 
@@ -135,4 +175,9 @@ exports.activate_account = async (req, res) => {
                 console.log("Activation error : ", e);
             })
     }
+}
+
+
+exports.login = async (req, res) => {
+    // check if exists and validated
 }
