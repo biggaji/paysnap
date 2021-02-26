@@ -2,8 +2,8 @@
     <form action="/activate" method="post">
         <div class="paytr_form_wrapper">
             <label for="verify">Enter the token sent to your email address <span
-                    class="paytr_hash_mail">{{email_excerpt}}</span></label><br>
-            <input type="text" name="activate_k" id="verify">
+                    class="paytr_hash_mail">{{hashedEmail}}</span></label><br>
+            <input type="text" name="activate_k" id="verify" maxlength="6">
         </div>
         <div class="paytr_form_wrapper">
             <input type="hidden" name="csrf_token" value="">

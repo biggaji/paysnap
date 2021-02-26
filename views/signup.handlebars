@@ -1,5 +1,16 @@
 <section class="paytr_form_container">
-    <form action="/create_account" method="post">
+    {{#if errorMessage}}
+    <div class="error_message_box">
+        <p class="error_message">{{errorMessage}}</p>
+    </div>
+    {{/if}}
+
+    {{#if successMessage}}
+    <div class="success_message_box">
+        <p class="success_message">{{successMessage}}</p>
+    </div>
+    {{/if}}
+    <form action="/create_account" method="post" class"sign_up_form>
         <div class="paytr_form_wrapper">
             <label for="fname">Firstname</label><br>
             <input type="text" name="firstname" id="fname">
@@ -32,7 +43,7 @@
             <input type="hidden" name="_csrf" value="{{csrfToken}}">
         </div>
         <div class="paytr_form_btn_wrapper">
-            <button type="submit">Create account</button>
+            <button type="submit" class="paytr_form_btn" aria-live="polite">Create account</button>
         </div>
         <div class="legal_check">
             <input type="checkbox" name="legal_authorize" id="legal">

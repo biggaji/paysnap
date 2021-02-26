@@ -27,11 +27,11 @@ const typeDefs = gql`
     }
 
     type Query {
-        "Get a single paytr user"
-        Paytr_user(paytr_id:String!):Paytr_user
+        "Check to verify if username exists already"
+        checkUsername(paytr_username:String!):Paytr_user
 
-        "Get the software engineer bio"
-        me:String!
+        "Check to verify if an email exists already"
+        checkEmail(email:String!): Paytr_user
     }
 
     # Input types 
