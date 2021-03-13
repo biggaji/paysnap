@@ -1,0 +1,15 @@
+<div class="dashboard-data">
+    {{#if errorMessage}}
+    <div class="error_message_box">
+        <p class="error_message">{{errorMessage}}</p>
+    </div>
+    {{/if}}
+    <p>Good afternoon {{userData.firstname}} </p>
+    <p>Username : @{{userData.paytr_username}}</p>
+
+    <p>Current Balance : {{userData.paytr_balance}}</p>
+</div>
+
+<div class="logout-cont">
+    <a href="/logout">Logout</a>
+</div>

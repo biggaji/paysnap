@@ -12,8 +12,8 @@ const typeDefs = gql`
         paytr_balance:String!
         verified:Boolean
         created_at:String!
-        avatar:String
-        transactions: [Paytr_transaction]
+        avatar:String!
+        transactions: [Paytr_transaction!]
     }
 
 
@@ -27,8 +27,11 @@ const typeDefs = gql`
     }
 
     type Query {
+
+        "Get dashboard data"
+        getDashboardData: Paytr_user
         "Check to verify if username exists already"
-        checkUsername(paytr_username:String!):Paytr_user
+        checkUsername(paytr_username:String!): Paytr_user
 
         "Check to verify if an email exists already"
         checkEmail(email:String!): Paytr_user

@@ -30,7 +30,8 @@ const paytr_c_password = document.querySelector("#cpwd");
 
 paytr_email.addEventListener("input", () => {
     // validate email on input
-    let email_regex = /^\w{1,}@{1}[a-z]{2,}\D{1}[a-z]{2,}$/gi;
+    // let email_regex = /^\w{1,}@{1}[a-z]{2,}\D{1}[a-z]{2,}$/gi;
+    let email_regex = /[a-zA-Z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
     let mailMatch = email_regex.test(paytr_email.value);
 
     // conditional tests
@@ -40,10 +41,11 @@ paytr_email.addEventListener("input", () => {
         email_validator_message.style.display = "block";
     }
     if (mailMatch) {
-        email_validator_message.innerHTML = "Email validated";
-        email_validator_message.style.color = "green";
+        email_validator_message.style.color = "black";
+        email_validator_message.innerHTML = "Checking for availablity";
+        return checkEmail();
     } else {
-        email_validator_message.innerHTML = "Your email address must contain <b>@ character.</b>";
+        email_validator_message.innerHTML = "Your email address should match this pattern 'example@mail.com'";
         email_validator_message.style.color = "red";
     }
 });
@@ -53,16 +55,30 @@ paytr_email.addEventListener("input", () => {
 *making a request to the database
 */
 
+paytr_username.addEventListener('input', () => {
+    if (paytr_username.value === "") {
+        username_validator_message.style.display = "none";
+    } else {
+        username_validator_message.style.display = "block";
+        username_validator_message.style.color = "black";
+        username_validator_message.innerHTML = "Checking for availablity";
+    }
+    if (paytr_username.value.length >= 3) {
+        return checkUsername();
+    } else {
+        username_validator_message.innerHTML = "Username must be at least 3 characters long";
+        username_validator_message.style.color = "red";
+    }
+});
 
 /**
  * validate password - Ensure it matches regex - at least 8 characters long, includes at least 1 number
- * and a non numeric character  long[/\W+{8,}/i]
+ * and a non numeric character  long[
  */
 
 paytr_password.addEventListener('input', () => {
 
     let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
-    // let password_match = paytr_password.value.match(password_regex);
     let password_test = password_regex.test(paytr_password.value);
 
     // conditionals
@@ -104,23 +120,29 @@ paytr_c_password.addEventListener("input", () => {
 });
 
 // disable button if any input fields are null or undefined or  ""
-
+// paytr_submit_btn.disabled = true;
 // form on submit prevent default
 
 const signupForm = document.querySelector(".sign_up_form");
+let form_msg = document.querySelector(".form_msg");
 
 signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+    if (paytr_firstname.value === "" || paytr_lastname.value === "" || paytr_username.value === "" || paytr_password.value === "" || paytr_c_password.value === "") {
+        form_msg.innerHTML = "All fields are required";
+        e.preventDefault();
+    } 
+    return;
 })
+
 
 const GRAPHQL_URL = "http://localhost:5000/graphql";
 
 // check if email or username exist already - fetch from graphql server
 function checkEmail() {
     fetch(GRAPHQL_URL, {
-        method: 'POST',
-        headers: 'application/json',
-        data: JSON.stringify({
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
             query:
                 `
         query checkMailExist {
@@ -130,45 +152,57 @@ function checkEmail() {
         }
         `
         })
-            .then(email => {
-                // convert to json
-                return email.json()
-            })
-            .then(data => {
-                // validate data here and return suitable message
-            })
-            .catch(e => {
-                console.log("email fetch error: ", e);
-            })
-    });
+    })
+        .then(email => {
+            // convert to json
+            return email.json()
+        })
+        .then(data => {
+            // validate data here and return suitable message
+            if (data.data.checkEmail !== null) {
+                email_validator_message.innerHTML = `email is not available for use `;
+                email_validator_message.style.color = "red";
+            } else {
+                email_validator_message.innerHTML = `email is available for use`;
+                email_validator_message.style.color = "green"
+            }
+        })
+        .catch(e => {
+            console.log("email fetch error: ", e);
+        })
 }
 
 // check username
-
 function checkUsername() {
     fetch(GRAPHQL_URL, {
-        method: 'POST',
-        headers: 'application/json',
-        data: JSON.stringify({
-            query:
-                `
-        query checkUsernameExist {
-            checkUsername(paytr_username: "${paytr_username.value}") {
-                paytr_username
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+            query: `
+            query checkUsernameExist {
+                checkUsername(paytr_username: "${paytr_username.value}") {
+                    paytr_username
+                }
             }
-        }
         `
         })
-            .then(username => {
-                return username.json();
-            })
-            .then(data => {
-                // validate username and return suitable data
-            })
-            .catch(e => {
-                console.log("username fetch error : ", e)
-            })
-    });
+    })
+        .then(username => {
+            return username.json();
+        })
+        .then(data => {
+            // validate username and return suitable data
+            if (data.data.checkUsername !== null) {
+                // update ui with username message
+                username_validator_message.innerHTML = `username is not available`;
+                username_validator_message.style.color = "red";
+            } else {
+                // update username not foumd
+                username_validator_message.innerHTML = `username is avaiable`;
+                username_validator_message.style.color = "green";
+            }
+        })
+        .catch(e => {
+            console.log("username fetch error : ", e)
+        })
 }
-
-// create event listeners to listen on input

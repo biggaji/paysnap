@@ -1,3 +1,9 @@
+const { checkUser, activateUser } = require("../../DRY_CODES/auths_dry");
+const Joi = require("joi");
+const fetch = require("node-fetch");
+const jwt = require("jsonwebtoken");
+
+
 // all auths front-end routes handlers
 
 exports.renderSignup = (req, res) => {
@@ -5,7 +11,7 @@ exports.renderSignup = (req, res) => {
 }
 
 exports.renderSignin = (req, res) => {
-    res.render("login", { pageTitle: "Paytr login" });
+    res.render("login", { pageTitle: "Paytr login", csrfToken: req.csrfToken(), errorMessage: req.flash('error') });
 }
 
 exports.renderActivate = (req, res) => {
@@ -37,11 +43,42 @@ exports.renderActivate = (req, res) => {
 
     let hashedEmail = concateMail(firstParts, ...helperArr, lastParts);
 
-    res.render("activate", { pageTitle: "Activate your paytr account", hashedEmail: hashedEmail });
+    res.render("activate", { pageTitle: "Activate your paytr account", hashedEmail: hashedEmail, csrfToken: req.csrfToken(), errorMessage: req.flash('error') });
 }
 
 exports.renderDashboard = (req, res) => {
-    res.render("dashboard", { pageTitle: "dashboard" });
+    // const { paytr_id } = req.user;
+    //fetch user info from graphql Server
+    fetch(GRAPHQL_URL, {
+        method: "POST",
+        headers: { "Content-type": "application/json" },
+        body: JSON.stringify({
+            query: `
+            query getDashboardData {
+                getDashboardData {
+                    firstname
+                    lastname
+                    paytr_username
+                    paytr_balance
+                }
+            }
+        `})
+    })
+        .then(resp => {
+            return resp.json();
+        })
+        .then(userData => {
+            // check if data is not null
+            if (userData.data.getDashboardData !== null) {
+                res.render("dashboard", { pageTitle: "dashboard", userData: userData.data.getDashboardData });
+            } else {
+                res.redirect('/signin');
+            }
+        })
+        .catch(e => {
+            console.log("Error occured while Fetching dashboard data ", e);
+            res.redirect('/signin');
+        });
 }
 
 
@@ -50,9 +87,6 @@ exports.renderDashboard = (req, res) => {
  * paytr dependecies
  */
 
-const { checkUser, activateUser } = require("../../DRY_CODES/auths_dry");
-const Joi = require("joi");
-const fetch = require("node-fetch");
 /**
  *  Auth controllers
  * @param {object} req 
@@ -74,7 +108,7 @@ exports.create_account = async (req, res) => {
         lastname: Joi.string().trim().required(),
         email: Joi.string().email().required(),
         username: Joi.string().trim().required(),
-        password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{8,30}$')).required(),
+        password: Joi.string().pattern(new RegExp('/[a-zA-Z]+\d{1,}\W{1,}/gi')).required(),
         _csrf: Joi.string().trim().required(),
         c_password: Joi.ref('password')
     });
@@ -120,8 +154,8 @@ exports.create_account = async (req, res) => {
                 })
                 .catch(e => {
                     // Error from the fetch api
-                    req.flash('error', 'An error occured!');
-                    console.log('fetch error : ', e);
+                    req.flash('error', 'An error occured while processing your registration, please try again!');
+                    console.log('Create-account fetch error : ', e);
                 });
         } catch (e) {
             console.log("authControl-error : : ", e);
@@ -141,7 +175,8 @@ exports.activate_account = async (req, res) => {
     */
 
     const tokenSchema = Joi.object().keys({
-        token: Joi.string().trim().length(6)
+        activate_k: Joi.string().trim().length(6).required(),
+        _csrf: Joi.string().trim().required()
     });
 
     const { error, value } = tokenSchema.validate(req.body);
@@ -149,27 +184,52 @@ exports.activate_account = async (req, res) => {
     // check for error
 
     if (error) {
-        console.log(error);
+        console.error(error);
     } else {
         // send token to graphql Server
 
-        const { token } = value;
+        const { activate_k } = value;
 
         fetch(GRAPHQL_URL, {
-            method: 'POST',
-            headers: { 'Content-type': 'application/json' },
-            data: JSON.stringify({
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
                 query: `
                 mutation activateUser {
-                    activatePaytrAccount(token: "${token}") {
+                    activatePaytrAccount(token: "${activate_k}") {
                         verified
+                        paytr_username
+                        paytr_id
                     }
                 }`
             })
         })
-            .then(verified => {
-                // sign with jwt
-                // if verified redirect to dashboard
+            .then(resp => {
+                // convert response to json
+                // console.log(resp)
+                return resp.json();
+            })
+            .then(activated => {
+                // console.log(activated);
+                if (activated.data.activatePaytrAccount !== null) {
+                    // clear email from cookie`
+                    res.clearCookie("p_email");
+                    let { paytr_id, paytr_username, verified } = activated.data.activatePaytrAccount;
+                    // sign with jwt
+                    let x_token = jwt.sign({ paytr_username: paytr_username, paytr_id: paytr_id, isverified: verified }, process.env.JWT_SECRET, { expiresIn: "1d" });
+
+                    res.cookie("x_token", x_token, { httpOnly: true, maxAge: 60 * 60 * 60 * 24 });
+                    res.cookie("isLoggedIn", true, { httpOnly: true, maxAge: 60 * 60 * 60 * 24 });
+                    // if verified redirect to dashboard
+
+                    res.redirect('/dashboard');
+                } else {
+                    // flash error - 'Token invalid or expired';
+                    // redirect to activate page
+                    console.log("Invalid token");
+                    req.flash('error', 'Token is invalid or expired');
+                    res.redirect("/activate");
+                }
             })
             .catch(e => {
                 console.log("Activation error : ", e);
@@ -180,4 +240,77 @@ exports.activate_account = async (req, res) => {
 
 exports.login = async (req, res) => {
     // check if exists and validated
+
+    let loginSchema = Joi.object().keys({
+        email: Joi.string().email().required(),
+        password: Joi.string().pattern(new RegExp('/[a-zA-Z]+\d{1,}\W{1,}/gi')).required(),
+        _csrf: Joi.string().trim().required()
+    });
+
+    const { errors, value } = loginSchema.validate(req.body);
+
+    if (errors) {
+        console.log(errors.details[0].message)
+    }
+
+    let { email, password } = value;
+
+    let user = await checkUser(email);
+
+    if (user.rowCount !== 0 && user.rows[0].verified) {
+        // send mutation data
+        fetch(GRAPHQL_URL, {
+            method: "POST",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify({
+                query: `
+                mutation logUserIn {
+                    login(email: "${email}",password: "${password}") {
+                        paytr_id
+                        paytr_username
+                        verified
+                    }
+                }`
+            })
+        })
+            .then(resp => {
+                return resp.json();
+            })
+            .then(userData => {
+                console.log(userData)
+                let data = userData.data.login;
+                let token = jwt.sign({ paytr_id: data.paytr_id, isverified: data.isverified, paytr_username: data.paytr_username }, process.env.JWT_SECRET, { expiresIn: "1d" });
+                res.cookie("x_token", token, { httpOnly: true, maxAge: 60 * 60 * 60 * 24 });
+                res.cookie("isLoggedIn", true, { httpOnly: true, maxAge: 60 * 60 * 60 * 24 });
+                res.clearCookie("isLoggedOut");
+                res.redirect('/dashboard');
+            })
+            .catch(e => {
+                // 
+                console.log(`FETCH ERROR: `, e);
+                req.flash('error', 'An error occured while signing you in, please try again!')
+                res.redirect('/signin');
+            });
+    } else if (user.rowCount !== 0 && !user.rows[0].verified) {
+        // if not verified to
+        // flash message please activate your account
+        req.flash('error', `You need to activate your account before you can login, please check your email for an activation token sent to you`);
+        res.redirect('/signin');
+        console.log('You are not verified');
+    } else {
+        // Not a user flash create account instead
+        // redirect to signin 
+        console.log('You need to create an account');
+        req.flash('error', 'You need to Signup first, before you can login');
+        res.redirect('/signin');
+    }
+
+}
+
+exports.logout = async (req, res) => {
+    // remove cookies all cookies and set cookie is logged out to true;
+    res.clearCookie("x_token");
+    res.clearCookie('isLoggedIn');
+    res.cookie("isLoggedOut", true, { httpOnly: true });
+    res.redirect('/');
 }
