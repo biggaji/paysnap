@@ -1,1 +1,21 @@
-k
+{{#if errorMessage}}
+<div class="error_message_box">
+    <p class="error_message">{{errorMessage}}</p>
+</div>
+{{/if}}
+<form action="/signin" method="post">
+    <div class="fw">
+        <label for="mail">Email Address</label><br>
+        <input type="email" name="email" id="mail">
+    </div>
+    <div class="fw">
+        <label for="pwd">Password</label><br>
+        <input type="password" name="password" id="pwd">
+    </div>
+    <div class="fw">
+        <input type="hidden" name="_csrf" value="{{csrfToken}}">
+    </div>
+    <div class="btn">
+        <button type="submit">Login</button>
+    </div>
+</form>

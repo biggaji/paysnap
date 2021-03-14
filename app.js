@@ -14,6 +14,8 @@ const session = require("express-session");
 const flash = require("connect-flash");
 
 
+const app = express();
+
 /**
  * Apollo server configs
  */
@@ -22,12 +24,14 @@ const server = new ApolloServer({
     typeDefs,
     resolvers,
     context: ({ req, res }) => {
-        req, res
+        // let token = req.headers.authorization || req.cookies.x_token;
+        let me = req.user;
+        // console.log(me);
+        // console.log(token);
+        // check user
+        return { res, me }
     }
 });
-
-
-const app = express();
 
 
 server.applyMiddleware({ app });

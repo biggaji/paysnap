@@ -10,7 +10,7 @@ describe("GET /", () => {
     // Test goes here
     it("It should return a status 200", (done) => {
         chai.request(app)
-            .get("/")
+            .get("/e")
             .end((err, res) => {
                 res.should.have.status(200);
                 done();

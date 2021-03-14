@@ -1,31 +1,32 @@
-const { typeDefs } = require("../typedefs/paytr_schema");
-const { createUser, activateUser } = require("../../DRY_CODES/auths_dry");
+const { createUser, activateUser, getDashboardData, login, checkUsername, checkEmail } = require("../../DRY_CODES/auths_dry");
 
 const resolvers = {
     Query: {
+        getDashboardData: async (_, args, { me }) => {
+            console.log(Hello);
+            // return await getDashboardData(me);
+        },
         checkEmail: async (_, { email }, ctx) => {
-            // 
+            return await checkEmail(email);
         },
         checkUsername: async (_, { paytr_username }, ctx) => {
-            // 
+            return await checkUsername(paytr_username);
         }
     },
 
     Mutation: {
         createPaytrAccount: async (_, { input }, ctx) => {
-            const user = await createUser(input);
-            console.log(ctx)
-            return user;
+            return await createUser(input);
         },
 
         activatePaytrAccount: async (_, { token }, ctx) => {
             // activate user
-            const activated = await activateUser(token);
-            return activated;
+            return await activateUser(token);
         },
 
         login: async (_, args, ctx) => {
             //  Log user in
+            return await login(args);
         },
 
         initializeTransaction: async (_, args, ctx) => {
