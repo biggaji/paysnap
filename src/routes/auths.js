@@ -1,20 +1,9 @@
-const router = require("express").Router();
-const { renderSignup, renderActivate, renderDashboard, renderSignin, create_account, activate_account, logout, login } = require("../controllers/authsControl");
-const csrf = require("csurf");
-const { checkUser } = require("../../@utils/verifyUser");
-
-const csrfProtection = csrf();
-router.use(csrfProtection);
-
-router.get('/create_account', renderSignup);
-router.post('/create_account', create_account);
-
-router.get('/activate', renderActivate);
-router.post('/activate', activate_account);
-router.get('/signin', renderSignin);
-router.get('/dashboard', checkUser, renderDashboard);
-router.post('/signin', login);
-router.get('/logout', checkUser, logout);
-
-
-module.exports = router;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const auths_1 = require("../controllers/auths");
+const router = express_1.Router();
+router.get('/signup', auths_1.signUpController);
+router.get("/signin", auths_1.signInController);
+router.get("/activate", auths_1.activateAccountController);
+exports.default = router;

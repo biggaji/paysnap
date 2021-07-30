@@ -1,0 +1,114 @@
+// mobile first design
+
+// logo container
+.logo-container {
+    margin: 1rem 0;
+    h1 {
+        font-size: 1rem;
+    }
+}
+
+// hero container
+.hero-wrapper {
+    .hero-copy {
+        color:#0A2450;
+        line-height: 1.2;
+        font-size: 1.575rem;
+    }
+    .hero-cta {
+        margin: 1rem 0;
+        .hero-cta-link {
+            color:#fff;
+            line-height: 1.4;
+            font-weight: 600;
+            background-color: #635BFF;
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            text-decoration: none;
+            border-radius: 70px;
+        }
+    }
+}
+
+//forms
+.form-copy-wrap {
+    .form-copy {
+        line-height: 1.4;
+        color:#0A2450;
+        font-size: 1.375rem;
+    }
+}
+
+.critical-note {
+    line-height: 1.4;
+}
+
+.form-wrapper {
+    //signup style
+    .signup , .signin, .activate{
+        .fin-wrap {
+            width: 100%;
+            margin: 0.675rem 0;
+            label {
+                font-size: 0.875rem;
+            }
+            .pwd-wrap {
+                display: flex;
+                justify-content: space-between;
+                .fgp {
+                    font-size: 0.875rem;
+                    text-decoration: none;
+                }
+            }
+            .fin-wrap-input {
+                width: 100%;
+                margin: 0.175rem 0;
+                padding: 0.3rem;
+            }
+        }
+        .fbtn-wrap {
+            width: 100%;
+            margin: 0.8rem 0;
+            .fbtn-wrap-btn {
+                width: 100%;
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    }
+}
+
+.twister-box {
+    .twister-text {
+        line-height: 1.2;
+        font-size: 0.875rem;
+    }
+    .twister-link {
+        line-height: 1.2;
+        text-decoration: none;
+    }
+}
+
+@media screen and (min-width: 280px) {
+    
+}
+@media screen and (min-width: 420px) {
+    
+}
+
+//tablets
+
+@media screen and (min-width: 540px) {
+    
+}
+@media screen and (min-width: 720px) {
+    
+}
+
+// laptops, desktops and large screens
+
+@media screen and (min-width: 1024px) {
+    
+}
+@media screen and (min-width: 1366px) {
+    
+}
