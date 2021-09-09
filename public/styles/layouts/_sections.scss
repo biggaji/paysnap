@@ -18,16 +18,17 @@
         .hero-copy {
             color:#1C1E21;
             line-height: 1.4;
-            font-size: 1.575rem;
-            font-family: $Mono;
+            font-size: 1.9rem;
+            font-family: $Arial;
             letter-spacing: 0.02rem;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 0.89rem;
+            font-size: 1rem;
             font-family: $Arial;
             line-height: 1.4;
             letter-spacing: 0.02rem;
+            color: #425466;
         }
     }
     .hero-cta {
@@ -104,7 +105,7 @@
     }
 }
 
-@media screen and (min-width: 280px) {
+@media screen and (min-width: 300px) {
     .hero-wrapper {
     // border: 1px solid red;
     height: 60vh;
@@ -112,13 +113,14 @@
     padding: 3rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 1.79rem;
+            font-size: 2.3rem;
+            line-height: 1.4;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 0.99rem;
+            font-size: 1.1rem;
             font-family: $Arial;
-            line-height: 1.2;
+            line-height: 1.4;
             color: #425466;
             font-weight: 500;
         }
@@ -126,8 +128,8 @@
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 0.9rem;
-            padding: 0.6rem 2rem;
+            font-size: 1rem;
+            padding: 0.6rem 2.5rem;
             font-weight: 900;
         }
     }
@@ -142,13 +144,13 @@
     padding: 3rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 1.8rem;
+            font-size: 2.1rem;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 0.99rem;
+            font-size: 1rem;
             font-family: $Arial;
-            line-height: 1.2;
+            line-height: 1.4;
             color: #425466;
             font-weight: 500;
         }
@@ -156,8 +158,8 @@
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 0.9rem;
-            padding: 0.6rem 2rem;
+            font-size: 1rem;
+            padding: 0.6rem 2.5rem;
             font-weight: 900;
         }
     }
@@ -180,7 +182,7 @@
             margin: 0.7rem 0;
             font-size: 1rem;
             font-family: $Arial;
-            line-height: 1.2;
+            line-height: 1.4;
             color: #425466;
             font-weight: 500;
         }
@@ -211,7 +213,7 @@
             margin: 0.7rem 0;
             font-size: 1.1rem;
             font-family: $Arial;
-            line-height: 1.2;
+            line-height: 1.4;
             color: #425466;
             font-weight: 500;
             width: 80%;

@@ -43,17 +43,18 @@ body {
 .hero-wrapper .hero-copy-wrapper .hero-copy {
   color: #1C1E21;
   line-height: 1.4;
-  font-size: 1.575rem;
-  font-family: "DM Mono", monospace;
+  font-size: 1.9rem;
+  font-family: Arial;
   letter-spacing: 0.02rem;
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
   margin: 0.7rem 0;
-  font-size: 0.89rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  font-family: Arial;
   line-height: 1.4;
   letter-spacing: 0.02rem;
+  color: #425466;
 }
 
 .hero-wrapper .hero-cta {
@@ -68,7 +69,7 @@ body {
   font-size: 0.85rem;
   text-decoration: none;
   letter-spacing: 0.02rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Arial;
   border-radius: 70px;
 }
 
@@ -131,20 +132,21 @@ body {
   text-decoration: none;
 }
 
-@media screen and (min-width: 280px) {
+@media screen and (min-width: 300px) {
   .hero-wrapper {
     height: 60vh;
     margin: 0.5rem 0;
     padding: 3rem 0;
   }
   .hero-wrapper .hero-copy-wrapper .hero-copy {
-    font-size: 1.79rem;
+    font-size: 2.3rem;
+    line-height: 1.4;
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 0.99rem;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.2;
+    font-size: 1.1rem;
+    font-family: Arial;
+    line-height: 1.4;
     color: #425466;
     font-weight: 500;
   }
@@ -152,8 +154,8 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 0.9rem;
-    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    padding: 0.6rem 2.5rem;
     font-weight: 900;
   }
 }
@@ -165,13 +167,13 @@ body {
     padding: 3rem 0;
   }
   .hero-wrapper .hero-copy-wrapper .hero-copy {
-    font-size: 1.8rem;
+    font-size: 2.1rem;
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 0.99rem;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.2;
+    font-size: 1rem;
+    font-family: Arial;
+    line-height: 1.4;
     color: #425466;
     font-weight: 500;
   }
@@ -179,8 +181,8 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 0.9rem;
-    padding: 0.6rem 2rem;
+    font-size: 1rem;
+    padding: 0.6rem 2.5rem;
     font-weight: 900;
   }
 }
@@ -197,8 +199,8 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.2;
+    font-family: Arial;
+    line-height: 1.4;
     color: #425466;
     font-weight: 500;
   }
@@ -225,8 +227,8 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.1rem;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.2;
+    font-family: Arial;
+    line-height: 1.4;
     color: #425466;
     font-weight: 500;
     width: 80%;
@@ -254,7 +256,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.29rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
     line-height: 1.2;
     color: #425466;
     font-weight: 500;
@@ -283,7 +285,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial;
     line-height: 1.2;
     color: #425466;
     font-weight: 500;
