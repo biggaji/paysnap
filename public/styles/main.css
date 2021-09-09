@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -7,8 +8,6 @@
 
 body {
   width: 100%;
-  font-weight: 500;
-  font-family: future, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 .paysnap-container {
@@ -33,10 +32,16 @@ body {
   font-size: 1rem;
 }
 
+.hero-wrapper {
+  width: 100%;
+  height: auto;
+}
+
 .hero-wrapper .hero-copy {
-  color: #0A2450;
-  line-height: 1.2;
+  color: #1C1E21;
+  line-height: 1.4;
   font-size: 1.575rem;
+  font-family: "DM Mono", monospace;
 }
 
 .hero-wrapper .hero-cta {
@@ -46,11 +51,11 @@ body {
 .hero-wrapper .hero-cta .hero-cta-link {
   color: #fff;
   line-height: 1.4;
-  font-weight: 600;
-  background-color: #635BFF;
+  background-color: #7670f7;
   padding: 0.5rem 1rem;
   font-size: 0.85rem;
   text-decoration: none;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 70px;
 }
 
@@ -111,5 +116,24 @@ body {
 .twister-box .twister-link {
   line-height: 1.2;
   text-decoration: none;
+}
+
+@media screen and (min-width: 1024px) {
+  .hero-wrapper {
+    height: 60vh;
+    margin: 0.5rem 0;
+    padding: 6rem 0;
+  }
+  .hero-wrapper .hero-copy {
+    font-size: 3rem;
+  }
+  .hero-wrapper .hero-cta {
+    margin: 2rem 0 0.7rem 0;
+  }
+  .hero-wrapper .hero-cta .hero-cta-link {
+    font-size: 0.9rem;
+    padding: 0.8rem 2rem;
+    font-weight: 900;
+  }
 }
 /*# sourceMappingURL=main.css.map */
