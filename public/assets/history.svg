@@ -1,0 +1,8 @@
+<svg width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<line x1="20.5457" y1="28.3313" x2="27.3556" y2="14.9662" stroke="black" stroke-width="2"/>
+<line x1="19.2702" y1="28.4824" x2="32.5946" y2="35.3715" stroke="black" stroke-width="2"/>
+<g style="mix-blend-mode:darken">
+<circle cx="25" cy="25" r="25" transform="rotate(-90 25 25)" fill="white"/>
+<circle cx="25" cy="25" r="24" transform="rotate(-90 25 25)" stroke="black" stroke-opacity="0.56" stroke-width="2"/>
+</g>
+</svg>
