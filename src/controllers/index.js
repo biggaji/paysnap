@@ -11,7 +11,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const indexController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render("index", {
-        pageTitle: "Paysnap - Welcome to the future of payments"
+        pageTitle: "Send money around the world to anyone, anywhere, anytime"
     });
 });
 exports.default = indexController;
