@@ -10,21 +10,25 @@
 
 // hero container
 .hero-wrapper {
+    width: 100%;
+    height: auto;
     .hero-copy {
-        color:#0A2450;
-        line-height: 1.2;
+        color:#1C1E21;
+        line-height: 1.4;
         font-size: 1.575rem;
+        font-family: $Mono;
     }
     .hero-cta {
         margin: 1rem 0;
         .hero-cta-link {
             color:#fff;
             line-height: 1.4;
-            font-weight: 600;
-            background-color: #635BFF;
+            // font-weight: 600;
+            background-color: #7670f7;
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             text-decoration: none;
+            font-family: $Arial;
             border-radius: 70px;
         }
     }
@@ -107,7 +111,25 @@
 // laptops, desktops and large screens
 
 @media screen and (min-width: 1024px) {
-    
+    // hero container
+.hero-wrapper {
+    // border: 1px solid red;
+    height: 60vh;
+    margin: 0.5rem 0;
+    padding: 6rem 0;
+    .hero-copy {
+        font-size: 3rem;
+    }
+    .hero-cta {
+        margin: 2rem 0 0.7rem 0;
+        .hero-cta-link {
+            font-size: 0.9rem;
+            padding: 0.8rem 2rem;
+            font-weight: 900;
+        }
+    }
+}
+
 }
 @media screen and (min-width: 1366px) {
     
