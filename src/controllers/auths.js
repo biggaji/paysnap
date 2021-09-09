@@ -9,9 +9,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const indexController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("index", {
-        pageTitle: "Send money around the world to anyone, anywhere, anytime"
-    });
+exports.activateAccountController = exports.signInController = exports.signUpController = void 0;
+const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.render("signup", { pageTitle: "Create your paysnap account" });
 });
-exports.default = indexController;
+exports.signUpController = signUpController;
+const signInController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.render("login", { pageTitle: "Sign in to paysnap" });
+});
+exports.signInController = signInController;
+const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    res.render("activate", { pageTitle: "Activate your paysnap account" });
+});
+exports.activateAccountController = activateAccountController;

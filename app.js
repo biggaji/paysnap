@@ -1,74 +1,30 @@
-// load enviroment variables
-require("dotenv").config();
-const express = require("express");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const hbs = require("express-handlebars");
-const path = require("path");
-const indexRouter = require("./src/routes/index");
-const authRouter = require("./src/routes/auths");
-const { ApolloServer } = require("apollo-server-express");
-const { typeDefs } = require("./graphql/typedefs/paytr_schema");
-const { resolvers } = require("./graphql/resolvers/paytr_resolver");
-const session = require("express-session");
-const flash = require("connect-flash");
-
-
-const app = express();
-
-/**
- * Apollo server configs
- */
-
-const server = new ApolloServer({
-    typeDefs,
-    resolvers,
-    context: ({ req, res }) => {
-        // let token = req.headers.authorization || req.cookies.x_token;
-        let me = req.user;
-        // console.log(me);
-        // console.log(token);
-        // check user
-        return { res, me }
-    }
-});
-
-
-server.applyMiddleware({ app });
-// application middlewares
-app.use(express.urlencoded({ extended: false }));
-app.use(express.json());
-app.use(cors());
-app.use(cookieParser());
-app.use(session({
-    name: "sid",
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false
-}))
-app.use(flash());
-
-
-// set up static file directory
-app.use(express.static(path.join(__dirname, "public")));
-
-// setup template engine
-app.engine("handlebars", hbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "views"));
-
-// app routers
-app.use('/', indexRouter);
-app.use("/", authRouter);
-
-// 404 page error handler
-
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = __importDefault(require("express"));
+const express_handlebars_1 = __importDefault(require("express-handlebars"));
+const path_1 = __importDefault(require("path"));
+// import cors from  'cors';
+const index_1 = __importDefault(require("./src/routes/index"));
+const auths_1 = __importDefault(require("./src/routes/auths"));
+const transactions_1 = __importDefault(require("./src/routes/transactions"));
+const app = express_1.default();
+app.use(express_1.default.urlencoded({ extended: false }));
+app.use(express_1.default.json());
+// app.use(cors());
+app.use(express_1.default.static(path_1.default.join(__dirname, 'public')));
+app.engine("hbs", express_handlebars_1.default({ defaultLayout: "main" }));
+app.set("view engine", "hbs");
+app.use('/', index_1.default);
+app.use("/", auths_1.default);
+app.use("/", transactions_1.default);
+// 404 middleware
 app.use((req, res, next) => {
-    res.render('404', { pageTitle: "Page Not Found" });
-})
-
-const PORT = process.env.PORT || 4000;
-
-app.listen(PORT, () => console.log('Server running on port ' + PORT));
-
-module.exports = app;
+    res.render("404", { pageTitle: "Page Not Found" });
+});
+let PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});
