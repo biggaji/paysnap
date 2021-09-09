@@ -1,4 +1,4 @@
-name: deploy paytr
+name: deploy paysnap
 
 on:
   pull_request:
