@@ -144,7 +144,7 @@ body {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     font-family: Arial;
     line-height: 1.4;
     color: #425466;
@@ -154,8 +154,8 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1rem;
-    padding: 0.6rem 2.5rem;
+    font-size: 1.1rem;
+    padding: 0.7rem 2.5rem;
     font-weight: 900;
   }
 }
