@@ -33,9 +33,9 @@
     .hero-cta {
         margin: 1rem 0;
         .hero-cta-link {
-            color:#fff;
+            color:$buttonColor;
             line-height: 1.4;
-            background-color: #7670f7;
+            background-color: $buttonBg;
             padding: 0.5rem 1rem;
             font-size: 0.85rem;
             text-decoration: none;
