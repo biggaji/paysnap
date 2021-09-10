@@ -4,7 +4,7 @@
 .logo-container {
         padding: 0.5rem 0;
     .logo {
-        width: 100px;
+        width: 130px;
         height: auto;
         object-fit: contain;
     }
@@ -28,6 +28,7 @@
             font-family: $Arial;
             line-height: 1.4;
             letter-spacing: 0.02rem;
+            font-weight: 500;
             color: #425466;
         }
     }
@@ -43,6 +44,14 @@
             letter-spacing: 0.02rem;
             font-family: $Arial;
             border-radius: 70px;
+            .arrow-right {
+                stroke: currentColor;
+                fill: #fff;
+                // stroke: 0.125rem;
+                vertical-align: middle;
+                // margin-left: 0.125rem;
+                margin-bottom: 0.125rem;;
+            }
         }
     }
 }
