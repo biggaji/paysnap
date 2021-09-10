@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - name: Deploy paytr
+    - name: Deploy paysnap to heroku
       uses: akhileshns/heroku-deploy@v3.8.8
       with:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
