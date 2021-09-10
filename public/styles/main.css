@@ -8,6 +8,7 @@
 
 body {
   width: 100%;
+  font-family: Arial, Helvetica;
 }
 
 .paysnap-container {
@@ -29,7 +30,7 @@ body {
 }
 
 .logo-container .logo {
-  width: 100px;
+  width: 130px;
   height: auto;
   -o-object-fit: contain;
      object-fit: contain;
@@ -44,16 +45,17 @@ body {
   color: #1C1E21;
   line-height: 0/8;
   font-size: 1.9rem;
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.02rem;
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
   margin: 0.7rem 0;
   font-size: 1rem;
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   letter-spacing: 0.02rem;
+  font-weight: 500;
   color: #425466;
 }
 
@@ -69,8 +71,15 @@ body {
   font-size: 0.85rem;
   text-decoration: none;
   letter-spacing: 0.02rem;
-  font-family: Arial;
+  font-family: Arial, Helvetica, sans-serif;
   border-radius: 70px;
+}
+
+.hero-wrapper .hero-cta .hero-cta-link .arrow-right {
+  stroke: currentColor;
+  fill: #fff;
+  vertical-align: middle;
+  margin-bottom: 0.125rem;
 }
 
 .form-copy-wrap .form-copy {
@@ -145,7 +154,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
     color: #425466;
     font-weight: 500;
@@ -173,7 +182,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
     color: #425466;
     font-weight: 500;
@@ -201,7 +210,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
     color: #425466;
     font-weight: 500;
@@ -230,7 +239,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
     color: #425466;
     font-weight: 500;
@@ -260,7 +269,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.29rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.2;
     color: #425466;
     font-weight: 500;
@@ -290,7 +299,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.2rem;
-    font-family: Arial;
+    font-family: Arial, Helvetica, sans-serif;
     line-height: 1.2;
     color: #425466;
     font-weight: 500;
