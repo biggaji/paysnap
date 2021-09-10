@@ -28,7 +28,7 @@
             font-family: $Arial;
             line-height: 1.4;
             letter-spacing: 0.02rem;
-            font-weight: 500;
+            font-weight: 300;
             color: $fontColor;
         }
     }
@@ -55,105 +55,111 @@
 }
 
 //forms
-.form-copy-wrap {
-    .form-copy {
+.form-container {
+    width: 100%;
+    .form-copy-wrap {
+        .form-copy {
+            line-height: 1.4;
+            color: $fontColor;
+            font-weight: 400;
+            font-size: 1.375rem;
+            margin: 0.5rem 0;
+        }
+    }
+    
+    .intro-note {
         line-height: 1.4;
-        color: $fontColor;
-        font-weight: 400;
-        font-size: 1.375rem;
-        margin: 0.5rem 0;
+        margin: 0.6rem 0;
+        p {
+            font-size: 0.96rem;
+            font-weight: 300;
+            color: $fontColor;
+        }
     }
-}
-
-.intro-note {
-    line-height: 1.4;
-    margin: 0.6rem 0;
-    p {
-        font-size: 0.96rem;
-        font-weight: 300;
-        color: $fontColor;
-    }
-}
-
-.form-wrapper {
-    //signup style
-    margin: 1rem 0;
-    letter-spacing: 0.025;
-    .signup , .signin, .activate{
-        .fin-wrap {
-            width: 100%;
-            margin: 0.675rem 0;
-            label {
-                font-size: 0.96rem;
-                color: $fontColor;
-                letter-spacing: 0.025;
-                line-height: 1.4;
-            }
-            .pwd-wrap {
-                display: flex;
-                justify-content: space-between;
-                .fgp {
+    
+    .form-wrapper {
+        //signup style
+        margin: 2rem 0;
+        letter-spacing: 0.025;
+        .signup , .signin, .activate{
+            .fin-wrap {
+                width: 100%;
+                margin: 0.675rem 0;
+                label {
                     font-size: 0.96rem;
-                    text-decoration: none;
-                    letter-spacing: 0.025;
-                    text-decoration: underline;
                     color: $fontColor;
-                    &:hover {
-                        color: $buttonBg;
+                    letter-spacing: 0.025;
+                    line-height: 1.4;
+                    margin: 0.2rem 0;
+                }
+                .pwd-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    .fgp {
+                        font-size: 0.96rem;
+                        text-decoration: none;
+                        letter-spacing: 0.025;
+                        text-decoration: underline;
+                        color: $fontColor;
+                        margin: 0.25rem 0;
+                        &:hover {
+                            color: $buttonBg;
+                        }
+                    }
+                }
+                .fin-wrap-input {
+                    width: 100%;
+                    margin: 0.4rem 0;
+                    padding: 0.6rem 0.7rem;
+                    border-radius: 0.5rem;
+                    letter-spacing: 0.025;
+                    font-size: 0.96rem;
+                    color: $fontColor;
+                    outline: none;
+                    border: 0.3px solid $fontColor;
+                }
+            }
+            .fbtn-wrap {
+                width: 100%;
+                margin: 1rem 0;
+                .fbtn-wrap-btn {
+                    cursor: pointer;
+                    width: 100%;
+                    padding: 0.8rem 1rem;
+                    border-radius: 70px;
+                    font-weight: 900;
+                    font-size: 1rem;
+                    border:none;
+                    letter-spacing: 0.025;
+                    background-color: $buttonBg;
+                    color: $buttonColor;
+                    .arrow-right {
+                        stroke: currentColor;
+                        fill: #fff;
+                        margin-bottom: 0.125rem;
+                        vertical-align: middle;
                     }
                 }
             }
-            .fin-wrap-input {
-                width: 100%;
-                margin: 0.175rem 0;
-                padding: 0.6rem 0.7rem;
-                border-radius: 0.5rem;
-                letter-spacing: 0.025;
-                font-size: 0.96rem;
-                color: $fontColor;
-                outline: none;
-                border: 0.3px solid $fontColor;
-            }
-        }
-        .fbtn-wrap {
-            width: 100%;
-            margin: 1rem 0;
-            .fbtn-wrap-btn {
-                width: 100%;
-                padding: 0.6rem 1rem;
-                border-radius: 70px;
-                font-weight: 900;
-                font-size: 0.9rem;
-                border:none;
-                letter-spacing: 0.025;
-                background-color: $buttonBg;
-                color: $buttonColor;
-                .arrow-right {
-                    stroke: currentColor;
-                    fill: #fff;
-                    margin-bottom: 0.125rem;
-                    vertical-align: middle;
-                }
-            }
         }
     }
-}
-
-.twister-box {
-    .twister-text {
-        line-height: 1.4;
-        letter-spacing: 0.025;
-        font-size: 0.96rem;
-        color: $fontColor;
-    }
-    .twister-link {
-        line-height: 1.4;
-        letter-spacing: 0.025;
-        font-size: 0.96rem;
-        text-decoration: underline;
-        color: $fontColor;
-        &:hover {
-            color:$buttonBg;
+    
+    .twister-box {
+        .twister-text {
+            line-height: 1.4;
+            letter-spacing: 0.025;
+            font-size: 0.96rem;
+            color: $fontColor;
+        }
+        .twister-link {
+            line-height: 1.4;
+            letter-spacing: 0.025;
+            font-size: 0.96rem;
+            text-decoration: underline;
+            color: $fontColor;
+            &:hover {
+                color:$buttonBg;
+            }
         }
     }
 }
@@ -175,7 +181,7 @@
             font-family: $Arial;
             line-height: 1.4;
             color: #425466;
-            font-weight: 500;
+            font-weight: 400;
         }
     }
     .hero-cta {
@@ -251,6 +257,67 @@
         }
     }
 }
+
+//forms
+.form-container {
+    padding: 20px 60px;
+    border-radius: 15px;
+    margin: 2rem 0;
+    background-color: #fafbfd;
+    .intro-note {
+        line-height: 1.4;
+        margin: 0.6rem 0;
+        p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: $fontColor;
+        }
+    }
+    
+    .form-wrapper {
+        .signup , .signin, .activate{
+            .fin-wrap {
+                width: 100%;
+                margin: 0.675rem 0;
+                label {
+                    font-size: 1rem;
+                    color: $fontColor;
+                    letter-spacing: 0.025;
+                    line-height: 1.4;
+                }
+                .pwd-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    .fgp {
+                        font-size: 1rem;
+                    }
+                }
+                .fin-wrap-input {
+                    padding: 0.7rem 0.7rem;
+                    letter-spacing: 0.025;
+                    font-size: 1rem;
+                }
+            }
+            .fbtn-wrap {
+                width: 100%;
+                margin: 1rem 0;
+                .fbtn-wrap-btn {
+                    width: auto;
+                    padding: 0.9rem 1.5rem;
+                }
+            }
+        }
+    }
+    
+    .twister-box {
+        .twister-text {
+            font-size: 1rem;
+        }
+        .twister-link {
+            font-size: 1rem;
+        }
+    }
+    }
 }
 
 @media screen and (min-width: 720px) {
@@ -285,6 +352,68 @@
     }
 }
 
+.form-container {
+    width: 70%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+    .intro-note {
+        line-height: 1.4;
+        margin: 0.6rem 0;
+        p {
+            font-size: 1.25rem;
+            font-weight: 300;
+            color: $fontColor;
+        }
+    }
+    
+    .form-wrapper {
+        .signup , .signin, .activate{
+            .fin-wrap {
+                width: 100%;
+                margin: 0.675rem 0;
+                label {
+                    font-size: 1rem;
+                    color: $fontColor;
+                    letter-spacing: 0.025;
+                    line-height: 1.4;
+                }
+                .pwd-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    .fgp {
+                        font-size: 1rem;
+                    }
+                }
+                .fin-wrap-input {
+                    padding: 0.7rem 0.7rem;
+                    letter-spacing: 0.025;
+                    font-size: 1rem;
+                }
+            }
+            .fbtn-wrap {
+                width: 100%;
+                margin: 1rem 0;
+                font-size: 1rem;
+                .fbtn-wrap-btn {
+                    width: auto;
+                    padding: 0.9rem 1.5rem;
+                }
+            }
+        }
+    }
+    
+    .twister-box {
+        .twister-text {
+            font-size: 1.25rem;
+        }
+        .twister-link {
+            font-size: 1.25rem;
+        }
+    }
+}
 }
 // laptops, desktops and large screens
 
@@ -321,6 +450,69 @@
     }
 }
 
+.form-container {
+    width: 60%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+    .intro-note {
+        line-height: 1.4;
+        margin: 0.6rem 0;
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: $fontColor;
+        }
+    }
+    
+    .form-wrapper {
+        .signup , .signin, .activate{
+            .fin-wrap {
+                width: 100%;
+                margin: 0.675rem 0;
+                label {
+                    font-size: 1rem;
+                    color: $fontColor;
+                    letter-spacing: 0.025;
+                    line-height: 1.4;
+                }
+                .pwd-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    .fgp {
+                        font-size: 1rem;
+                    }
+                }
+                .fin-wrap-input {
+                    padding: 0.7rem 0.7rem;
+                    letter-spacing: 0.025;
+                    font-size: 1rem;
+                }
+            }
+            .fbtn-wrap {
+                width: 100%;
+                margin: 1rem 0;
+                font-size: 1.25rem;
+                .fbtn-wrap-btn {
+                    width: auto;
+                    padding: 0.9rem 1.5rem;
+                }
+            }
+        }
+    }
+    
+    .twister-box {
+        .twister-text {
+            font-size: 1rem;
+        }
+        .twister-link {
+            font-size: 1rem;
+        }
+    }
+}
+
 }
 @media screen and (min-width: 1366px) {
         // hero container
@@ -349,9 +541,73 @@
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
             font-size: 1rem;
-            padding: 0.6rem 2.5rem;
+            padding: 0.8rem 2.5rem;
             font-weight: 900;
             }
         }
     }
+
+    .form-container {
+    width: 40%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+    .intro-note {
+        line-height: 1.4;
+        margin: 0.6rem 0;
+        p {
+            font-size: 1.2rem;
+            font-weight: 300;
+            color: $fontColor;
+        }
+    }
+    
+    .form-wrapper {
+        .signup , .signin, .activate{
+            .fin-wrap {
+                width: 100%;
+                margin: 0.675rem 0;
+                label {
+                    font-size: 1rem;
+                    color: $fontColor;
+                    letter-spacing: 0.025;
+                    line-height: 1.4;
+                }
+                .pwd-wrap {
+                    display: flex;
+                    justify-content: space-between;
+                    .fgp {
+                        font-size: 1rem;
+                    }
+                }
+                .fin-wrap-input {
+                    padding: 0.7rem 0.7rem;
+                    letter-spacing: 0.025;
+                    font-size: 1rem;
+                }
+            }
+            .fbtn-wrap {
+                width: 100%;
+                margin: 1rem 0;
+                font-size: 1.25rem;
+                .fbtn-wrap-btn {
+                    width: auto;
+                    padding: 0.8rem 1.5rem;
+                }
+            }
+        }
+    }
+    
+    .twister-box {
+        .twister-text {
+            font-size: 1rem;
+        }
+        .twister-link {
+            font-size: 1rem;
+        }
+    }
+}
+
 }
