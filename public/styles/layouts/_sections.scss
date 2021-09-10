@@ -17,7 +17,7 @@
     .hero-copy-wrapper {
         .hero-copy {
             color:#1C1E21;
-            line-height: 0/8;
+            line-height: 0.8;
             font-size: 1.9rem;
             font-family: $Arial;
             letter-spacing: 0.02rem;
@@ -29,7 +29,7 @@
             line-height: 1.4;
             letter-spacing: 0.02rem;
             font-weight: 500;
-            color: #425466;
+            color: $fontColor;
         }
     }
     .hero-cta {
@@ -47,10 +47,8 @@
             .arrow-right {
                 stroke: currentColor;
                 fill: #fff;
-                // stroke: 0.125rem;
                 vertical-align: middle;
-                // margin-left: 0.125rem;
-                margin-bottom: 0.125rem;;
+                margin-bottom: 0.125rem;
             }
         }
     }
@@ -60,44 +58,82 @@
 .form-copy-wrap {
     .form-copy {
         line-height: 1.4;
-        color:#0A2450;
+        color: $fontColor;
+        font-weight: 400;
         font-size: 1.375rem;
+        margin: 0.5rem 0;
     }
 }
 
-.critical-note {
+.intro-note {
     line-height: 1.4;
+    margin: 0.6rem 0;
+    p {
+        font-size: 0.96rem;
+        font-weight: 300;
+        color: $fontColor;
+    }
 }
 
 .form-wrapper {
     //signup style
+    margin: 1rem 0;
+    letter-spacing: 0.025;
     .signup , .signin, .activate{
         .fin-wrap {
             width: 100%;
             margin: 0.675rem 0;
             label {
-                font-size: 0.875rem;
+                font-size: 0.96rem;
+                color: $fontColor;
+                letter-spacing: 0.025;
+                line-height: 1.4;
             }
             .pwd-wrap {
                 display: flex;
                 justify-content: space-between;
                 .fgp {
-                    font-size: 0.875rem;
+                    font-size: 0.96rem;
                     text-decoration: none;
+                    letter-spacing: 0.025;
+                    text-decoration: underline;
+                    color: $fontColor;
+                    &:hover {
+                        color: $buttonBg;
+                    }
                 }
             }
             .fin-wrap-input {
                 width: 100%;
                 margin: 0.175rem 0;
-                padding: 0.3rem;
+                padding: 0.6rem 0.7rem;
+                border-radius: 0.5rem;
+                letter-spacing: 0.025;
+                font-size: 0.96rem;
+                color: $fontColor;
+                outline: none;
+                border: 0.3px solid $fontColor;
             }
         }
         .fbtn-wrap {
             width: 100%;
-            margin: 0.8rem 0;
+            margin: 1rem 0;
             .fbtn-wrap-btn {
                 width: 100%;
-                padding: 0.3rem 0.5rem;
+                padding: 0.6rem 1rem;
+                border-radius: 70px;
+                font-weight: 900;
+                font-size: 0.9rem;
+                border:none;
+                letter-spacing: 0.025;
+                background-color: $buttonBg;
+                color: $buttonColor;
+                .arrow-right {
+                    stroke: currentColor;
+                    fill: #fff;
+                    margin-bottom: 0.125rem;
+                    vertical-align: middle;
+                }
             }
         }
     }
@@ -105,12 +141,20 @@
 
 .twister-box {
     .twister-text {
-        line-height: 1.2;
-        font-size: 0.875rem;
+        line-height: 1.4;
+        letter-spacing: 0.025;
+        font-size: 0.96rem;
+        color: $fontColor;
     }
     .twister-link {
-        line-height: 1.2;
-        text-decoration: none;
+        line-height: 1.4;
+        letter-spacing: 0.025;
+        font-size: 0.96rem;
+        text-decoration: underline;
+        color: $fontColor;
+        &:hover {
+            color:$buttonBg;
+        }
     }
 }
 

@@ -43,7 +43,7 @@ body {
 
 .hero-wrapper .hero-copy-wrapper .hero-copy {
   color: #1C1E21;
-  line-height: 0/8;
+  line-height: 0.8;
   font-size: 1.9rem;
   font-family: Arial, Helvetica, sans-serif;
   letter-spacing: 0.02rem;
@@ -84,12 +84,26 @@ body {
 
 .form-copy-wrap .form-copy {
   line-height: 1.4;
-  color: #0A2450;
+  color: #425466;
+  font-weight: 400;
   font-size: 1.375rem;
+  margin: 0.5rem 0;
 }
 
-.critical-note {
+.intro-note {
   line-height: 1.4;
+  margin: 0.6rem 0;
+}
+
+.intro-note p {
+  font-size: 0.96rem;
+  font-weight: 300;
+  color: #425466;
+}
+
+.form-wrapper {
+  margin: 1rem 0;
+  letter-spacing: 0.025;
 }
 
 .form-wrapper .signup .fin-wrap, .form-wrapper .signin .fin-wrap, .form-wrapper .activate .fin-wrap {
@@ -98,7 +112,10 @@ body {
 }
 
 .form-wrapper .signup .fin-wrap label, .form-wrapper .signin .fin-wrap label, .form-wrapper .activate .fin-wrap label {
-  font-size: 0.875rem;
+  font-size: 0.96rem;
+  color: #425466;
+  letter-spacing: 0.025;
+  line-height: 1.4;
 }
 
 .form-wrapper .signup .fin-wrap .pwd-wrap, .form-wrapper .signin .fin-wrap .pwd-wrap, .form-wrapper .activate .fin-wrap .pwd-wrap {
@@ -111,34 +128,70 @@ body {
 }
 
 .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-  font-size: 0.875rem;
+  font-size: 0.96rem;
   text-decoration: none;
+  letter-spacing: 0.025;
+  text-decoration: underline;
+  color: #425466;
+}
+
+.form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover, .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover, .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
+  color: #7670f7;
 }
 
 .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-wrapper .activate .fin-wrap .fin-wrap-input {
   width: 100%;
   margin: 0.175rem 0;
-  padding: 0.3rem;
+  padding: 0.6rem 0.7rem;
+  border-radius: 0.5rem;
+  letter-spacing: 0.025;
+  font-size: 0.96rem;
+  color: #425466;
+  outline: none;
+  border: 0.3px solid #425466;
 }
 
 .form-wrapper .signup .fbtn-wrap, .form-wrapper .signin .fbtn-wrap, .form-wrapper .activate .fbtn-wrap {
   width: 100%;
-  margin: 0.8rem 0;
+  margin: 1rem 0;
 }
 
 .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
   width: 100%;
-  padding: 0.3rem 0.5rem;
+  padding: 0.6rem 1rem;
+  border-radius: 70px;
+  font-weight: 900;
+  font-size: 0.9rem;
+  border: none;
+  letter-spacing: 0.025;
+  background-color: #7670f7;
+  color: #fff;
+}
+
+.form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn .arrow-right {
+  stroke: currentColor;
+  fill: #fff;
+  margin-bottom: 0.125rem;
+  vertical-align: middle;
 }
 
 .twister-box .twister-text {
-  line-height: 1.2;
-  font-size: 0.875rem;
+  line-height: 1.4;
+  letter-spacing: 0.025;
+  font-size: 0.96rem;
+  color: #425466;
 }
 
 .twister-box .twister-link {
-  line-height: 1.2;
-  text-decoration: none;
+  line-height: 1.4;
+  letter-spacing: 0.025;
+  font-size: 0.96rem;
+  text-decoration: underline;
+  color: #425466;
+}
+
+.twister-box .twister-link:hover {
+  color: #7670f7;
 }
 
 @media screen and (min-width: 300px) {
