@@ -55,7 +55,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.4;
   letter-spacing: 0.02rem;
-  font-weight: 500;
+  font-weight: 300;
   color: #425466;
 }
 
@@ -82,7 +82,11 @@ body {
   margin-bottom: 0.125rem;
 }
 
-.form-copy-wrap .form-copy {
+.form-container {
+  width: 100%;
+}
+
+.form-container .form-copy-wrap .form-copy {
   line-height: 1.4;
   color: #425466;
   font-weight: 400;
@@ -90,35 +94,36 @@ body {
   margin: 0.5rem 0;
 }
 
-.intro-note {
+.form-container .intro-note {
   line-height: 1.4;
   margin: 0.6rem 0;
 }
 
-.intro-note p {
+.form-container .intro-note p {
   font-size: 0.96rem;
   font-weight: 300;
   color: #425466;
 }
 
-.form-wrapper {
-  margin: 1rem 0;
+.form-container .form-wrapper {
+  margin: 2rem 0;
   letter-spacing: 0.025;
 }
 
-.form-wrapper .signup .fin-wrap, .form-wrapper .signin .fin-wrap, .form-wrapper .activate .fin-wrap {
+.form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
   width: 100%;
   margin: 0.675rem 0;
 }
 
-.form-wrapper .signup .fin-wrap label, .form-wrapper .signin .fin-wrap label, .form-wrapper .activate .fin-wrap label {
+.form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
   font-size: 0.96rem;
   color: #425466;
   letter-spacing: 0.025;
   line-height: 1.4;
+  margin: 0.2rem 0;
 }
 
-.form-wrapper .signup .fin-wrap .pwd-wrap, .form-wrapper .signin .fin-wrap .pwd-wrap, .form-wrapper .activate .fin-wrap .pwd-wrap {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -127,21 +132,22 @@ body {
           justify-content: space-between;
 }
 
-.form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
   font-size: 0.96rem;
   text-decoration: none;
   letter-spacing: 0.025;
   text-decoration: underline;
   color: #425466;
+  margin: 0.25rem 0;
 }
 
-.form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover, .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover, .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
   color: #7670f7;
 }
 
-.form-wrapper .signup .fin-wrap .fin-wrap-input, .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-wrapper .activate .fin-wrap .fin-wrap-input {
+.form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
   width: 100%;
-  margin: 0.175rem 0;
+  margin: 0.4rem 0;
   padding: 0.6rem 0.7rem;
   border-radius: 0.5rem;
   letter-spacing: 0.025;
@@ -151,38 +157,39 @@ body {
   border: 0.3px solid #425466;
 }
 
-.form-wrapper .signup .fbtn-wrap, .form-wrapper .signin .fbtn-wrap, .form-wrapper .activate .fbtn-wrap {
+.form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
   width: 100%;
   margin: 1rem 0;
 }
 
-.form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+  cursor: pointer;
   width: 100%;
-  padding: 0.6rem 1rem;
+  padding: 0.8rem 1rem;
   border-radius: 70px;
   font-weight: 900;
-  font-size: 0.9rem;
+  font-size: 1rem;
   border: none;
   letter-spacing: 0.025;
   background-color: #7670f7;
   color: #fff;
 }
 
-.form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn .arrow-right {
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn .arrow-right {
   stroke: currentColor;
   fill: #fff;
   margin-bottom: 0.125rem;
   vertical-align: middle;
 }
 
-.twister-box .twister-text {
+.form-container .twister-box .twister-text {
   line-height: 1.4;
   letter-spacing: 0.025;
   font-size: 0.96rem;
   color: #425466;
 }
 
-.twister-box .twister-link {
+.form-container .twister-box .twister-link {
   line-height: 1.4;
   letter-spacing: 0.025;
   font-size: 0.96rem;
@@ -190,7 +197,7 @@ body {
   color: #425466;
 }
 
-.twister-box .twister-link:hover {
+.form-container .twister-box .twister-link:hover {
   color: #7670f7;
 }
 
@@ -210,7 +217,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     line-height: 1.4;
     color: #425466;
-    font-weight: 500;
+    font-weight: 400;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
@@ -276,6 +283,61 @@ body {
     padding: 0.8rem 2rem;
     font-weight: 900;
   }
+  .form-container {
+    padding: 20px 60px;
+    border-radius: 15px;
+    margin: 2rem 0;
+    background-color: #fafbfd;
+  }
+  .form-container .intro-note {
+    line-height: 1.4;
+    margin: 0.6rem 0;
+  }
+  .form-container .intro-note p {
+    font-size: 1rem;
+    font-weight: 300;
+    color: #425466;
+  }
+  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+    width: 100%;
+    margin: 0.675rem 0;
+  }
+  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+    font-size: 1rem;
+    color: #425466;
+    letter-spacing: 0.025;
+    line-height: 1.4;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+    padding: 0.7rem 0.7rem;
+    letter-spacing: 0.025;
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+    width: auto;
+    padding: 0.9rem 1.5rem;
+  }
+  .form-container .twister-box .twister-text {
+    font-size: 1rem;
+  }
+  .form-container .twister-box .twister-link {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (min-width: 720px) {
@@ -305,6 +367,64 @@ body {
     font-size: 1rem;
     padding: 0.8rem 2rem;
     font-weight: 900;
+  }
+  .form-container {
+    width: 70%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+  }
+  .form-container .intro-note {
+    line-height: 1.4;
+    margin: 0.6rem 0;
+  }
+  .form-container .intro-note p {
+    font-size: 1.25rem;
+    font-weight: 300;
+    color: #425466;
+  }
+  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+    width: 100%;
+    margin: 0.675rem 0;
+  }
+  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+    font-size: 1rem;
+    color: #425466;
+    letter-spacing: 0.025;
+    line-height: 1.4;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+    padding: 0.7rem 0.7rem;
+    letter-spacing: 0.025;
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+    width: auto;
+    padding: 0.9rem 1.5rem;
+  }
+  .form-container .twister-box .twister-text {
+    font-size: 1.25rem;
+  }
+  .form-container .twister-box .twister-link {
+    font-size: 1.25rem;
   }
 }
 
@@ -336,6 +456,64 @@ body {
     padding: 0.8rem 2rem;
     font-weight: 900;
   }
+  .form-container {
+    width: 60%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+  }
+  .form-container .intro-note {
+    line-height: 1.4;
+    margin: 0.6rem 0;
+  }
+  .form-container .intro-note p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #425466;
+  }
+  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+    width: 100%;
+    margin: 0.675rem 0;
+  }
+  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+    font-size: 1rem;
+    color: #425466;
+    letter-spacing: 0.025;
+    line-height: 1.4;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+    padding: 0.7rem 0.7rem;
+    letter-spacing: 0.025;
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+    width: auto;
+    padding: 0.9rem 1.5rem;
+  }
+  .form-container .twister-box .twister-text {
+    font-size: 1rem;
+  }
+  .form-container .twister-box .twister-link {
+    font-size: 1rem;
+  }
 }
 
 @media screen and (min-width: 1366px) {
@@ -363,8 +541,66 @@ body {
   }
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1rem;
-    padding: 0.6rem 2.5rem;
+    padding: 0.8rem 2.5rem;
     font-weight: 900;
+  }
+  .form-container {
+    width: 40%;
+    padding: 70px 80px;
+    height: auto;
+    border-radius: 15px;
+    margin: 2rem auto;
+    background-color: #fafbfd;
+  }
+  .form-container .intro-note {
+    line-height: 1.4;
+    margin: 0.6rem 0;
+  }
+  .form-container .intro-note p {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #425466;
+  }
+  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+    width: 100%;
+    margin: 0.675rem 0;
+  }
+  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+    font-size: 1rem;
+    color: #425466;
+    letter-spacing: 0.025;
+    line-height: 1.4;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+    padding: 0.7rem 0.7rem;
+    letter-spacing: 0.025;
+    font-size: 1rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+    width: 100%;
+    margin: 1rem 0;
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+    width: auto;
+    padding: 0.8rem 1.5rem;
+  }
+  .form-container .twister-box .twister-text {
+    font-size: 1rem;
+  }
+  .form-container .twister-box .twister-link {
+    font-size: 1rem;
   }
 }
 /*# sourceMappingURL=main.css.map */
