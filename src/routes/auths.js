@@ -6,4 +6,7 @@ const router = express_1.Router();
 router.get('/signup', auths_1.signUpController);
 router.get("/signin", auths_1.signInController);
 router.get("/activate", auths_1.activateAccountController);
+router.get("/dashboard", auths_1.RedenderDashboardController);
+router.post('/signup', auths_1.CreateAccountPostController);
+router.post("/signin", auths_1.LoginPostController);
 exports.default = router;
