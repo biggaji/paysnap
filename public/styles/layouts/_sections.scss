@@ -127,7 +127,7 @@
                     width: 100%;
                     padding: 0.8rem 1rem;
                     border-radius: 70px;
-                    font-weight: 900;
+                    font-weight: 700;
                     font-size: 1rem;
                     border:none;
                     letter-spacing: 0.025;
@@ -375,7 +375,7 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -384,13 +384,13 @@
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 1rem;
+                        font-size: 1.1rem;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
             }
             .fbtn-wrap {
@@ -399,6 +399,7 @@
                 font-size: 1rem;
                 .fbtn-wrap-btn {
                     width: auto;
+                    font-weight: 700;
                     padding: 0.9rem 1.5rem;
                 }
             }
@@ -407,10 +408,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
         .twister-link {
-            font-size: 1.25rem;
+            font-size: 1.1rem;
         }
     }
 }
@@ -473,7 +474,7 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -482,13 +483,13 @@
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 1rem;
+                        font-size: 1.1rem;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
             }
             .fbtn-wrap {
@@ -497,6 +498,7 @@
                 font-size: 1.25rem;
                 .fbtn-wrap-btn {
                     width: auto;
+                    font-weight: 700;
                     padding: 0.9rem 1.5rem;
                 }
             }
@@ -505,10 +507,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         .twister-link {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
     }
 }
@@ -548,7 +550,7 @@
     }
 
     .form-container {
-    width: 40%;
+    width: 45%;
     padding: 70px 80px;
     height: auto;
     border-radius: 15px;
@@ -559,7 +561,7 @@
         margin: 0.6rem 0;
         p {
             font-size: 1.2rem;
-            font-weight: 300;
+            font-weight: 500;
             color: $fontColor;
         }
     }
@@ -570,7 +572,7 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -579,13 +581,13 @@
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 1rem;
+                        font-size: 1.1rem;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1rem;
+                    font-size: 1.1rem;
                 }
             }
             .fbtn-wrap {
@@ -593,6 +595,7 @@
                 margin: 1rem 0;
                 font-size: 1.25rem;
                 .fbtn-wrap-btn {
+                    font-weight: 700;
                     width: auto;
                     padding: 0.8rem 1.5rem;
                 }
@@ -602,10 +605,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
         .twister-link {
-            font-size: 1rem;
+            font-size: 1.1rem;
         }
     }
 }
