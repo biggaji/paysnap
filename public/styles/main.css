@@ -167,7 +167,7 @@ body {
   width: 100%;
   padding: 0.8rem 1rem;
   border-radius: 70px;
-  font-weight: 900;
+  font-weight: 700;
   font-size: 1rem;
   border: none;
   letter-spacing: 0.025;
@@ -390,7 +390,7 @@ body {
     margin: 0.675rem 0;
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #425466;
     letter-spacing: 0.025;
     line-height: 1.4;
@@ -404,12 +404,12 @@ body {
             justify-content: space-between;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
@@ -418,13 +418,14 @@ body {
   }
   .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
+    font-weight: 700;
     padding: 0.9rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -478,7 +479,7 @@ body {
     margin: 0.675rem 0;
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #425466;
     letter-spacing: 0.025;
     line-height: 1.4;
@@ -492,12 +493,12 @@ body {
             justify-content: space-between;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
@@ -506,13 +507,14 @@ body {
   }
   .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
+    font-weight: 700;
     padding: 0.9rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 
@@ -545,7 +547,7 @@ body {
     font-weight: 900;
   }
   .form-container {
-    width: 40%;
+    width: 45%;
     padding: 70px 80px;
     height: auto;
     border-radius: 15px;
@@ -558,7 +560,7 @@ body {
   }
   .form-container .intro-note p {
     font-size: 1.2rem;
-    font-weight: 300;
+    font-weight: 500;
     color: #425466;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
@@ -566,7 +568,7 @@ body {
     margin: 0.675rem 0;
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #425466;
     letter-spacing: 0.025;
     line-height: 1.4;
@@ -580,12 +582,12 @@ body {
             justify-content: space-between;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
@@ -593,14 +595,15 @@ body {
     font-size: 1.25rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+    font-weight: 700;
     width: auto;
     padding: 0.8rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1rem;
+    font-size: 1.1rem;
   }
 }
 /*# sourceMappingURL=main.css.map */
