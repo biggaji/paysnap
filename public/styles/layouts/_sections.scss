@@ -18,14 +18,12 @@
         .hero-copy {
             color:#1C1E21;
             line-height: 1.2;
-            font-size: 1.9rem;
-            font-family: $Sans;
+            font-size: $smhfs;
             letter-spacing: 0.02rem;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1rem;
-            font-family: $Sans;
+            font-size: $smpfs;
             line-height: 1.4;
             letter-spacing: 0.02rem;
             font-weight: 300;
@@ -39,10 +37,9 @@
             line-height: 1.4;
             background-color: $buttonBg;
             padding: 0.7rem 1.2rem;
-            font-size: 0.95rem;
+            font-size: $smafs;
             text-decoration: none;
             letter-spacing: 0.02rem;
-            font-family: $Sans;
             border-radius: 70px;
             .arrow-right {
                 stroke: currentColor;
@@ -56,13 +53,13 @@
 
 //forms
 .form-container {
+    margin: 3.5rem 0;
     width: 100%;
     .form-copy-wrap {
         .form-copy {
             line-height: 1.4;
-            color: $fontColor;
-            font-family: $Sans;
-            font-weight: 400;
+            color: $headerColor;
+            font-weight: 700;
             font-size: 1.375rem;
             margin: 0.5rem 0;
         }
@@ -71,11 +68,9 @@
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
-        font-family: $Sans;
         p {
-            font-size: 0.96rem;
+            font-size: $smpfs;
             font-weight: 300;
-            font-family: $Sans;
             color: $fontColor;
         }
     }
@@ -89,8 +84,7 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 0.96rem;
-                    font-family: $Sans;
+                    font-size: $smpfs;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -100,9 +94,8 @@
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 0.96rem;
+                        font-size: $smpfs;
                         text-decoration: none;
-                        font-family: $Sans;
                         letter-spacing: 0.025;
                         text-decoration: underline;
                         color: $fontColor;
@@ -118,11 +111,10 @@
                     padding: 0.6rem 0.7rem;
                     border-radius: 0.5rem;
                     letter-spacing: 0.025;
-                    font-size: 0.96rem;
+                    font-size: $smpfs;
                     color: $fontColor;
                     outline: none;
-                    border: 0.3px solid $fontColor;
-                    font-family: $Sans;
+                    border: 1px solid $headerColor;
                 }
             }
             .fbtn-wrap {
@@ -134,11 +126,10 @@
                     padding: 0.8rem 1rem;
                     border-radius: 70px;
                     font-weight: 700;
-                    font-size: 1rem;
+                    font-size: $smafs;
                     border:none;
                     letter-spacing: 0.025;
                     background-color: $buttonBg;
-                    font-family: $Sans;
                     color: $buttonColor;
                     .arrow-right {
                         stroke: currentColor;
@@ -155,16 +146,14 @@
         .twister-text {
             line-height: 1.4;
             letter-spacing: 0.025;
-            font-size: 0.96rem;
+            font-size: $smpfs;
             color: $fontColor;
-            font-family: $Sans;
         }
         .twister-link {
             line-height: 1.4;
             letter-spacing: 0.025;
-            font-size: 0.96rem;
+            font-size: $smpfs;
             text-decoration: underline;
-            font-family: $Sans;
             color: $fontColor;
             &:hover {
                 color:$buttonBg;
@@ -172,6 +161,7 @@
         }
     }
 }
+
 
 @media screen and (min-width: 300px) {
     .hero-wrapper {
@@ -181,24 +171,20 @@
     padding: 3rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 2.3rem;
+            font-size: $mmhfs;
             line-height: 1.2;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.25rem;
-            font-family: $Sans;
+            font-size: $mmpfs;
             line-height: 1.4;
-            color: #425466;
-            font-weight: 300;
         }
     }
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1.1rem;
+            font-size: $mmafs;
             padding: 0.7rem 2.5rem;
-            font-weight: 700;
         }
     }
 }
@@ -217,18 +203,15 @@
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.25rem;
+            font-size: $mmpfs;
             line-height: 1.4;
-            color: #425466;
-            font-weight: 300;
         }
     }
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1rem;
+            font-size: $smafs;
             padding: 0.6rem 2.4rem;
-            font-weight: 700;
         }
     }
 }
@@ -244,23 +227,19 @@
     padding: 3rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 2.7rem;
+            font-size: $thfs;
             line-height: 1;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.25rem;
-            line-height: 1.4;
-            color: #425466;
-            font-weight: 300;
+            font-size: $tpfs;
         }
     }
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1rem;
+            font-size: $tafs;
             padding: 0.8rem 2rem;
-            font-weight: 700;
         }
     }
 }
@@ -270,14 +249,12 @@
     padding: 20px 60px;
     border-radius: 15px;
     margin: 2rem 0;
-    background-color: rgba(250, 251, 253, 0.891);
+    background-color: rgba(179, 217, 255,0.2);
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
         p {
-            font-size: 1rem;
-            font-weight: 300;
-            color: $fontColor;
+            font-size: $tpfs;
         }
     }
     
@@ -287,22 +264,19 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1rem;
-                    color: $fontColor;
-                    letter-spacing: 0.025;
-                    line-height: 1.4;
+                    font-size: $tpfs;
                 }
                 .pwd-wrap {
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 1rem;
+                        font-size: $tpfs;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1rem;
+                    font-size: $tpfs;
                 }
             }
             .fbtn-wrap {
@@ -318,10 +292,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1rem;
+            font-size: $tpfs;
         }
         .twister-link {
-            font-size: 1rem;
+            font-size: $tpfs;
         }
     }
     }
@@ -335,44 +309,39 @@
     padding: 3rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 2.7rem;
+            font-size: $mthfs;
             width: 90%;
             line-height: 1;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.25rem;
-            font-family: $Sans;
+            font-size: $mtpfs;
             line-height: 1.4;
-            color: #425466;
-            font-weight: 300;
             width: 80%;
         }
     }
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1rem;
+            font-size: $mtafs;
             padding: 0.8rem 2rem;
-            font-weight: 900;
+            font-weight: 700;
         }
     }
 }
 
 .form-container {
-    width: 70%;
+    width: 80%;
     padding: 70px 80px;
     height: auto;
     border-radius: 15px;
     margin: 2rem auto;
-    background-color: #fafbfd;
+    background-color: rgba(179, 217, 255,0.2);
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
         p {
-            font-size: 1.25rem;
-            font-weight: 300;
-            color: $fontColor;
+            font-size: $mtpfs;
         }
     }
     
@@ -382,31 +351,27 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1.1rem;
-                    color: $fontColor;
+                    font-size: $mtpfs;
                     letter-spacing: 0.025;
-                    line-height: 1.4;
                 }
                 .pwd-wrap {
-                    display: flex;
-                    justify-content: space-between;
                     .fgp {
-                        font-size: 1.1rem;
+                        font-size: $mtpfs;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1.1rem;
+                    font-size: $mtpfs;
                 }
             }
             .fbtn-wrap {
                 width: 100%;
                 margin: 1rem 0;
-                font-size: 1rem;
                 .fbtn-wrap-btn {
                     width: auto;
                     font-weight: 700;
+                    font-size: $mtafs;
                     padding: 0.9rem 1.5rem;
                 }
             }
@@ -415,10 +380,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1.1rem;
+            font-size: $mtpfs;
         }
         .twister-link {
-            font-size: 1.1rem;
+            font-size: $mtpfs;
         }
     }
 }
@@ -434,44 +399,38 @@
     padding: 6rem 0;
     .hero-copy-wrapper {
         .hero-copy {
-            font-size: 3.5rem;
+            font-size: $ihfs;
             width: 80%;
             line-height: 1;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.29rem;
-            font-family: $Sans;
+            font-size: $ipfs;
             line-height: 1.2;
-            color: #425466;
-            font-weight: 500;
             width: 60%;
         }
     }
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1rem;
+            font-size: $iafs;
             padding: 0.8rem 2rem;
-            font-weight: 900;
         }
     }
 }
 
 .form-container {
-    width: 60%;
+    width: 70%;
     padding: 70px 80px;
     height: auto;
     border-radius: 15px;
     margin: 2rem auto;
-    background-color: #fafbfd;
+    background-color: rgba(179, 217, 255,0.2);
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
         p {
-            font-size: 1.2rem;
-            font-weight: 300;
-            color: $fontColor;
+            font-size: $ipfs;
         }
     }
     
@@ -481,32 +440,24 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1.1rem;
-                    color: $fontColor;
-                    letter-spacing: 0.025;
-                    line-height: 1.4;
+                    font-size: $ipfs;
                 }
                 .pwd-wrap {
-                    display: flex;
-                    justify-content: space-between;
                     .fgp {
-                        font-size: 1.1rem;
+                        font-size: $ipfs;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
-                    letter-spacing: 0.025;
-                    font-size: 1.1rem;
+                    font-size: $ipfs;
                 }
             }
             .fbtn-wrap {
                 width: 100%;
                 margin: 1rem 0;
-                font-size: 1.25rem;
                 .fbtn-wrap-btn {
-                    width: auto;
-                    font-weight: 700;
                     padding: 0.9rem 1.5rem;
+                    font-size: $iafs;
                 }
             }
         }
@@ -514,10 +465,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1.1rem;
+            font-size: $ipfs;
         }
         .twister-link {
-            font-size: 1.1rem;
+            font-size: $ipfs;
         }
     }
 }
@@ -533,12 +484,12 @@
     .hero-copy-wrapper {
         .hero-copy {
             line-height: 1;
-            font-size: 3.89rem;
+            font-size: $dhfs;
             width: 80%;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
-            font-size: 1.2rem;
+            font-size: $dpfs;
             font-family: $Sans;
             line-height: 1.2;
             color: #425466;
@@ -549,7 +500,7 @@
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: 1rem;
+            font-size: $dafs;
             padding: 0.8rem 2.5rem;
             font-weight: 700;
             }
@@ -562,12 +513,12 @@
     height: auto;
     border-radius: 15px;
     margin: 2rem auto;
-    background-color: #fafbfd;
+    background-color: rgba(179, 217, 255,0.2);
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
         p {
-            font-size: 1.2rem;
+            font-size: $dpfs;
             font-weight: 500;
             color: $fontColor;
         }
@@ -579,7 +530,7 @@
                 width: 100%;
                 margin: 0.675rem 0;
                 label {
-                    font-size: 1.1rem;
+                    font-size: $dpfs;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -588,22 +539,22 @@
                     display: flex;
                     justify-content: space-between;
                     .fgp {
-                        font-size: 1.1rem;
+                        font-size: $dpfs;
                     }
                 }
                 .fin-wrap-input {
                     padding: 0.7rem 0.7rem;
                     letter-spacing: 0.025;
-                    font-size: 1.1rem;
+                    font-size: $dpfs;
                 }
             }
             .fbtn-wrap {
                 width: 100%;
                 margin: 1rem 0;
-                font-size: 1.25rem;
                 .fbtn-wrap-btn {
                     font-weight: 700;
                     width: auto;
+                    font-size: $dafs;
                     padding: 0.8rem 1.5rem;
                 }
             }
@@ -612,10 +563,10 @@
     
     .twister-box {
         .twister-text {
-            font-size: 1.1rem;
+            font-size: $dpfs;
         }
         .twister-link {
-            font-size: 1.1rem;
+            font-size: $dpfs;
         }
     }
 }
