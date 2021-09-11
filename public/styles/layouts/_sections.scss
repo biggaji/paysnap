@@ -90,6 +90,11 @@
                     line-height: 1.4;
                     margin: 0.2rem 0;
                 }
+                #emailErrMsg, #usernameErrMsg, #pwdErrMsg {
+                    display: none;
+                    color: red;
+                    font-size: $smpfs;
+                }
                 .pwd-wrap {
                     display: flex;
                     justify-content: space-between;
@@ -121,7 +126,7 @@
                 width: 100%;
                 margin: 1rem 0;
                 .fbtn-wrap-btn {
-                    cursor: pointer;
+                    cursor: grab;
                     width: 100%;
                     padding: 0.8rem 1rem;
                     border-radius: 70px;
