@@ -17,15 +17,15 @@
     .hero-copy-wrapper {
         .hero-copy {
             color:#1C1E21;
-            line-height: 0.8;
+            line-height: 1.2;
             font-size: 1.9rem;
-            font-family: $Arial;
+            font-family: $Sans;
             letter-spacing: 0.02rem;
         }
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1rem;
-            font-family: $Arial;
+            font-family: $Sans;
             line-height: 1.4;
             letter-spacing: 0.02rem;
             font-weight: 300;
@@ -33,16 +33,16 @@
         }
     }
     .hero-cta {
-        margin: 1rem 0;
+        margin: 1.6rem 0;
         .hero-cta-link {
             color:$buttonColor;
             line-height: 1.4;
             background-color: $buttonBg;
-            padding: 0.5rem 1rem;
-            font-size: 0.85rem;
+            padding: 0.7rem 1.2rem;
+            font-size: 0.95rem;
             text-decoration: none;
             letter-spacing: 0.02rem;
-            font-family: $Arial;
+            font-family: $Sans;
             border-radius: 70px;
             .arrow-right {
                 stroke: currentColor;
@@ -61,6 +61,7 @@
         .form-copy {
             line-height: 1.4;
             color: $fontColor;
+            font-family: $Sans;
             font-weight: 400;
             font-size: 1.375rem;
             margin: 0.5rem 0;
@@ -70,9 +71,11 @@
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
+        font-family: $Sans;
         p {
             font-size: 0.96rem;
             font-weight: 300;
+            font-family: $Sans;
             color: $fontColor;
         }
     }
@@ -87,6 +90,7 @@
                 margin: 0.675rem 0;
                 label {
                     font-size: 0.96rem;
+                    font-family: $Sans;
                     color: $fontColor;
                     letter-spacing: 0.025;
                     line-height: 1.4;
@@ -98,6 +102,7 @@
                     .fgp {
                         font-size: 0.96rem;
                         text-decoration: none;
+                        font-family: $Sans;
                         letter-spacing: 0.025;
                         text-decoration: underline;
                         color: $fontColor;
@@ -117,6 +122,7 @@
                     color: $fontColor;
                     outline: none;
                     border: 0.3px solid $fontColor;
+                    font-family: $Sans;
                 }
             }
             .fbtn-wrap {
@@ -132,6 +138,7 @@
                     border:none;
                     letter-spacing: 0.025;
                     background-color: $buttonBg;
+                    font-family: $Sans;
                     color: $buttonColor;
                     .arrow-right {
                         stroke: currentColor;
@@ -150,12 +157,14 @@
             letter-spacing: 0.025;
             font-size: 0.96rem;
             color: $fontColor;
+            font-family: $Sans;
         }
         .twister-link {
             line-height: 1.4;
             letter-spacing: 0.025;
             font-size: 0.96rem;
             text-decoration: underline;
+            font-family: $Sans;
             color: $fontColor;
             &:hover {
                 color:$buttonBg;
@@ -178,10 +187,10 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.25rem;
-            font-family: $Arial;
+            font-family: $Sans;
             line-height: 1.4;
             color: #425466;
-            font-weight: 400;
+            font-weight: 300;
         }
     }
     .hero-cta {
@@ -189,7 +198,7 @@
         .hero-cta-link {
             font-size: 1.1rem;
             padding: 0.7rem 2.5rem;
-            font-weight: 900;
+            font-weight: 700;
         }
     }
 }
@@ -209,10 +218,9 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.25rem;
-            font-family: $Arial;
             line-height: 1.4;
             color: #425466;
-            font-weight: 500;
+            font-weight: 300;
         }
     }
     .hero-cta {
@@ -220,7 +228,7 @@
         .hero-cta-link {
             font-size: 1rem;
             padding: 0.6rem 2.4rem;
-            font-weight: 900;
+            font-weight: 700;
         }
     }
 }
@@ -242,10 +250,9 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.25rem;
-            font-family: $Arial;
             line-height: 1.4;
             color: #425466;
-            font-weight: 500;
+            font-weight: 300;
         }
     }
     .hero-cta {
@@ -253,7 +260,7 @@
         .hero-cta-link {
             font-size: 1rem;
             padding: 0.8rem 2rem;
-            font-weight: 900;
+            font-weight: 700;
         }
     }
 }
@@ -263,7 +270,7 @@
     padding: 20px 60px;
     border-radius: 15px;
     margin: 2rem 0;
-    background-color: #fafbfd;
+    background-color: rgba(250, 251, 253, 0.891);
     .intro-note {
         line-height: 1.4;
         margin: 0.6rem 0;
@@ -335,10 +342,10 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.25rem;
-            font-family: $Arial;
+            font-family: $Sans;
             line-height: 1.4;
             color: #425466;
-            font-weight: 500;
+            font-weight: 300;
             width: 80%;
         }
     }
@@ -434,7 +441,7 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.29rem;
-            font-family: $Arial;
+            font-family: $Sans;
             line-height: 1.2;
             color: #425466;
             font-weight: 500;
@@ -532,10 +539,10 @@
         .hero-intro-copy {
             margin: 0.7rem 0;
             font-size: 1.2rem;
-            font-family: $Arial;
+            font-family: $Sans;
             line-height: 1.2;
             color: #425466;
-            font-weight: 500;
+            font-weight: 300;
             width: 60%;
         }
     }
@@ -544,7 +551,7 @@
         .hero-cta-link {
             font-size: 1rem;
             padding: 0.8rem 2.5rem;
-            font-weight: 900;
+            font-weight: 700;
             }
         }
     }
