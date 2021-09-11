@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -8,7 +8,6 @@
 
 body {
   width: 100%;
-  font-family: Arial, Helvetica;
 }
 
 .paysnap-container {
@@ -43,35 +42,35 @@ body {
 
 .hero-wrapper .hero-copy-wrapper .hero-copy {
   color: #1C1E21;
-  line-height: 0.8;
+  line-height: 1.2;
   font-size: 1.9rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
   letter-spacing: 0.02rem;
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
   margin: 0.7rem 0;
   font-size: 1rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
   line-height: 1.4;
   letter-spacing: 0.02rem;
   font-weight: 300;
-  color: #425466;
+  color: #898989;
 }
 
 .hero-wrapper .hero-cta {
-  margin: 1rem 0;
+  margin: 1.6rem 0;
 }
 
 .hero-wrapper .hero-cta .hero-cta-link {
   color: #fff;
   line-height: 1.4;
   background-color: #7670f7;
-  padding: 0.5rem 1rem;
-  font-size: 0.85rem;
+  padding: 0.7rem 1.2rem;
+  font-size: 0.95rem;
   text-decoration: none;
   letter-spacing: 0.02rem;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "DM Sans", sans-serif;
   border-radius: 70px;
 }
 
@@ -88,7 +87,8 @@ body {
 
 .form-container .form-copy-wrap .form-copy {
   line-height: 1.4;
-  color: #425466;
+  color: #898989;
+  font-family: "DM Sans", sans-serif;
   font-weight: 400;
   font-size: 1.375rem;
   margin: 0.5rem 0;
@@ -97,12 +97,14 @@ body {
 .form-container .intro-note {
   line-height: 1.4;
   margin: 0.6rem 0;
+  font-family: "DM Sans", sans-serif;
 }
 
 .form-container .intro-note p {
   font-size: 0.96rem;
   font-weight: 300;
-  color: #425466;
+  font-family: "DM Sans", sans-serif;
+  color: #898989;
 }
 
 .form-container .form-wrapper {
@@ -117,7 +119,8 @@ body {
 
 .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
   font-size: 0.96rem;
-  color: #425466;
+  font-family: "DM Sans", sans-serif;
+  color: #898989;
   letter-spacing: 0.025;
   line-height: 1.4;
   margin: 0.2rem 0;
@@ -135,9 +138,10 @@ body {
 .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
   font-size: 0.96rem;
   text-decoration: none;
+  font-family: "DM Sans", sans-serif;
   letter-spacing: 0.025;
   text-decoration: underline;
-  color: #425466;
+  color: #898989;
   margin: 0.25rem 0;
 }
 
@@ -152,9 +156,10 @@ body {
   border-radius: 0.5rem;
   letter-spacing: 0.025;
   font-size: 0.96rem;
-  color: #425466;
+  color: #898989;
   outline: none;
-  border: 0.3px solid #425466;
+  border: 0.3px solid #898989;
+  font-family: "DM Sans", sans-serif;
 }
 
 .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
@@ -172,6 +177,7 @@ body {
   border: none;
   letter-spacing: 0.025;
   background-color: #7670f7;
+  font-family: "DM Sans", sans-serif;
   color: #fff;
 }
 
@@ -186,7 +192,8 @@ body {
   line-height: 1.4;
   letter-spacing: 0.025;
   font-size: 0.96rem;
-  color: #425466;
+  color: #898989;
+  font-family: "DM Sans", sans-serif;
 }
 
 .form-container .twister-box .twister-link {
@@ -194,7 +201,8 @@ body {
   letter-spacing: 0.025;
   font-size: 0.96rem;
   text-decoration: underline;
-  color: #425466;
+  font-family: "DM Sans", sans-serif;
+  color: #898989;
 }
 
 .form-container .twister-box .twister-link:hover {
@@ -214,10 +222,10 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", sans-serif;
     line-height: 1.4;
     color: #425466;
-    font-weight: 400;
+    font-weight: 300;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
@@ -225,7 +233,7 @@ body {
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1.1rem;
     padding: 0.7rem 2.5rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 }
 
@@ -242,10 +250,9 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial, Helvetica;
     line-height: 1.4;
     color: #425466;
-    font-weight: 500;
+    font-weight: 300;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
@@ -253,7 +260,7 @@ body {
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1rem;
     padding: 0.6rem 2.4rem;
-    font-weight: 900;
+    font-weight: 700;
   }
 }
 
@@ -270,10 +277,9 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial, Helvetica;
     line-height: 1.4;
     color: #425466;
-    font-weight: 500;
+    font-weight: 300;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
@@ -281,13 +287,13 @@ body {
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1rem;
     padding: 0.8rem 2rem;
-    font-weight: 900;
+    font-weight: 700;
   }
   .form-container {
     padding: 20px 60px;
     border-radius: 15px;
     margin: 2rem 0;
-    background-color: #fafbfd;
+    background-color: rgba(250, 251, 253, 0.891);
   }
   .form-container .intro-note {
     line-height: 1.4;
@@ -296,7 +302,7 @@ body {
   .form-container .intro-note p {
     font-size: 1rem;
     font-weight: 300;
-    color: #425466;
+    color: #898989;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -304,7 +310,7 @@ body {
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1rem;
-    color: #425466;
+    color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
   }
@@ -354,10 +360,10 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.25rem;
-    font-family: Arial, Helvetica;
+    font-family: "DM Sans", sans-serif;
     line-height: 1.4;
     color: #425466;
-    font-weight: 500;
+    font-weight: 300;
     width: 80%;
   }
   .hero-wrapper .hero-cta {
@@ -383,7 +389,7 @@ body {
   .form-container .intro-note p {
     font-size: 1.25rem;
     font-weight: 300;
-    color: #425466;
+    color: #898989;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -391,7 +397,7 @@ body {
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.1rem;
-    color: #425466;
+    color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
   }
@@ -443,7 +449,7 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.29rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", sans-serif;
     line-height: 1.2;
     color: #425466;
     font-weight: 500;
@@ -472,7 +478,7 @@ body {
   .form-container .intro-note p {
     font-size: 1.2rem;
     font-weight: 300;
-    color: #425466;
+    color: #898989;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -480,7 +486,7 @@ body {
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.1rem;
-    color: #425466;
+    color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
   }
@@ -532,10 +538,10 @@ body {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.2rem;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "DM Sans", sans-serif;
     line-height: 1.2;
     color: #425466;
-    font-weight: 500;
+    font-weight: 300;
     width: 60%;
   }
   .hero-wrapper .hero-cta {
@@ -544,7 +550,7 @@ body {
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1rem;
     padding: 0.8rem 2.5rem;
-    font-weight: 900;
+    font-weight: 700;
   }
   .form-container {
     width: 45%;
@@ -561,7 +567,7 @@ body {
   .form-container .intro-note p {
     font-size: 1.2rem;
     font-weight: 500;
-    color: #425466;
+    color: #898989;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -569,7 +575,7 @@ body {
   }
   .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.1rem;
-    color: #425466;
+    color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
   }
