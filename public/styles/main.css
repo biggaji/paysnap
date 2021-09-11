@@ -121,6 +121,12 @@ body {
   margin: 0.2rem 0;
 }
 
+.form-container .form-wrapper .signup .fin-wrap #emailErrMsg, .form-container .form-wrapper .signup .fin-wrap #usernameErrMsg, .form-container .form-wrapper .signup .fin-wrap #pwdErrMsg, .form-container .form-wrapper .signin .fin-wrap #emailErrMsg, .form-container .form-wrapper .signin .fin-wrap #usernameErrMsg, .form-container .form-wrapper .signin .fin-wrap #pwdErrMsg, .form-container .form-wrapper .activate .fin-wrap #emailErrMsg, .form-container .form-wrapper .activate .fin-wrap #usernameErrMsg, .form-container .form-wrapper .activate .fin-wrap #pwdErrMsg {
+  display: none;
+  color: red;
+  font-size: 1rem;
+}
+
 .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
