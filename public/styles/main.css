@@ -186,6 +186,17 @@ body {
   vertical-align: middle;
 }
 
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn:disabled, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn:disabled, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn:disabled {
+  cursor: not-allowed;
+  opacity: .5;
+}
+
+.form-container .resend_code_box .resend_code_trigger {
+  text-decoration: underline;
+  color: #898989;
+  font-size: 0.95rem;
+}
+
 .form-container .twister-box .twister-text {
   line-height: 1.4;
   letter-spacing: 0.025;
@@ -287,6 +298,9 @@ body {
   .form-container .intro-note p {
     font-size: 1.2rem;
   }
+  .form-container .resend_code_box .resend_code_trigger {
+    font-size: 1rem;
+  }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
@@ -366,6 +380,9 @@ body {
   .form-container .intro-note p {
     font-size: 1.25rem;
   }
+  .form-container .resend_code_box .resend_code_trigger {
+    font-size: 1rem;
+  }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
@@ -438,6 +455,9 @@ body {
   }
   .form-container .intro-note p {
     font-size: 1.29rem;
+  }
+  .form-container .resend_code_box .resend_code_trigger {
+    font-size: 1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -513,6 +533,9 @@ body {
     font-size: 1.1rem;
     font-weight: 500;
     color: #898989;
+  }
+  .form-container .resend_code_box .resend_code_trigger {
+    font-size: 1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;

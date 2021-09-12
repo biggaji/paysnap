@@ -6,10 +6,11 @@
     </div>
     <div class="form-container">
         <div class="form-copy-wrap">
-            <h1 class="form-copy">Activate your account</h1>
+            <h1 class="form-copy">Account activation</h1>
         </div>
         <div class="twister-box">
-            <p>Check your email address</p>
+            <p class="twister-text">We just sent your activation code via email to {{email_go_here}}.</p>
+            <p class="twister-text">The code will expire in {{expiry_time_countdown}}.</p>
         </div>
         <div class="form-wrapper">
             <div class="form-flash-message-wrap"></div>
@@ -28,6 +29,9 @@
                     </svg></button>
                 </div>
             </form>
+        </div>
+        <div class="resend_code_box">
+            <a href="#" class="resend_code_trigger">Re-send code</a>
         </div>
     </div>
 </div>
