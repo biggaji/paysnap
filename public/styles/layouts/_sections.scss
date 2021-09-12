@@ -126,7 +126,7 @@
                 width: 100%;
                 margin: 1rem 0;
                 .fbtn-wrap-btn {
-                    cursor: grab;
+                    cursor: pointer;
                     width: 100%;
                     padding: 0.8rem 1rem;
                     border-radius: 70px;
@@ -142,8 +142,20 @@
                         margin-bottom: 0.125rem;
                         vertical-align: middle;
                     }
+                    &:disabled {
+                        cursor: not-allowed;
+                        opacity: .5;
+                    }
                 }
             }
+        }
+    }
+
+    .resend_code_box {
+        .resend_code_trigger {
+            text-decoration: underline;
+            color: $fontColor;
+            font-size: $smafs;
         }
     }
     
@@ -262,6 +274,12 @@
             font-size: $tpfs;
         }
     }
+
+    .resend_code_box {
+        .resend_code_trigger {
+            font-size: $tafs;
+        }
+    }
     
     .form-wrapper {
         .signup , .signin, .activate{
@@ -350,6 +368,12 @@
         }
     }
     
+    .resend_code_box {
+        .resend_code_trigger {
+            font-size: $mtafs;
+        }
+    }
+
     .form-wrapper {
         .signup , .signin, .activate{
             .fin-wrap {
@@ -436,6 +460,12 @@
         margin: 0.6rem 0;
         p {
             font-size: $ipfs;
+        }
+    }
+
+    .resend_code_box {
+        .resend_code_trigger {
+            font-size: $iafs;
         }
     }
     
@@ -526,6 +556,12 @@
             font-size: $dpfs;
             font-weight: 500;
             color: $fontColor;
+        }
+    }
+
+    .resend_code_box {
+        .resend_code_trigger {
+            font-size: $dafs;
         }
     }
     

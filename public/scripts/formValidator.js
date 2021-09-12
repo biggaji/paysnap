@@ -25,11 +25,7 @@ let pwdErrMsg = document.getElementById("pwdErrMsg");
 let fieldRequiredMsg = document.getElementById("fields_required_err_msg");
 // disabled submit button
 let signupBtn = document.getElementById("fbtn_submit_signup");
-signupBtn.disabled = true;
-if (signupBtn.disabled) {
-    signupBtn.style.opacity = "0.5";
-    signupBtn.style.cursor = "grab";
-}
+let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
 function validateFormInputs() {
     return __awaiter(this, void 0, void 0, function* () {
         email.addEventListener('input', () => {
@@ -43,6 +39,7 @@ function validateFormInputs() {
             }
             else {
                 emailErrMsg.innerHTML = "Checking email...";
+                console.log(checkEmail(email.value.trim()));
                 return checkEmail(email.value.trim());
             }
             ;
@@ -59,14 +56,15 @@ function validateFormInputs() {
             }
             else {
                 usernameErrMsg.innerHTML = "Checking username...";
+                // console.log( checkUsername(username.value.trim()));
                 return checkUsername(userName);
             }
             ;
         });
+        let password = pwd.value.trim();
+        let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
+        let passwordTest = password_regex.test(password);
         pwd.addEventListener("input", () => {
-            let password = pwd.value.trim();
-            let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
-            let passwordTest = password_regex.test(password);
             if (password === "") {
                 pwdErrMsg.style.display = "block";
                 pwdErrMsg.innerHTML = "Password is required";
@@ -80,32 +78,30 @@ function validateFormInputs() {
                     "Password must be at least 8 characters long, include at least a one number and a special character (?.!%&*$^)";
             }
         });
+        // let requiredFields = [email, username, pwd, fullName];
+        // requiredFields.forEach(f => {
+        //     f.addEventListener("input", () => {
+        //         if(f.value.trim() === ""  || f.value.length < 1) {
+        //             signupBtn.disabled = true;
+        //             // fieldRequiredMsg!.innerHTML = "These fields are required";
+        //         } else {
+        //             // fieldRequiredMsg!.innerHTML = "";
+        //             signupBtn.disabled = false;
+        //         }
+        //     }) 
+        // })
     });
 }
 validateFormInputs();
-let requiredFields = [email, username, pwd, fullName];
-requiredFields.forEach(f => {
-    f.addEventListener("change", () => {
-        if (f.value.trim().length <= 0) {
-            fieldRequiredMsg.innerHTML = "These fields are required";
-        }
-        else {
-            fieldRequiredMsg.innerHTML = "";
-            signupBtn.disabled = false;
-            signupBtn.style.opacity = "1";
-        }
-    });
-});
 // signup form
 let signupForm = document.getElementById("signup");
-signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (email.value.trim() === "" && username.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
-        fieldRequiredMsg.innerHTML = "Fields with * are required";
-    }
-});
+// signupForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
+//     if(email.value.trim() === "" && username.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
+//         fieldRequiredMsg!.innerHTML = "Fields with * are required";
+//     }
+// })
 // backend request check if email or username exists
-let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
 function checkEmail(email) {
     fetch(PAYSNAP_API_ENDPOINT, {
         method: "POST",
@@ -127,7 +123,6 @@ function checkEmail(email) {
     })
         .then((user) => {
         // check user data here
-        console.log(user.data);
         if (user.data !== null) {
             emailErrMsg.style.display = "block";
             emailErrMsg.innerHTML = "This is email is not available for use";
