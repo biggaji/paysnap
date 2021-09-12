@@ -21,12 +21,8 @@ let fieldRequiredMsg = document.getElementById("fields_required_err_msg");
 
 // disabled submit button
 let signupBtn = document.getElementById("fbtn_submit_signup") as HTMLButtonElement;
-signupBtn.disabled = true;
 
-if(signupBtn.disabled) {
-    signupBtn.style.opacity = "0.5";
-    signupBtn.style.cursor = "grab";
-}
+let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
 
 async function validateFormInputs() {
 
@@ -39,6 +35,7 @@ async function validateFormInputs() {
             emailErrMsg.innerHTML = "Please enter a valid email";
         } else {
             emailErrMsg.innerHTML = "Checking email...";
+            console.log(checkEmail(email.value.trim()));
             return checkEmail(email.value.trim());
         };
     });
@@ -53,14 +50,16 @@ async function validateFormInputs() {
             usernameErrMsg.innerHTML = "Username must be greater than 3 characters";
         } else {
             usernameErrMsg.innerHTML = "Checking username...";
+            // console.log( checkUsername(username.value.trim()));
             return checkUsername(userName);
         };
     });
+    
+    let password = pwd.value.trim();
+    let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
+    let passwordTest = password_regex.test(password);
 
     pwd.addEventListener("input", () => {
-        let password = pwd.value.trim();
-        let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
-        let passwordTest = password_regex.test(password);
 
         if(password === "") {
             pwdErrMsg.style.display = "block";
@@ -74,37 +73,44 @@ async function validateFormInputs() {
         }
     });
 
+    // let requiredFields = [email, username, pwd, fullName];
+
+    
+    
+    // requiredFields.forEach(f => {
+    //     f.addEventListener("input", () => {
+    //         if(f.value.trim() === ""  || f.value.length < 1) {
+    //             signupBtn.disabled = true;
+    //             // fieldRequiredMsg!.innerHTML = "These fields are required";
+    //         } else {
+    //             // fieldRequiredMsg!.innerHTML = "";
+    //             signupBtn.disabled = false;
+    //         }
+    //     }) 
+    // })
+
+    
+
+    
+
 }
 
 validateFormInputs();
 
-let requiredFields = [email, username, pwd, fullName];
-
-requiredFields.forEach(f => {
-    f.addEventListener("change", () => {
-        if(f.value.trim().length <= 0) {
-            fieldRequiredMsg!.innerHTML = "These fields are required";
-        } else {
-            fieldRequiredMsg!.innerHTML = "";
-            signupBtn.disabled = false;
-            signupBtn.style.opacity = "1";
-        }
-    }) 
-})
 
 // signup form
 let signupForm = document.getElementById("signup") as HTMLFormElement;
 
-signupForm.addEventListener('submit', (e) => {
-    e.preventDefault();
+// signupForm.addEventListener('submit', (e) => {
+//     e.preventDefault();
 
-    if(email.value.trim() === "" && username.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
-        fieldRequiredMsg!.innerHTML = "Fields with * are required";
-    }
-})
+//     if(email.value.trim() === "" && username.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
+//         fieldRequiredMsg!.innerHTML = "Fields with * are required";
+//     }
+// })
 
 // backend request check if email or username exists
-let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
+
 
 
 function checkEmail(email:string) {
@@ -128,7 +134,6 @@ function checkEmail(email:string) {
           })
           .then((user) => {
             // check user data here
-            console.log(user.data)
             if(user.data !== null) {
                 emailErrMsg.style.display = "block";
                 emailErrMsg.innerHTML = "This is email is not available for use";
