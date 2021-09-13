@@ -1,7 +1,8 @@
 import express, {Request, Response, NextFunction, Application } from 'express';
 import exphbs from 'express-handlebars';
 import path from 'path';
-// import cors from  'cors';
+import cors from  'cors';
+import cookieParser from 'cookie-parser';
 import indexRouter from './src/routes/index';
 import authRouter from './src/routes/auths';
 import transactionRouter from './src/routes/transactions';
@@ -10,7 +11,8 @@ const app:Application = express();
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-// app.use(cors());
+app.use(cookieParser());
+app.use(cors());
 
 app.use(express.static(path.join(__dirname, 'public')));
 

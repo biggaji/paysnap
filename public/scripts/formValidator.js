@@ -56,7 +56,7 @@ function validateFormInputs() {
             }
             else {
                 usernameErrMsg.innerHTML = "Checking username...";
-                // console.log( checkUsername(username.value.trim()));
+                console.log(checkUsername(username.value.trim()));
                 return checkUsername(userName);
             }
             ;
@@ -122,13 +122,15 @@ function checkEmail(email) {
         return resp.json();
     })
         .then((user) => {
-        // check user data here
-        if (user.data !== null) {
-            emailErrMsg.style.display = "block";
-            emailErrMsg.innerHTML = "This is email is not available for use";
+        // // check user data here
+        if (user.data !== null && user.data.checkIfEmailExist.email === email) {
+            // console.log(user.data.checkIfEmailExist.email);
+            //     emailErrMsg.style.display = "block";
+            //     emailErrMsg.innerHTML = "This is email is not available for use";
+            return true;
         }
         else {
-            emailErrMsg.style.display = "none";
+            return false;
         }
     })
         .catch((e) => {
@@ -156,12 +158,16 @@ function checkUsername(username) {
     })
         .then((user) => {
         // check user data here
+        console.log(user.data);
         if (user.data !== null) {
-            usernameErrMsg.style.display = "block";
-            usernameErrMsg.innerHTML = "This username is taken";
+            //     usernameErrMsg.style.display = "block";
+            //     usernameErrMsg.innerHTML = "This username is taken";
+            // } else {
+            //     usernameErrMsg.style.display = "none";
+            return true;
         }
         else {
-            usernameErrMsg.style.display = "none";
+            return false;
         }
     })
         .catch((e) => {
