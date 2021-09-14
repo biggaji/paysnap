@@ -7,11 +7,11 @@ import { checkUserByEmail, checkUserByUsername } from "../../@utils/checkUserExi
 import { compare } from "bcryptjs";
 
 export const signUpController = async (req:Request, res:Response) => {
-    res.render("signup", { pageTitle: "Sign up"});
+    res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
 }
 
 export const signInController = async (req: Request, res: Response) => {
-  res.render("login", { pageTitle: "Sign in" });
+  res.render("login", { pageTitle: "Sign in" , server_error_msg: req.flash("error")});
 };
 
 export const activateAccountController = async (req: Request, res: Response) => {
@@ -21,9 +21,8 @@ export const activateAccountController = async (req: Request, res: Response) => 
   if(email && email !== undefined) {
     hashedEmail = await asteriskMail(email);
   }
-  // console.log(email)
 
-  res.render("activate", { pageTitle: "Activate account", hashedEmail });
+  res.render("activate", { pageTitle: "Activate your account", hashedEmail , server_error_msg: req.flash("error")});
 };
 
 export const resetPasswordController = async (
@@ -89,10 +88,12 @@ export const CreateAccountPostController = async (req: Request,res: Response) =>
     .catch(e => {
       // console.log(`payload data error: `, e);
       console.log(`payload data error: `, e.response.errors[0].message);
+      req.flash("error", "An error occured while creating account, please try again");
       res.redirect("/signup");
     });
   } else {
     console.log("User exists");
+    req.flash("error", "A user with this account already exist, please sign-in instead");
     res.redirect("/signup");
   }
 
@@ -108,6 +109,7 @@ export const LoginPostController = async (req: Request, res: Response) => {
 
   if(!checkUserFirst) {
     console.log('There is no user yet', checkUserFirst);
+    req.flash("error", "You don't have a Paysnap account, please create one.");
     res.redirect('/signin');
   } else {
     const loginQuery = gql`
@@ -140,14 +142,17 @@ export const LoginPostController = async (req: Request, res: Response) => {
 
       if(!isPassword) {
         console.log('Incorrect password');
+        req.flash("error", "Incorrect username or password");
         res.redirect('/signin');
       } 
 
       console.log(`login Payload `, resp.login.user.id);
+      res.cookie("x_user_token", resp.login.token, { httpOnly: true });
       res.redirect('/dashboard');
     })
     .catch(e => {
       console.log(`Login error ,`, e);
+      req.flash("error", "An error occured during signin, please try again");
       res.redirect('/signin');
     });
   }
@@ -156,9 +161,8 @@ export const LoginPostController = async (req: Request, res: Response) => {
 
 export const ActivateAccountPostController = async (req: Request, res: Response) => {
   const { code } = req.body;
-  console.log(code)
-  // get token form cookie
 
+  // get token form cookie
   let tokenPayload = await req.headers.authorization || req.cookies.x_user_token;
 
   // send token to database
@@ -195,6 +199,11 @@ export const ActivateAccountPostController = async (req: Request, res: Response)
   })
   .catch(e => {
     console.log(`Activate Account error: `, e);
+    if(e && e.response.errors) {
+      req.flash("error", e.response.errors[0].message);
+    }
+
+    req.flash("error", "An error occured while activating account, please try again");
     res.redirect('/activate');
   });
 };
