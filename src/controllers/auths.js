@@ -9,7 +9,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.LoginPostController = exports.CreateAccountPostController = exports.RedenderDashboardController = exports.resetPasswordController = exports.activateAccountController = exports.signInController = exports.signUpController = void 0;
+exports.ActivateAccountPostController = exports.LoginPostController = exports.CreateAccountPostController = exports.RedenderDashboardController = exports.resetPasswordController = exports.activateAccountController = exports.signInController = exports.signUpController = void 0;
+const graphqlRequestConfig_1 = require("../../@utils/graphqlRequestConfig");
+const graphql_request_1 = require("graphql-request");
+const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render("signup", { pageTitle: "Sign up" });
 });
@@ -19,7 +22,13 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("activate", { pageTitle: "Activate account" });
+    let email = req.headers.authorization || req.cookies.email;
+    let hashedEmail;
+    if (email && email !== undefined) {
+        hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+    }
+    // console.log(email)
+    res.render("activate", { pageTitle: "Activate account", hashedEmail });
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -31,9 +40,52 @@ const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void
 });
 exports.RedenderDashboardController = RedenderDashboardController;
 const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json({
-        "msg": `@${req.body.username}, your account has been created successfully`
+    let { email, username, country, password, fullname } = req.body;
+    // mutation for create user
+    const createAccountMutation = graphql_request_1.gql `
+    mutation createAccount($Opts: CreateAccountInputs!) {
+        createAccount(opts:$Opts) {
+        code
+        success
+        message
+        user {
+          id
+          email
+        }
+        token
+      }
+    }
+  `;
+    // const query = gql`
+    //   query CheckUsername($username: String!) {
+    //     checkIfUsernameExist(username:$username) {
+    //       username
+    //     }
+    //   }
+    // `;
+    const variables = {
+        Opts: {
+            fullname,
+            email,
+            username,
+            country,
+            password
+        }
+    };
+    graphqlRequestConfig_1.graphqlClient.request(createAccountMutation, variables)
+        .then(result => {
+        console.log(`Payload data: `, result.createAccount.message);
+        const { user, token } = result.createAccount;
+        res.cookie("email", user.email, { httpOnly: true });
+        res.cookie("x_user_token", token, { httpOnly: true });
+        res.redirect('/activate');
+    })
+        .catch(e => {
+        // console.log(`payload data error: `, e);
+        console.log(`payload data error: `, e.response.errors[0].message);
+        res.redirect("/signup");
     });
+    // res.send("Good")
 });
 exports.CreateAccountPostController = CreateAccountPostController;
 const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -42,3 +94,6 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
     });
 });
 exports.LoginPostController = LoginPostController;
+const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+});
+exports.ActivateAccountPostController = ActivateAccountPostController;
