@@ -9,13 +9,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.checkUserByUsername = void 0;
+exports.checkUserByEmail = exports.checkUserByUsername = void 0;
 const graphqlRequestConfig_1 = require("../@utils/graphqlRequestConfig");
 const graphql_request_1 = require("graphql-request");
 function checkUserByUsername(username) {
     return __awaiter(this, void 0, void 0, function* () {
         return new Promise((resolve, reject) => {
-            // fetch dats from database where user is email
+            // fetch data from database to check username validity
             let queryPayload = graphql_request_1.gql `
             query checkUsername($username: String!) {
                 checkIfUsernameExist(username: $username) {
@@ -28,10 +28,6 @@ function checkUserByUsername(username) {
             };
             graphqlRequestConfig_1.graphqlClient.request(queryPayload, variable)
                 .then(resp => {
-                // console.log(resp)
-                // if(resp.checkIfUsernameExist !== null) {
-                //     console.log(`User exist already, `, resp.checkIfUsernameExist.username);
-                // }
                 resolve((resp.checkIfUsernameExist !== null) ? true : false);
             })
                 .catch(e => {
@@ -42,4 +38,32 @@ function checkUserByUsername(username) {
     });
 }
 exports.checkUserByUsername = checkUserByUsername;
+;
+function checkUserByEmail(email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return new Promise((resolve, reject) => {
+            // fetch data from database to check email validity
+            let queryPayload = graphql_request_1.gql `
+        query checkEmail($email: String!) {
+          checkIfEmailExist(email: $email) {
+            email
+          }
+        }
+      `;
+            let variable = {
+                email
+            };
+            graphqlRequestConfig_1.graphqlClient
+                .request(queryPayload, variable)
+                .then((resp) => {
+                resolve(resp.checkIfEmailExist !== null ? true : false);
+            })
+                .catch((e) => {
+                console.log(`An error occured while verifying email`);
+                reject(e);
+            });
+        });
+    });
+}
+exports.checkUserByEmail = checkUserByEmail;
 ;
