@@ -6,8 +6,10 @@ import cookieParser from 'cookie-parser';
 import indexRouter from './src/routes/index';
 import authRouter from './src/routes/auths';
 import transactionRouter from './src/routes/transactions';
+import compression from 'compression';
 
 const app:Application = express();
+app.use(compression());
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
