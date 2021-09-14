@@ -13,6 +13,8 @@ exports.ActivateAccountPostController = exports.LoginPostController = exports.Cr
 const graphqlRequestConfig_1 = require("../../@utils/graphqlRequestConfig");
 const graphql_request_1 = require("graphql-request");
 const asteriskEmail_1 = require("../../@utils/asteriskEmail");
+const checkUserExists_1 = require("../../@utils/checkUserExists");
+const bcryptjs_1 = require("bcryptjs");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render("signup", { pageTitle: "Sign up" });
 });
@@ -83,9 +85,48 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
 });
 exports.CreateAccountPostController = CreateAccountPostController;
 const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.json({
-        msg: `You are signed in as @${req.body.username}`,
-    });
+    const { username, password } = req.body;
+    const checkUserFirst = yield checkUserExists_1.checkUserByUsername(username);
+    console.log(checkUserFirst);
+    if (!checkUserFirst) {
+        console.log('There is no user yet', checkUserFirst);
+        res.redirect('/signin');
+    }
+    else {
+        const loginQuery = graphql_request_1.gql `
+        query Signin($opts: LoginInputs!) {
+          login(opts:$opts) {
+            user {
+              id
+              isactivated
+              password
+            }
+            token
+          }
+        }
+    `;
+        let variables = {
+            opts: {
+                username,
+                password
+            }
+        };
+        graphqlRequestConfig_1.graphqlClient.request(loginQuery, variables)
+            .then((resp) => __awaiter(void 0, void 0, void 0, function* () {
+            // compare password
+            let isPassword = yield bcryptjs_1.compare(password, resp.login.user.password);
+            if (!isPassword) {
+                console.log('Incorrect password');
+                res.redirect('/signin');
+            }
+            console.log(`login Payload `, resp.login.id);
+            res.redirect('/dashboard');
+        }))
+            .catch(e => {
+            console.log(`Login error ,`, e);
+            res.redirect('/signin');
+        });
+    }
 });
 exports.LoginPostController = LoginPostController;
 const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {

@@ -3,6 +3,8 @@ import { graphqlClient } from '../../@utils/graphqlRequestConfig';
 import { gql } from "graphql-request";
 import { Console } from "console";
 import { asteriskMail } from "../../@utils/asteriskEmail";
+import { checkUserByUsername } from "../../@utils/checkUserExists";
+import { compare } from "bcryptjs";
 
 export const signUpController = async (req:Request, res:Response) => {
     res.render("signup", { pageTitle: "Sign up"});
@@ -90,9 +92,57 @@ export const CreateAccountPostController = async (req: Request,res: Response) =>
 };
 
 export const LoginPostController = async (req: Request, res: Response) => {
-  res.json({
-    msg: `You are signed in as @${req.body.username}`,
-  });
+
+  const { username, password } = req.body;
+
+  const checkUserFirst = await checkUserByUsername(username);
+  console.log(checkUserFirst);
+
+  if(!checkUserFirst) {
+    console.log('There is no user yet', checkUserFirst);
+    res.redirect('/signin');
+  } else {
+    const loginQuery = gql`
+        query Signin($opts: LoginInputs!) {
+          login(opts:$opts) {
+            user {
+              id
+              isactivated
+              password
+            }
+            token
+          }
+        }
+    `;
+  
+    let variables = {
+        opts: {
+          username,
+          password
+        }
+    };
+  
+  
+    graphqlClient.request(loginQuery,variables)
+    .then(async resp => {
+
+      // compare password
+
+      let isPassword = await compare(password, resp.login.user.password);
+
+      if(!isPassword) {
+        console.log('Incorrect password');
+        res.redirect('/signin');
+      } 
+
+      console.log(`login Payload `, resp.login.user.id);
+      res.redirect('/dashboard');
+    })
+    .catch(e => {
+      console.log(`Login error ,`, e);
+      res.redirect('/signin');
+    });
+  }
 };
 
 
