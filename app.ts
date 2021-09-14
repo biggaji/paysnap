@@ -7,6 +7,7 @@ import indexRouter from './src/routes/index';
 import authRouter from './src/routes/auths';
 import transactionRouter from './src/routes/transactions';
 import compression from 'compression';
+import connectFlash from 'connect-flash';
 
 const app:Application = express();
 app.use(compression());
@@ -15,6 +16,7 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors());
+app.use(connectFlash());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
