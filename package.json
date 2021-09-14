@@ -44,6 +44,7 @@
     "@types/chai": "^4.2.21",
     "@types/chai-http": "^4.2.0",
     "@types/compression": "^1.7.2",
+    "@types/connect-flash": "^0.0.37",
     "@types/cookie-parser": "^1.4.2",
     "@types/cors": "^2.8.12",
     "@types/dotenv": "^8.2.0",
