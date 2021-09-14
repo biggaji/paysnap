@@ -9,4 +9,5 @@ router.get("/activate", auths_1.activateAccountController);
 router.get("/dashboard", auths_1.RedenderDashboardController);
 router.post('/signup', auths_1.CreateAccountPostController);
 router.post("/signin", auths_1.LoginPostController);
+router.post("/activate", auths_1.ActivateAccountPostController);
 exports.default = router;
