@@ -14,10 +14,14 @@ export const signInController = async (req: Request, res: Response) => {
 
 export const activateAccountController = async (req: Request, res: Response) => {
   let email = req.headers.authorization || req.cookies.email;
-  // console.log(email)
-  email = await asteriskMail(email);
+  let hashedEmail;
 
-  res.render("activate", { pageTitle: "Activate account", email });
+  if(email && email !== undefined) {
+    hashedEmail = await asteriskMail(email);
+  }
+  // console.log(email)
+
+  res.render("activate", { pageTitle: "Activate account", hashedEmail });
 };
 
 export const resetPasswordController = async (

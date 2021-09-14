@@ -23,9 +23,12 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let email = req.headers.authorization || req.cookies.email;
+    let hashedEmail;
+    if (email && email !== undefined) {
+        hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+    }
     // console.log(email)
-    email = yield asteriskEmail_1.asteriskMail(email);
-    res.render("activate", { pageTitle: "Activate account", email });
+    res.render("activate", { pageTitle: "Activate account", hashedEmail });
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
