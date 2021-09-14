@@ -34,7 +34,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^5.2.0",
-    "express-session": "^1.17.1",
+    "express-session": "^1.17.2",
     "graphql": "^15.5.0",
     "graphql-request": "^3.5.0",
     "jsonwebtoken": "^8.5.1"
@@ -50,6 +50,7 @@
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.13",
     "@types/express-handlebars": "^5.3.1",
+    "@types/express-session": "^1.17.4",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.4.1",
     "chai": "^4.3.0",

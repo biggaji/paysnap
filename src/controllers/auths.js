@@ -16,11 +16,11 @@ const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const checkUserExists_1 = require("../../@utils/checkUserExists");
 const bcryptjs_1 = require("bcryptjs");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("signup", { pageTitle: "Sign up" });
+    res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
 });
 exports.signUpController = signUpController;
 const signInController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("login", { pageTitle: "Sign in" });
+    res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error") });
 });
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -29,8 +29,7 @@ const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0
     if (email && email !== undefined) {
         hashedEmail = yield asteriskEmail_1.asteriskMail(email);
     }
-    // console.log(email)
-    res.render("activate", { pageTitle: "Activate account", hashedEmail });
+    res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -45,51 +44,61 @@ exports.RedenderDashboardController = RedenderDashboardController;
 const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let { email, username, country, password, fullname } = req.body;
     // mutation for create user
-    const createAccountMutation = graphql_request_1.gql `
-    mutation createAccount($Opts: CreateAccountInputs!) {
-        createAccount(opts:$Opts) {
-        code
-        success
-        message
-        user {
-          id
-          email
+    let checkUser = yield checkUserExists_1.checkUserByEmail(email);
+    console.log('User with email Exist ', checkUser);
+    if (!checkUser) {
+        const createAccountMutation = graphql_request_1.gql `
+      mutation createAccount($Opts: CreateAccountInputs!) {
+          createAccount(opts:$Opts) {
+          code
+          success
+          message
+          user {
+            id
+            email
+          }
+          token
         }
-        token
       }
+    `;
+        const variables = {
+            Opts: {
+                fullname,
+                email,
+                username,
+                country,
+                password
+            }
+        };
+        graphqlRequestConfig_1.graphqlClient.request(createAccountMutation, variables)
+            .then(result => {
+            console.log(`Payload data: `, result.createAccount.message);
+            const { user, token } = result.createAccount;
+            res.cookie("email", user.email, { httpOnly: true });
+            res.cookie("x_user_token", token, { httpOnly: true });
+            res.redirect('/activate');
+        })
+            .catch(e => {
+            // console.log(`payload data error: `, e);
+            console.log(`payload data error: `, e.response.errors[0].message);
+            req.flash("error", "An error occured while creating account, please try again");
+            res.redirect("/signup");
+        });
     }
-  `;
-    const variables = {
-        Opts: {
-            fullname,
-            email,
-            username,
-            country,
-            password
-        }
-    };
-    graphqlRequestConfig_1.graphqlClient.request(createAccountMutation, variables)
-        .then(result => {
-        console.log(`Payload data: `, result.createAccount.message);
-        const { user, token } = result.createAccount;
-        res.cookie("email", user.email, { httpOnly: true });
-        res.cookie("x_user_token", token, { httpOnly: true });
-        res.redirect('/activate');
-    })
-        .catch(e => {
-        // console.log(`payload data error: `, e);
-        console.log(`payload data error: `, e.response.errors[0].message);
+    else {
+        console.log("User exists");
+        req.flash("error", "A user with this account already exist, please sign-in instead");
         res.redirect("/signup");
-    });
+    }
     // res.send("Good")
 });
 exports.CreateAccountPostController = CreateAccountPostController;
 const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
     const checkUserFirst = yield checkUserExists_1.checkUserByUsername(username);
-    console.log(checkUserFirst);
     if (!checkUserFirst) {
         console.log('There is no user yet', checkUserFirst);
+        req.flash("error", "You don't have a Paysnap account, please create one.");
         res.redirect('/signin');
     }
     else {
@@ -117,13 +126,16 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
             let isPassword = yield bcryptjs_1.compare(password, resp.login.user.password);
             if (!isPassword) {
                 console.log('Incorrect password');
+                req.flash("error", "Incorrect username or password");
                 res.redirect('/signin');
             }
-            console.log(`login Payload `, resp.login.id);
+            console.log(`login Payload `, resp.login.user.id);
+            res.cookie("x_user_token", resp.login.token, { httpOnly: true });
             res.redirect('/dashboard');
         }))
             .catch(e => {
             console.log(`Login error ,`, e);
+            req.flash("error", "An error occured during signin, please try again");
             res.redirect('/signin');
         });
     }
@@ -131,7 +143,6 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
 exports.LoginPostController = LoginPostController;
 const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { code } = req.body;
-    console.log(code);
     // get token form cookie
     let tokenPayload = (yield req.headers.authorization) || req.cookies.x_user_token;
     // send token to database
@@ -164,6 +175,10 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
     })
         .catch(e => {
         console.log(`Activate Account error: `, e);
+        if (e && e.response.errors) {
+            req.flash("error", e.response.errors[0].message);
+        }
+        req.flash("error", "An error occured while activating account, please try again");
         res.redirect('/activate');
     });
 });
