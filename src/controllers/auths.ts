@@ -35,7 +35,11 @@ export const RedenderDashboardController = async (
   req: Request,
   res: Response
 ) => {
-  res.render("dashboard", { pageTitle: "" , dashboard: ""});
+
+  // get user data database
+
+   
+  res.render("dashboard", { pageTitle: "" , dashboard: "", username: "biggaji"});
 };
 
 export const CreateAccountPostController = async (req: Request,res: Response) => {
@@ -57,14 +61,6 @@ export const CreateAccountPostController = async (req: Request,res: Response) =>
       }
     }
   `;
-
-  // const query = gql`
-  //   query CheckUsername($username: String!) {
-  //     checkIfUsernameExist(username:$username) {
-  //       username
-  //     }
-  //   }
-  // `;
 
   const variables = {
     Opts: {
@@ -101,5 +97,46 @@ export const LoginPostController = async (req: Request, res: Response) => {
 
 
 export const ActivateAccountPostController = async (req: Request, res: Response) => {
-  
+  const { code } = req.body;
+  console.log(code)
+  // get token form cookie
+
+  let tokenPayload = await req.headers.authorization || req.cookies.x_user_token;
+
+  // send token to database
+
+  const activateAccountMutation = gql`
+      mutation activateAccount($code: String!) {
+        activateAccount(code: $code) {
+          code
+          message
+          success
+          user {
+            isactivated
+          }
+        }
+      }
+  `;
+
+  const variables = {
+    code
+  };
+
+  const request_header = {
+    "x_user_token" : tokenPayload
+  }
+
+  graphqlClient.request(activateAccountMutation, variables, request_header)
+  .then(resp => {
+    let data = resp.activateAccount;
+    console.log(`Account activated, ` , data.user.isactivated);
+    // clear users email from cookie
+    res.clearCookie("email");
+    // redirect to dashboard
+    res.redirect('/dashboard');
+  })
+  .catch(e => {
+    console.log(`Activate Account error: `, e);
+    res.redirect('/activate');
+  });
 };

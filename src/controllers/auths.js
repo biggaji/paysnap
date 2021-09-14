@@ -36,7 +36,8 @@ const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, 
 });
 exports.resetPasswordController = resetPasswordController;
 const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("dashboard", { pageTitle: "", dashboard: "" });
+    // get user data database
+    res.render("dashboard", { pageTitle: "", dashboard: "", username: "biggaji" });
 });
 exports.RedenderDashboardController = RedenderDashboardController;
 const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -56,13 +57,6 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
       }
     }
   `;
-    // const query = gql`
-    //   query CheckUsername($username: String!) {
-    //     checkIfUsernameExist(username:$username) {
-    //       username
-    //     }
-    //   }
-    // `;
     const variables = {
         Opts: {
             fullname,
@@ -95,5 +89,41 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
 });
 exports.LoginPostController = LoginPostController;
 const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { code } = req.body;
+    console.log(code);
+    // get token form cookie
+    let tokenPayload = (yield req.headers.authorization) || req.cookies.x_user_token;
+    // send token to database
+    const activateAccountMutation = graphql_request_1.gql `
+      mutation activateAccount($code: String!) {
+        activateAccount(code: $code) {
+          code
+          message
+          success
+          user {
+            isactivated
+          }
+        }
+      }
+  `;
+    const variables = {
+        code
+    };
+    const request_header = {
+        "x_user_token": tokenPayload
+    };
+    graphqlRequestConfig_1.graphqlClient.request(activateAccountMutation, variables, request_header)
+        .then(resp => {
+        let data = resp.activateAccount;
+        console.log(`Account activated, `, data.user.isactivated);
+        // clear users email from cookie
+        res.clearCookie("email");
+        // redirect to dashboard
+        res.redirect('/dashboard');
+    })
+        .catch(e => {
+        console.log(`Activate Account error: `, e);
+        res.redirect('/activate');
+    });
 });
 exports.ActivateAccountPostController = ActivateAccountPostController;

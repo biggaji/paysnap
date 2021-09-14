@@ -5,6 +5,7 @@
         </a>
     </div>
     <div class="form-container">
+        <div id="form_feedback"></div>
         <div class="form-copy-wrap">
             <h1 class="form-copy">Account activation</h1>
         </div>
@@ -14,10 +15,10 @@
         </div>
         <div class="form-wrapper">
             <div class="form-flash-message-wrap"></div>
-            <form action="#" method="POST" class="activate">
+            <form action="/activate" method="POST" class="activate">
                 <div class="fin-wrap">
-                    <label for="tks">Token</label><br>
-                    <input type="text" class="fin-wrap-input" name="token"
+                    <label for="tks">Actiavtion code</label><br>
+                    <input type="text" class="fin-wrap-input" name="code"
                         id="tks">
                 </div>
                 <div class="fbtn-wrap">

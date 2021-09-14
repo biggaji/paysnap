@@ -1,5 +1,6 @@
 "use strict";
 let PAYSNAP_API_URL = "https://api-paysnap.herokuapp.com/graphql";
+let greeting_text = document.getElementById("greeting_text_UI");
 /**
  * Daytime greeting switch
  */
@@ -19,8 +20,10 @@ function DaytimeGreetingSwitch() {
     else {
         greetingText = "Good evening";
     }
-    return greetingText;
+    greeting_text.innerHTML = greetingText;
+    // return greetingText;
 }
+DaytimeGreetingSwitch();
 /**
  * Current year picker
  */
