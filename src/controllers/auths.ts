@@ -3,7 +3,7 @@ import { graphqlClient } from '../../@utils/graphqlRequestConfig';
 import { gql } from "graphql-request";
 import { Console } from "console";
 import { asteriskMail } from "../../@utils/asteriskEmail";
-import { checkUserByUsername } from "../../@utils/checkUserExists";
+import { checkUserByEmail, checkUserByUsername } from "../../@utils/checkUserExists";
 import { compare } from "bcryptjs";
 
 export const signUpController = async (req:Request, res:Response) => {
@@ -49,44 +49,53 @@ export const CreateAccountPostController = async (req: Request,res: Response) =>
 
   // mutation for create user
 
-  const createAccountMutation = gql`
-    mutation createAccount($Opts: CreateAccountInputs!) {
-        createAccount(opts:$Opts) {
-        code
-        success
-        message
-        user {
-          id
-          email
+  let checkUser = await checkUserByEmail(email);
+  console.log('User with email Exist ', checkUser);
+
+  if(!checkUser) {
+    const createAccountMutation = gql`
+      mutation createAccount($Opts: CreateAccountInputs!) {
+          createAccount(opts:$Opts) {
+          code
+          success
+          message
+          user {
+            id
+            email
+          }
+          token
         }
-        token
+      }
+    `;
+  
+    const variables = {
+      Opts: {
+        fullname,
+        email,
+        username,
+        country,
+        password
       }
     }
-  `;
-
-  const variables = {
-    Opts: {
-      fullname,
-      email,
-      username,
-      country,
-      password
-    }
+  
+    graphqlClient.request(createAccountMutation, variables)
+    .then(result => {
+      console.log(`Payload data: `, result.createAccount.message);
+      const { user, token } = result.createAccount;
+      res.cookie("email", user.email, { httpOnly : true });
+      res.cookie("x_user_token", token, { httpOnly: true });
+      res.redirect('/activate');
+    })
+    .catch(e => {
+      // console.log(`payload data error: `, e);
+      console.log(`payload data error: `, e.response.errors[0].message);
+      res.redirect("/signup");
+    });
+  } else {
+    console.log("User exists");
+    res.redirect("/signup");
   }
 
-  graphqlClient.request(createAccountMutation, variables)
-  .then(result => {
-    console.log(`Payload data: `, result.createAccount.message);
-    const { user, token } = result.createAccount;
-    res.cookie("email", user.email, { httpOnly : true });
-    res.cookie("x_user_token", token, { httpOnly: true });
-    res.redirect('/activate');
-  })
-  .catch(e => {
-    // console.log(`payload data error: `, e);
-    console.log(`payload data error: `, e.response.errors[0].message);
-    res.redirect("/signup");
-  })
 
   // res.send("Good")
 };
@@ -96,7 +105,6 @@ export const LoginPostController = async (req: Request, res: Response) => {
   const { username, password } = req.body;
 
   const checkUserFirst = await checkUserByUsername(username);
-  console.log(checkUserFirst);
 
   if(!checkUserFirst) {
     console.log('There is no user yet', checkUserFirst);
