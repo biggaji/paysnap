@@ -17,11 +17,11 @@
             <div id="server_error_wrapper">
                 {{#if server_error_msg}}
                 <small id="server_error_msg">{{server_error_msg}}</small> <span
-                    class="cancel_icon">+</span>
+                    id="cancel_icon">+</span>
                 {{/if}}
             </div>
             <div id="client_error_wrapper">
-                <small id="client_error_msg"></small> <span class="cancel_icon">+</span>
+                <small id="client_error_msg">Some client_error_msg</small> <span id="cancel_icon">+</span>
             </div>
             <form action="/activate" method="POST" class="activate">
                 <div class="fin-wrap">

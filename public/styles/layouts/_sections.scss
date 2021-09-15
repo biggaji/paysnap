@@ -76,6 +76,15 @@
     }
     
     .form-wrapper {
+
+        #server_error_msg, #client_error_msg {
+            border: 1px solid red;
+            width: 100%;
+            height: auto;
+        }
+        #cancel_icon {
+            transform: rotate(45deg);
+        }
         //signup style
         margin: 2rem 0;
         letter-spacing: 0.025;
