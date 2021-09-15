@@ -108,6 +108,17 @@ body {
   letter-spacing: 0.025;
 }
 
+.form-container .form-wrapper #server_error_msg, .form-container .form-wrapper #client_error_msg {
+  border: 1px solid red;
+  width: 100%;
+  height: auto;
+}
+
+.form-container .form-wrapper #cancel_icon {
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+}
+
 .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
   width: 100%;
   margin: 0.675rem 0;
