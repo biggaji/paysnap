@@ -50,7 +50,7 @@ export async function checkUserByEmail(email:string): Promise<boolean> {
           resolve(resp.checkIfEmailExist !== null ? true : false);
         })
         .catch((e) => {
-          console.log(`An error occured while verifying email`);
+          console.log(`An error occured while verifying email`, e);
           reject(e);
         });
     });
