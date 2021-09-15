@@ -36,7 +36,7 @@
             color:$buttonColor;
             line-height: 1.4;
             background-color: $buttonBg;
-            padding: 0.7rem 1.2rem;
+            padding: 0.7rem 1.25rem;
             font-size: $smafs;
             text-decoration: none;
             letter-spacing: 0.02rem;
@@ -77,13 +77,33 @@
     
     .form-wrapper {
 
-        #server_error_msg, #client_error_msg {
-            border: 1px solid red;
+        #server_error_wrapper, #client_error_wrapper {
+            border: 1px solid rgba(227,0,0,.4);
             width: 100%;
             height: auto;
+            padding: 10px;
+            border-radius: 12px;
+            background-color: #fff2f4;
         }
-        #cancel_icon {
-            transform: rotate(45deg);
+
+        #server_error_wrapper {
+            margin: 10px 0;
+            position: relative;
+            #server_error_msg {
+                vertical-align: middle;
+                font-size: $smpfs;
+                color: $headerColor;
+            }
+        }
+
+        #client_error_wrapper {
+            display: none;
+            margin: 10px 0;
+            #client_error_msg {
+                vertical-align: middle;
+                color: $headerColor;
+                font-size: $smpfs;
+            }
         }
         //signup style
         margin: 2rem 0;
@@ -137,7 +157,7 @@
                 .fbtn-wrap-btn {
                     cursor: pointer;
                     width: 100%;
-                    padding: 0.8rem 1rem;
+                    padding: 0.8rem 1.25rem;
                     border-radius: 70px;
                     font-weight: 700;
                     font-size: $smafs;
@@ -236,7 +256,7 @@
     .hero-cta {
         margin: 2rem 0 0.7rem 0;
         .hero-cta-link {
-            font-size: $smafs;
+            font-size: $mmafs;
             padding: 0.6rem 2.4rem;
         }
     }
@@ -291,6 +311,19 @@
     }
     
     .form-wrapper {
+        #server_error_wrapper {
+            margin: 14px 0;
+            #server_error_msg {
+                font-size: $tpfs;
+            }
+        }
+
+        #client_error_wrapper {
+            margin: 14px 0;
+            #client_error_msg {
+                font-size: $tpfs;
+            }
+        }
         .signup , .signin, .activate{
             .fin-wrap {
                 width: 100%;
@@ -384,6 +417,19 @@
     }
 
     .form-wrapper {
+        #server_error_wrapper {
+            margin: 14px 0;
+            #server_error_msg {
+                font-size: $mtpfs;
+            }
+        }
+
+        #client_error_wrapper {
+            margin: 14px 0;
+            #client_error_msg {
+                font-size: $mtpfs;
+            }
+        }  
         .signup , .signin, .activate{
             .fin-wrap {
                 width: 100%;
@@ -479,6 +525,20 @@
     }
     
     .form-wrapper {
+
+        #server_error_wrapper {
+            margin: 14px 0;
+            #server_error_msg {
+                font-size: $ipfs;
+            }
+        }
+
+        #client_error_wrapper {
+            margin: 14px 0;
+            #client_error_msg {
+                font-size: $ipfs;
+            }
+        }
         .signup , .signin, .activate{
             .fin-wrap {
                 width: 100%;
@@ -575,6 +635,19 @@
     }
     
     .form-wrapper {
+        #server_error_wrapper {
+            margin: 14px 0;
+            #server_error_msg {
+                font-size: $dpfs;
+            }
+        }
+
+        #client_error_wrapper {
+            margin: 14px 0;
+            #client_error_msg {
+                font-size: $dpfs;
+            }
+        } 
         .signup , .signin, .activate{
             .fin-wrap {
                 width: 100%;

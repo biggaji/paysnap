@@ -14,14 +14,13 @@
             <p class="twister-text">The code expires in : <strong id="countDownUI"></strong> .</p>
         </div>
         <div class="form-wrapper">
-            <div id="server_error_wrapper">
                 {{#if server_error_msg}}
-                <small id="server_error_msg">{{server_error_msg}}</small> <span
-                    id="cancel_icon">+</span>
-                {{/if}}
+            <div id="server_error_wrapper">
+                <small id="server_error_msg">{{server_error_msg}}</small>
             </div>
+                {{/if}}
             <div id="client_error_wrapper">
-                <small id="client_error_msg">Some client_error_msg</small> <span id="cancel_icon">+</span>
+                <small id="client_error_msg">Some client_error_msg</small>
             </div>
             <form action="/activate" method="POST" class="activate">
                 <div class="fin-wrap">

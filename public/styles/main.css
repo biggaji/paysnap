@@ -65,7 +65,7 @@ body {
   color: #fff;
   line-height: 1.4;
   background-color: #7670f7;
-  padding: 0.7rem 1.2rem;
+  padding: 0.7rem 1.25rem;
   font-size: 0.95rem;
   text-decoration: none;
   letter-spacing: 0.02rem;
@@ -108,15 +108,35 @@ body {
   letter-spacing: 0.025;
 }
 
-.form-container .form-wrapper #server_error_msg, .form-container .form-wrapper #client_error_msg {
-  border: 1px solid red;
+.form-container .form-wrapper #server_error_wrapper, .form-container .form-wrapper #client_error_wrapper {
+  border: 1px solid rgba(227, 0, 0, 0.4);
   width: 100%;
   height: auto;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: #fff2f4;
 }
 
-.form-container .form-wrapper #cancel_icon {
-  -webkit-transform: rotate(45deg);
-          transform: rotate(45deg);
+.form-container .form-wrapper #server_error_wrapper {
+  margin: 10px 0;
+  position: relative;
+}
+
+.form-container .form-wrapper #server_error_wrapper #server_error_msg {
+  vertical-align: middle;
+  font-size: 1rem;
+  color: #425466;
+}
+
+.form-container .form-wrapper #client_error_wrapper {
+  display: none;
+  margin: 10px 0;
+}
+
+.form-container .form-wrapper #client_error_wrapper #client_error_msg {
+  vertical-align: middle;
+  color: #425466;
+  font-size: 1rem;
 }
 
 .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
@@ -180,7 +200,7 @@ body {
 .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
   cursor: pointer;
   width: 100%;
-  padding: 0.8rem 1rem;
+  padding: 0.8rem 1.25rem;
   border-radius: 70px;
   font-weight: 700;
   font-size: 0.95rem;
@@ -246,7 +266,7 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.1rem;
+    font-size: 1.25rem;
     padding: 0.7rem 2.5rem;
   }
 }
@@ -270,7 +290,7 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 0.95rem;
+    font-size: 1.25rem;
     padding: 0.6rem 2.4rem;
   }
 }
@@ -293,7 +313,7 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1rem;
+    font-size: 1.2rem;
     padding: 0.8rem 2rem;
   }
   .form-container {
@@ -310,7 +330,19 @@ body {
     font-size: 1.2rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1rem;
+    font-size: 1.2rem;
+  }
+  .form-container .form-wrapper #server_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #server_error_wrapper #server_error_msg {
+    font-size: 1.2rem;
+  }
+  .form-container .form-wrapper #client_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #client_error_wrapper #client_error_msg {
+    font-size: 1.2rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -372,7 +404,7 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1rem;
+    font-size: 1.25rem;
     padding: 0.8rem 2rem;
     font-weight: 700;
   }
@@ -392,7 +424,19 @@ body {
     font-size: 1.25rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1rem;
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper #server_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #server_error_wrapper #server_error_msg {
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper #client_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #client_error_wrapper #client_error_msg {
+    font-size: 1.25rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -417,7 +461,7 @@ body {
   .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
     font-weight: 700;
-    font-size: 1rem;
+    font-size: 1.25rem;
     padding: 0.9rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
@@ -449,7 +493,7 @@ body {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1rem;
+    font-size: 1.29rem;
     padding: 0.8rem 2rem;
   }
   .form-container {
@@ -468,7 +512,19 @@ body {
     font-size: 1.29rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1rem;
+    font-size: 1.29rem;
+  }
+  .form-container .form-wrapper #server_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #server_error_wrapper #server_error_msg {
+    font-size: 1.29rem;
+  }
+  .form-container .form-wrapper #client_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #client_error_wrapper #client_error_msg {
+    font-size: 1.29rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
@@ -490,7 +546,7 @@ body {
   }
   .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     padding: 0.9rem 1.5rem;
-    font-size: 1rem;
+    font-size: 1.29rem;
   }
   .form-container .twister-box .twister-text {
     font-size: 1.29rem;
@@ -547,6 +603,18 @@ body {
   }
   .form-container .resend_code_box .resend_code_trigger {
     font-size: 1rem;
+  }
+  .form-container .form-wrapper #server_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #server_error_wrapper #server_error_msg {
+    font-size: 1.1rem;
+  }
+  .form-container .form-wrapper #client_error_wrapper {
+    margin: 14px 0;
+  }
+  .form-container .form-wrapper #client_error_wrapper #client_error_msg {
+    font-size: 1.1rem;
   }
   .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
