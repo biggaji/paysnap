@@ -42,7 +42,7 @@ body {
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-copy {
-  color: #1C1E21;
+  color: #1c1e21;
   line-height: 1.2;
   font-size: 1.9rem;
   letter-spacing: 0.02rem;
@@ -108,13 +108,39 @@ body {
   letter-spacing: 0.025;
 }
 
-.form-container .form-wrapper #server_error_wrapper, .form-container .form-wrapper #client_error_wrapper {
+.form-container .form-wrapper #server_error_wrapper,
+.form-container .form-wrapper #client_error_wrapper,
+.form-container .form-wrapper #client_success_wrapper {
   border: 1px solid rgba(227, 0, 0, 0.4);
   width: 100%;
   height: auto;
   padding: 10px;
   border-radius: 12px;
   background-color: #fff2f4;
+}
+
+.form-container .form-wrapper #client_success_wrapper {
+  display: none;
+  border: 1px solid rgba(128, 241, 189, 0.4);
+  margin: 10px 0;
+  position: relative;
+  background-color: #a9ecad;
+}
+
+.form-container .form-wrapper #client_success_wrapper #client_success_msg {
+  vertical-align: middle;
+  font-size: 1rem;
+  color: #425466;
+}
+
+.form-container .form-wrapper #client_success_wrapper #closeBtn {
+  position: absolute;
+  right: 10px;
+  top: 6px;
+  -webkit-transform: rotate(45deg);
+          transform: rotate(45deg);
+  color: #425466;
+  font-size: 1.5rem;
 }
 
 .form-container .form-wrapper #server_error_wrapper {
@@ -139,12 +165,16 @@ body {
   font-size: 1rem;
 }
 
-.form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+.form-container .form-wrapper .signup .fin-wrap,
+.form-container .form-wrapper .signin .fin-wrap,
+.form-container .form-wrapper .activate .fin-wrap {
   width: 100%;
   margin: 0.675rem 0;
 }
 
-.form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+.form-container .form-wrapper .signup .fin-wrap label,
+.form-container .form-wrapper .signin .fin-wrap label,
+.form-container .form-wrapper .activate .fin-wrap label {
   font-size: 1rem;
   color: #898989;
   letter-spacing: 0.025;
@@ -152,13 +182,23 @@ body {
   margin: 0.2rem 0;
 }
 
-.form-container .form-wrapper .signup .fin-wrap #emailErrMsg, .form-container .form-wrapper .signup .fin-wrap #usernameErrMsg, .form-container .form-wrapper .signup .fin-wrap #pwdErrMsg, .form-container .form-wrapper .signin .fin-wrap #emailErrMsg, .form-container .form-wrapper .signin .fin-wrap #usernameErrMsg, .form-container .form-wrapper .signin .fin-wrap #pwdErrMsg, .form-container .form-wrapper .activate .fin-wrap #emailErrMsg, .form-container .form-wrapper .activate .fin-wrap #usernameErrMsg, .form-container .form-wrapper .activate .fin-wrap #pwdErrMsg {
+.form-container .form-wrapper .signup .fin-wrap #emailErrMsg,
+.form-container .form-wrapper .signup .fin-wrap #usernameErrMsg,
+.form-container .form-wrapper .signup .fin-wrap #pwdErrMsg,
+.form-container .form-wrapper .signin .fin-wrap #emailErrMsg,
+.form-container .form-wrapper .signin .fin-wrap #usernameErrMsg,
+.form-container .form-wrapper .signin .fin-wrap #pwdErrMsg,
+.form-container .form-wrapper .activate .fin-wrap #emailErrMsg,
+.form-container .form-wrapper .activate .fin-wrap #usernameErrMsg,
+.form-container .form-wrapper .activate .fin-wrap #pwdErrMsg {
   display: none;
   color: red;
   font-size: 1rem;
 }
 
-.form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap,
+.form-container .form-wrapper .signin .fin-wrap .pwd-wrap,
+.form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -167,7 +207,9 @@ body {
           justify-content: space-between;
 }
 
-.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
+.form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
+.form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
   font-size: 1rem;
   text-decoration: none;
   letter-spacing: 0.025;
@@ -176,11 +218,15 @@ body {
   margin: 0.25rem 0;
 }
 
-.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
+.form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover,
+.form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover,
+.form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
   color: #7670f7;
 }
 
-.form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+.form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
+.form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
+.form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
   width: 100%;
   margin: 0.4rem 0;
   padding: 0.6rem 0.7rem;
@@ -192,12 +238,16 @@ body {
   border: 1px solid #425466;
 }
 
-.form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+.form-container .form-wrapper .signup .fbtn-wrap,
+.form-container .form-wrapper .signin .fbtn-wrap,
+.form-container .form-wrapper .activate .fbtn-wrap {
   width: 100%;
   margin: 1rem 0;
 }
 
-.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn,
+.form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
+.form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
   cursor: pointer;
   width: 100%;
   padding: 0.8rem 1.25rem;
@@ -210,22 +260,27 @@ body {
   color: #fff;
 }
 
-.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn .arrow-right, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn .arrow-right {
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn .arrow-right,
+.form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn .arrow-right,
+.form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn .arrow-right {
   stroke: currentColor;
   fill: #fff;
   margin-bottom: 0.125rem;
   vertical-align: middle;
 }
 
-.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn:disabled, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn:disabled, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn:disabled {
+.form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn:disabled,
+.form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn:disabled,
+.form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn:disabled {
   cursor: not-allowed;
-  opacity: .5;
+  opacity: 0.5;
 }
 
 .form-container .resend_code_box .resend_code_trigger {
   text-decoration: underline;
   color: #898989;
   font-size: 0.95rem;
+  cursor: pointer;
 }
 
 .form-container .twister-box .twister-text {
@@ -262,6 +317,16 @@ body {
     font-size: 1.25rem;
     line-height: 1.4;
   }
+  .hero-wrapper .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .hero-wrapper .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.25rem;
+  }
+  .hero-wrapper .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 3rem;
+    top: 0px;
+  }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
   }
@@ -292,6 +357,16 @@ body {
   .hero-wrapper .hero-cta .hero-cta-link {
     font-size: 1.25rem;
     padding: 0.6rem 2.4rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 2rem;
+    top: 2px;
   }
 }
 
@@ -338,20 +413,36 @@ body {
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
     font-size: 1.2rem;
   }
+  .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.2rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 2rem;
+    top: 1.5px;
+  }
   .form-container .form-wrapper #client_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
     font-size: 1.2rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+  .form-container .form-wrapper .signup .fin-wrap,
+  .form-container .form-wrapper .signin .fin-wrap,
+  .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
   }
-  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+  .form-container .form-wrapper .signup .fin-wrap label,
+  .form-container .form-wrapper .signin .fin-wrap label,
+  .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.2rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -359,19 +450,27 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
     font-size: 1.2rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
     font-size: 1.2rem;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+  .form-container .form-wrapper .signup .fbtn-wrap,
+  .form-container .form-wrapper .signin .fbtn-wrap,
+  .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
     margin: 1rem 0;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
     padding: 0.9rem 1.5rem;
   }
@@ -432,33 +531,55 @@ body {
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
     font-size: 1.25rem;
   }
+  .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.25rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 2rem;
+    top: 3px;
+  }
   .form-container .form-wrapper #client_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
     font-size: 1.25rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+  .form-container .form-wrapper .signup .fin-wrap,
+  .form-container .form-wrapper .signin .fin-wrap,
+  .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
   }
-  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+  .form-container .form-wrapper .signup .fin-wrap label,
+  .form-container .form-wrapper .signin .fin-wrap label,
+  .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.25rem;
     letter-spacing: 0.025;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
     font-size: 1.25rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
     font-size: 1.25rem;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+  .form-container .form-wrapper .signup .fbtn-wrap,
+  .form-container .form-wrapper .signin .fbtn-wrap,
+  .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
     margin: 1rem 0;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
     font-weight: 700;
     font-size: 1.25rem;
@@ -520,31 +641,53 @@ body {
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
     font-size: 1.29rem;
   }
+  .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.29rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 2rem;
+    top: 1px;
+  }
   .form-container .form-wrapper #client_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
     font-size: 1.29rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+  .form-container .form-wrapper .signup .fin-wrap,
+  .form-container .form-wrapper .signin .fin-wrap,
+  .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
   }
-  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+  .form-container .form-wrapper .signup .fin-wrap label,
+  .form-container .form-wrapper .signin .fin-wrap label,
+  .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.29rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
     font-size: 1.29rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     font-size: 1.29rem;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+  .form-container .form-wrapper .signup .fbtn-wrap,
+  .form-container .form-wrapper .signin .fbtn-wrap,
+  .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
     margin: 1rem 0;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     padding: 0.9rem 1.5rem;
     font-size: 1.29rem;
   }
@@ -610,23 +753,39 @@ body {
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
     font-size: 1.1rem;
   }
+  .form-container .form-wrapper #client_success_wrapper {
+    margin: 10px 0;
+  }
+  .form-container .form-wrapper #client_success_wrapper #client_success_msg {
+    font-size: 1.1rem;
+  }
+  .form-container .form-wrapper #client_success_wrapper #closeBtn {
+    font-size: 2rem;
+    top: 1px;
+  }
   .form-container .form-wrapper #client_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
     font-size: 1.1rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap, .form-container .form-wrapper .signin .fin-wrap, .form-container .form-wrapper .activate .fin-wrap {
+  .form-container .form-wrapper .signup .fin-wrap,
+  .form-container .form-wrapper .signin .fin-wrap,
+  .form-container .form-wrapper .activate .fin-wrap {
     width: 100%;
     margin: 0.675rem 0;
   }
-  .form-container .form-wrapper .signup .fin-wrap label, .form-container .form-wrapper .signin .fin-wrap label, .form-container .form-wrapper .activate .fin-wrap label {
+  .form-container .form-wrapper .signup .fin-wrap label,
+  .form-container .form-wrapper .signin .fin-wrap label,
+  .form-container .form-wrapper .activate .fin-wrap label {
     font-size: 1.1rem;
     color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -634,19 +793,27 @@ body {
         -ms-flex-pack: justify;
             justify-content: space-between;
   }
-  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp, .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
+  .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
+  .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
     font-size: 1.1rem;
   }
-  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input, .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input, .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
+  .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
+  .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
     font-size: 1.1rem;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap, .form-container .form-wrapper .signin .fbtn-wrap, .form-container .form-wrapper .activate .fbtn-wrap {
+  .form-container .form-wrapper .signup .fbtn-wrap,
+  .form-container .form-wrapper .signin .fbtn-wrap,
+  .form-container .form-wrapper .activate .fbtn-wrap {
     width: 100%;
     margin: 1rem 0;
   }
-  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn, .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
+  .form-container .form-wrapper .signup .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
+  .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     font-weight: 700;
     width: auto;
     font-size: 1rem;

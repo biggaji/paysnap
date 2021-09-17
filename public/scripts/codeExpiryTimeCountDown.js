@@ -1,5 +1,8 @@
 "use strict";
-function ActiavtionTokenExpiryCountDownTimer() {
+let PAYSNAP_API_URI = "https://api-paysnap.herokuapp.com/graphql";
+let encodedEmail = document.cookie.split("=");
+let decodedEmail = decodeEncrytedValue(encodedEmail[1]);
+function ActivationTokenExpiryCountDownTimer() {
     let countDownTimer = formatTokenExpiryTime();
     // set the expiry time into the local storage
     let expiryTime = window.localStorage.setItem("CODE_EXPIRES_IN", countDownTimer.toString());
@@ -25,10 +28,15 @@ function ActiavtionTokenExpiryCountDownTimer() {
         if (timeRemaining < 0) {
             countDownUI.innerHTML = `00:00`;
             clearInterval(countDownInit);
+            updateActivationCodeColumnToNull(decodedEmail);
         }
     }, 1000);
 }
-ActiavtionTokenExpiryCountDownTimer();
+ActivationTokenExpiryCountDownTimer();
+let hasResentToken = window.localStorage.getItem("codeSentBool");
+if (hasResentToken) {
+    ActivationTokenExpiryCountDownTimer();
+}
 function formatTokenExpiryTime() {
     let cd, et, ds, ms, ts, ad, t, m, h;
     cd = new Date().toString();
@@ -58,3 +66,53 @@ function formatTokenExpiryTime() {
     return new Date(et).getTime();
 }
 ;
+// make request to update token to null if expiry time has passed
+function updateActivationCodeColumnToNull(email) {
+    // make a fetch request to the API endpoint
+    try {
+        fetch(PAYSNAP_API_URI, {
+            method: "POST",
+            headers: {
+                "Content-type": "application/json",
+            },
+            body: JSON.stringify({
+                query: `
+            mutation updateActivationCodeColumn {
+              updateActivationCodeColumnToNull(email: "${email}") {
+                code
+                success
+                message
+                activation_code
+                updated
+              }
+            }
+        `,
+            }),
+        })
+            .then((resp) => {
+            return resp.json();
+        })
+            .then((data) => {
+            return (data.data !== null && data.data.updateActivationCodeColumnToNull.updated) ? true : false;
+        })
+            .catch((e) => {
+            console.log(`GRAPHQL ERROR`, e.message);
+            return false;
+        });
+    }
+    catch (e) {
+        console.log('Error updating activationCodeColumn', e.message);
+        return false;
+    }
+}
+;
+/**
+ *
+ * @param encoded
+ * @returns string - A decoded value from a ASCII hash
+ */
+function decodeEncrytedValue(encoded) {
+    let rephraseValue = window.decodeURIComponent(encoded);
+    let decodedValue = window.atob(rephraseValue);
+    return decodedValue;
+}

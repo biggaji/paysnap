@@ -51,6 +51,7 @@
     "@types/express": "^4.17.13",
     "@types/express-handlebars": "^5.3.1",
     "@types/express-session": "^1.17.4",
+    "@types/jsonwebtoken": "^8.5.5",
     "@types/mocha": "^9.0.0",
     "@types/node": "^16.4.1",
     "chai": "^4.3.0",
