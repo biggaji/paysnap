@@ -13,16 +13,29 @@ function isValidEmail(email) {
     let email_regex = /[a-zA-Z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
     return email_regex.test(email);
 }
-// form fields that needs validating
+// form fields that needs validating - signup
 let email = document.getElementById("mail");
 let username = document.getElementById("username");
 let pwd = document.getElementById("pwd");
 let fullName = document.getElementById("full_name");
+let country = document.getElementById("full_name");
+// form fields signin
+let loginUsername = document.getElementById("lusername");
+let loginPwd = document.getElementById("lpwd");
+// form field - activate account
+let activationCode = document.getElementById("tks");
 // error msg elements
 let emailErrMsg = document.getElementById("emailErrMsg");
 let usernameErrMsg = document.getElementById("usernameErrMsg");
 let pwdErrMsg = document.getElementById("pwdErrMsg");
-let fieldRequiredMsg = document.getElementById("fields_required_err_msg");
+let client_error_msg = document.getElementById("client_error_msg");
+let client_error_msg_wrapper = document.getElementById("client_error_wrapper");
+let client_success_msg_wrapper = document.getElementById("client_success_wrapper");
+let client_success_close_btn = document.getElementById("closeBtn");
+// close the success box when clicked
+client_success_close_btn.addEventListener("click", () => {
+    client_success_msg_wrapper.style.display = "none";
+});
 // disabled submit button
 let signupBtn = document.getElementById("fbtn_submit_signup");
 let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
@@ -93,14 +106,43 @@ function validateFormInputs() {
     });
 }
 validateFormInputs();
-// signup form
-let signupForm = document.getElementById("signup");
-// signupForm.addEventListener('submit', (e) => {
-//     e.preventDefault();
-//     if(email.value.trim() === "" && username.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
-//         fieldRequiredMsg!.innerHTML = "Fields with * are required";
-//     }
-// })
+// forms
+let signupFORM = document.getElementById("signup");
+let signinFORM = document.getElementById("signin");
+let activateAccountFORM = document.getElementById("activate");
+signupFORM.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (email.value.trim() === "" && fullName.value.trim() === "" && username.value.trim() === "" && country.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
+        client_error_msg_wrapper.style.display = "block";
+        client_error_msg.innerHTML = "All fields are required";
+    }
+    else {
+        signupFORM.submit();
+    }
+    ;
+});
+signinFORM.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (loginUsername.value.trim() === "" && loginPwd.value.trim() === "") {
+        client_error_msg_wrapper.style.display = "block";
+        client_error_msg.innerHTML = "Username and password are required to signin";
+    }
+    else {
+        signinFORM.submit();
+    }
+    ;
+});
+activateAccountFORM.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (activationCode.value.trim() === "" && activationCode.value.trim().length < 6) {
+        client_error_msg_wrapper.style.display = "block";
+        client_error_msg.innerHTML = "Activation code is required";
+    }
+    else {
+        activateAccountFORM.submit();
+    }
+    ;
+});
 // backend request check if email or username exists
 function checkEmail(email) {
     fetch(PAYSNAP_API_ENDPOINT, {
@@ -122,21 +164,13 @@ function checkEmail(email) {
         return resp.json();
     })
         .then((user) => {
-        // // check user data here
-        if (user.data !== null && user.data.checkIfEmailExist.email === email) {
-            // console.log(user.data.checkIfEmailExist.email);
-            //     emailErrMsg.style.display = "block";
-            //     emailErrMsg.innerHTML = "This is email is not available for use";
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (user.data !== null) ? true : false;
     })
         .catch((e) => {
         console.log(`Email Check Error`, e.message);
     });
 }
+;
 function checkUsername(username) {
     fetch(PAYSNAP_API_ENDPOINT, {
         method: "POST",
@@ -157,20 +191,10 @@ function checkUsername(username) {
         return resp.json();
     })
         .then((user) => {
-        // check user data here
-        console.log(user.data);
-        if (user.data !== null) {
-            //     usernameErrMsg.style.display = "block";
-            //     usernameErrMsg.innerHTML = "This username is taken";
-            // } else {
-            //     usernameErrMsg.style.display = "none";
-            return true;
-        }
-        else {
-            return false;
-        }
+        return (user.data !== null) ? true : false;
     })
         .catch((e) => {
         console.log(`Username Check Error`, e.message);
     });
 }
+;

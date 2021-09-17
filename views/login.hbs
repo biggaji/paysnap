@@ -18,19 +18,19 @@
             <div id="client_error_wrapper">
                 <small id="client_error_msg">Some error</small>
             </div>
-            <form action="/signin" method="POST" class="signin">
+            <form action="/signin" method="POST" class="signin" id="signin">
                 <div class="fin-wrap">
-                    <label for="username">Username</label><br>
+                    <label for="lusername">Username</label><br>
                     <input type="text" class="fin-wrap-input" name="username"
-                        id="username">
+                        id="lusername">
                 </div>
                 <div class="fin-wrap">
                     <div class="pwd-wrap">
-                    <label for="pwd">Password</label><br>
+                    <label for="lpwd">Password</label><br>
                     <a href ="#" class="fgp">Forgot password?</a>
                     </div>
                     <input type="password" class="fin-wrap-input" name="password"
-                        id="pwd">
+                        id="lpwd">
                 </div>
                 <div class="fbtn-wrap">
                     <button class="fbtn-wrap-btn" id="fbtn_submit" type="submit">Sign in <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
@@ -49,4 +49,4 @@
     </div>
 </div>
 
-<script src="scripts/formValidator.js"></script>
+<script src="scripts/formValidator.js" async></script>
