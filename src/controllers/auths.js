@@ -15,6 +15,7 @@ const graphql_request_1 = require("graphql-request");
 const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const checkUserExists_1 = require("../../@utils/checkUserExists");
 const bcryptjs_1 = require("bcryptjs");
+const encrypter_1 = require("../../@utils/encrypter");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
 });
@@ -24,9 +25,10 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let email = req.headers.authorization || req.cookies.email;
-    let hashedEmail;
-    if (email && email !== undefined) {
+    let encodedEmail = req.headers.authorization || req.cookies.ee;
+    let hashedEmail, email;
+    email = yield encrypter_1.decrypt(encodedEmail);
+    if (encodedEmail && encodedEmail !== undefined) {
         hashedEmail = yield asteriskEmail_1.asteriskMail(email);
     }
     res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
@@ -71,13 +73,15 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
             }
         };
         graphqlRequestConfig_1.graphqlClient.request(createAccountMutation, variables)
-            .then(result => {
+            .then((result) => __awaiter(void 0, void 0, void 0, function* () {
             console.log(`Payload data: `, result.createAccount.message);
             const { user, token } = result.createAccount;
-            res.cookie("email", user.email, { httpOnly: true });
+            // encrypt email into base64 hash and name it ee in cookie
+            let ee = yield encrypter_1.encrypt(user.email);
+            res.cookie("ee", ee, { secure: true });
             res.cookie("x_user_token", token, { httpOnly: true });
             res.redirect('/activate');
-        })
+        }))
             .catch(e => {
             // console.log(`payload data error: `, e);
             console.log(`payload data error: `, e.response.errors[0].message);
@@ -129,9 +133,14 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
                 req.flash("error", "Incorrect username or password");
                 res.redirect('/signin');
             }
-            console.log(`login Payload `, resp.login.user.id);
-            res.cookie("x_user_token", resp.login.token, { httpOnly: true });
-            res.redirect('/dashboard');
+            else {
+                console.log(`login Payload `, resp.login.user.id);
+                res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+                res.cookie('isLoggedIn', true, { httpOnly: true });
+                res.clearCookie("isLoggedOut");
+                res.redirect('/dashboard');
+            }
+            ;
         }))
             .catch(e => {
             console.log(`Login error ,`, e);
@@ -168,8 +177,9 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
         .then(resp => {
         let data = resp.activateAccount;
         console.log(`Account activated, `, data.user.isactivated);
-        // clear users email from cookie
-        res.clearCookie("email");
+        // clear user email from cookie
+        res.clearCookie("ee");
+        res.cookie("isLoggedIn", true, { httpOnly: true });
         // redirect to dashboard
         res.redirect('/dashboard');
     })
@@ -183,3 +193,32 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
     });
 });
 exports.ActivateAccountPostController = ActivateAccountPostController;
+// export const resendActivationCode = async (req: Request, res: Response) => {
+//   let email = req.headers.authorization || req.cookies.ee;
+//   // decrypt email hash - ee
+//   email = await decrypt(email);
+//   let resendActivationCodePayload = gql`
+//     query resendActivationCode($email: String!) {
+//       resendActivationCode(email: $email) {
+//         code
+//         success
+//         message
+//         activation_code
+//       }
+//     }
+//   `;
+//   let variable = {
+//     email
+//   };
+//   graphqlClient.request(resendActivationCodePayload, variable)
+//   .then(resp => {.
+//   })
+//   .catch(e => {
+//     console.log(`RESEND ACTIVATION CODE ERROR `,  e);
+//     if (e && e.response.errors) {
+//       req.flash("error", e.response.errors[0].message);
+//     };
+//     req.flash("error", "Token not sent, try again");
+//     res.redirect('/activate');
+//   });
+// };

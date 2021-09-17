@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { graphqlClient } from '../../@utils/graphqlRequestConfig';
-import { gql } from "graphql-request";
-import { Console } from "console";
+import request, { gql } from "graphql-request";
 import { asteriskMail } from "../../@utils/asteriskEmail";
 import { checkUserByEmail, checkUserByUsername } from "../../@utils/checkUserExists";
 import { compare } from "bcryptjs";
+import { decrypt, encrypt } from "../../@utils/encrypter";
 
 export const signUpController = async (req:Request, res:Response) => {
     res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
@@ -15,10 +15,12 @@ export const signInController = async (req: Request, res: Response) => {
 };
 
 export const activateAccountController = async (req: Request, res: Response) => {
-  let email = req.headers.authorization || req.cookies.email;
-  let hashedEmail;
+  let encodedEmail = req.headers.authorization || req.cookies.ee;
+  let hashedEmail, email;
 
-  if(email && email !== undefined) {
+  email = await decrypt(encodedEmail);
+
+  if(encodedEmail && encodedEmail !== undefined) {
     hashedEmail = await asteriskMail(email);
   }
 
@@ -78,10 +80,14 @@ export const CreateAccountPostController = async (req: Request,res: Response) =>
     }
   
     graphqlClient.request(createAccountMutation, variables)
-    .then(result => {
+    .then(async result => {
       console.log(`Payload data: `, result.createAccount.message);
       const { user, token } = result.createAccount;
-      res.cookie("email", user.email, { httpOnly : true });
+
+      // encrypt email into base64 hash and name it ee in cookie
+      let ee = await encrypt(user.email);
+
+      res.cookie("ee", ee , { secure: true });
       res.cookie("x_user_token", token, { httpOnly: true });
       res.redirect('/activate');
     })
@@ -144,11 +150,13 @@ export const LoginPostController = async (req: Request, res: Response) => {
         console.log('Incorrect password');
         req.flash("error", "Incorrect username or password");
         res.redirect('/signin');
-      } 
-
-      console.log(`login Payload `, resp.login.user.id);
-      res.cookie("x_user_token", resp.login.token, { httpOnly: true });
-      res.redirect('/dashboard');
+      } else {
+        console.log(`login Payload `, resp.login.user.id);
+        res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+        res.cookie('isLoggedIn', true, { httpOnly : true });
+        res.clearCookie("isLoggedOut");
+        res.redirect('/dashboard');
+      };
     })
     .catch(e => {
       console.log(`Login error ,`, e);
@@ -192,8 +200,9 @@ export const ActivateAccountPostController = async (req: Request, res: Response)
   .then(resp => {
     let data = resp.activateAccount;
     console.log(`Account activated, ` , data.user.isactivated);
-    // clear users email from cookie
-    res.clearCookie("email");
+    // clear user email from cookie
+    res.clearCookie("ee");
+    res.cookie("isLoggedIn", true, { httpOnly : true });
     // redirect to dashboard
     res.redirect('/dashboard');
   })
@@ -207,3 +216,41 @@ export const ActivateAccountPostController = async (req: Request, res: Response)
     res.redirect('/activate');
   });
 };
+
+// export const resendActivationCode = async (req: Request, res: Response) => {
+//   let email = req.headers.authorization || req.cookies.ee;
+
+//   // decrypt email hash - ee
+
+//   email = await decrypt(email);
+
+//   let resendActivationCodePayload = gql`
+//     query resendActivationCode($email: String!) {
+//       resendActivationCode(email: $email) {
+//         code
+//         success
+//         message
+//         activation_code
+//       }
+//     }
+//   `;
+
+//   let variable = {
+//     email
+//   };
+
+//   graphqlClient.request(resendActivationCodePayload, variable)
+//   .then(resp => {.
+
+//   })
+//   .catch(e => {
+//     console.log(`RESEND ACTIVATION CODE ERROR `,  e);
+//     if (e && e.response.errors) {
+//       req.flash("error", e.response.errors[0].message);
+//     };
+
+//     req.flash("error", "Token not sent, try again");
+//     res.redirect('/activate');
+//   });
+
+// };
