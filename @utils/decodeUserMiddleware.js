@@ -9,7 +9,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.decodeUser = void 0;
 const jsonwebtoken_1 = require("jsonwebtoken");
 /**
  *
@@ -20,13 +19,17 @@ const jsonwebtoken_1 = require("jsonwebtoken");
  */
 function decodeUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
+        let userToken = req.headers.authorization || req.cookies.x_user_token;
         try {
-            let userToken = req.headers.authorization || req.cookies.x_user_token;
-            req.user = yield jsonwebtoken_1.verify(userToken, process.env.JWT_SECRET);
-            next();
+            if (userToken) {
+                let user = yield jsonwebtoken_1.verify(userToken, process.env.JWT_SECRET);
+                req.user = user;
+                next();
+            }
         }
         catch (e) {
             // handle expiry error here
+            console.log(e);
             req.flash("error", "You session has expired, login again.");
             res.clearCookie("x_user_token");
             res.clearCookie("isLoggedIn");
@@ -35,4 +38,4 @@ function decodeUser(req, res, next) {
         }
     });
 }
-exports.decodeUser = decodeUser;
+exports.default = decodeUser;
