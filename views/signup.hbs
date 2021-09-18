@@ -1,7 +1,7 @@
 <div class="paysnap-container">
     <div class="logo-container">
     <a href="/" class="site-logo">
-        <img src="/assets/logo.svg" alt="paysnap logo" class="logo">
+        <img src="/assets/logo.svg" alt="paysnap logo" class="logo" loading = "lazy">
     </a>
     </div>
     <div class="form-container">
@@ -18,7 +18,7 @@
             </div>
                 {{/if}}
             <div id="client_error_wrapper">
-                <small id="client_error_msg">Some client_error_msg that occuered while signing in</small>
+                <small id="client_error_msg"></small>
             </div>
             <form action="/signup" method="POST" class="signup" id="signup">
                 <div class="fin-wrap">
