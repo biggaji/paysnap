@@ -1,12 +1,13 @@
 import { Router } from 'express';
 import { activateAccountController, ActivateAccountPostController, CreateAccountPostController, LoginPostController, RedenderDashboardController, signInController, signUpController } from '../controllers/auths';
+import decodeUser from '../../@utils/decodeUserMiddleware';
 
 const router = Router();
 
 router.get('/signup', signUpController);
 router.get("/signin", signInController);
-router.get("/activate", activateAccountController);
-router.get("/dashboard", RedenderDashboardController);
+router.get("/activate", decodeUser, activateAccountController);
+router.get("/dashboard", decodeUser, RedenderDashboardController);
 
 
 router.post('/signup', CreateAccountPostController);

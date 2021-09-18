@@ -10,13 +10,17 @@ import { NextFunction, Request, Response  } from "express";
  * @returns object  - "A user object"
  */
 
-export async function decodeUser(req:Request, res: Response, next:NextFunction) {
+export default async function decodeUser(req:Request, res: Response, next:NextFunction) {
+    let userToken = req.headers.authorization || req.cookies.x_user_token;
     try {
-        let userToken = req.headers.authorization || req.cookies.x_user_token;
-        req.user = await verify(userToken, process.env.JWT_SECRET!);
-        next();
+        if(userToken) {
+            let user = await verify(userToken, process.env.JWT_SECRET!);
+            req.user = user;
+            next();
+        }
     } catch (e) {
         // handle expiry error here
+        console.log(e)
         req.flash("error", "You session has expired, login again.");
         res.clearCookie("x_user_token");
         res.clearCookie("isLoggedIn");

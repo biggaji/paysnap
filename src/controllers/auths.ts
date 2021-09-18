@@ -15,16 +15,22 @@ export const signInController = async (req: Request, res: Response) => {
 };
 
 export const activateAccountController = async (req: Request, res: Response) => {
-  let encodedEmail = req.headers.authorization || req.cookies.ee;
-  let hashedEmail, email;
+let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
 
-  email = await decrypt(encodedEmail);
-
-  if(encodedEmail && encodedEmail !== undefined) {
-    hashedEmail = await asteriskMail(email);
-  }
-
-  res.render("activate", { pageTitle: "Activate your account", hashedEmail , server_error_msg: req.flash("error")});
+if(isLoggedIn) {
+  res.redirect('/dashboard');
+} else {
+    let encodedEmail = req.headers.authorization || req.cookies.ee;
+    let hashedEmail, email;
+  
+    email = await decrypt(encodedEmail);
+  
+    if(encodedEmail && encodedEmail !== undefined) {
+      hashedEmail = await asteriskMail(email);
+    }
+  
+    res.render("activate", { pageTitle: "Activate your account", hashedEmail , server_error_msg: req.flash("error")});
+}
 };
 
 export const resetPasswordController = async (
@@ -39,10 +45,51 @@ export const RedenderDashboardController = async (
   res: Response
 ) => {
 
-  // get user data database
+  try {
+    // get token from cookie
+    let tokenPayload = req.headers.authorization || req.cookies.x_user_token;
+    // get user data database
+  
+    let dashboardPayload = gql`
+      query dashboardData {
+        me {
+          username
+          fullname
+          avatar
+          accountbalance
+          pin
+          isactivated
+        }
+      }
+    `;
+  
+    let request_header = {
+      "x_user_token" : tokenPayload
+    };
 
-   
-  res.render("dashboard", { pageTitle: "" , dashboard: "", username: "biggaji"});
+    graphqlClient.request(dashboardPayload, {}, request_header)
+    .then(user => {
+      console.log('Dashboard rendered for @ ', user.me.username);
+      let { username } = user.me;
+
+      res.render("dashboard", { pageTitle: `${username}` , dashboardData: user.me });
+    })  
+    .catch(e => {
+      console.log(`FETCH ERROR: `, e);
+
+      if(e.response !== undefined) {
+        req.flash("error", `${e.response.errors[0].message}`);
+        res.redirect("/signin");
+      } else {
+        req.flash("error", `Couldn't fetch dashboard data. Please sign in`);
+        res.redirect("/signin");
+      };
+    })
+  } catch (e) {
+    console.log("DASHBOARD_ERROR", e.message);
+    req.flash("error", `${e.message}`);
+    res.redirect("/signin");
+  };
 };
 
 export const CreateAccountPostController = async (req: Request,res: Response) => {

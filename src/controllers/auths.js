@@ -25,13 +25,19 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let encodedEmail = req.headers.authorization || req.cookies.ee;
-    let hashedEmail, email;
-    email = yield encrypter_1.decrypt(encodedEmail);
-    if (encodedEmail && encodedEmail !== undefined) {
-        hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+    if (isLoggedIn) {
+        res.redirect('/dashboard');
     }
-    res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
+    else {
+        let encodedEmail = req.headers.authorization || req.cookies.ee;
+        let hashedEmail, email;
+        email = yield encrypter_1.decrypt(encodedEmail);
+        if (encodedEmail && encodedEmail !== undefined) {
+            hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+        }
+        res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
+    }
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -39,8 +45,50 @@ const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, 
 });
 exports.resetPasswordController = resetPasswordController;
 const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    // get user data database
-    res.render("dashboard", { pageTitle: "", dashboard: "", username: "biggaji" });
+    try {
+        // get token from cookie
+        let tokenPayload = req.headers.authorization || req.cookies.x_user_token;
+        // get user data database
+        let dashboardPayload = graphql_request_1.gql `
+      query dashboardData {
+        me {
+          username
+          fullname
+          avatar
+          accountbalance
+          pin
+          isactivated
+        }
+      }
+    `;
+        let request_header = {
+            "x_user_token": tokenPayload
+        };
+        graphqlRequestConfig_1.graphqlClient.request(dashboardPayload, {}, request_header)
+            .then(user => {
+            console.log('Dashboard rendered for @ ', user.me.username);
+            let { username } = user.me;
+            res.render("dashboard", { pageTitle: `${username}`, dashboardData: user.me });
+        })
+            .catch(e => {
+            console.log(`FETCH ERROR: `, e);
+            if (e.response !== undefined) {
+                req.flash("error", `${e.response.errors[0].message}`);
+                res.redirect("/signin");
+            }
+            else {
+                req.flash("error", `Couldn't fetch dashboard data. Please sign in`);
+                res.redirect("/signin");
+            }
+            ;
+        });
+    }
+    catch (e) {
+        console.log("DASHBOARD_ERROR", e.message);
+        req.flash("error", `${e.message}`);
+        res.redirect("/signin");
+    }
+    ;
 });
 exports.RedenderDashboardController = RedenderDashboardController;
 const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
