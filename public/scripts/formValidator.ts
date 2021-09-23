@@ -30,6 +30,21 @@ let client_error_msg_wrapper = document.getElementById("client_error_wrapper")!;
 let client_success_msg_wrapper = document.getElementById("client_success_wrapper")!;
 let client_success_close_btn = document.getElementById("closeBtn") as HTMLButtonElement;
 
+// activationCode validation 
+
+
+let activateBtn = document.getElementById("fbtn_submit_activate") as HTMLButtonElement;
+
+
+activationCode.addEventListener('input', () => {
+  if(activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
+    activateBtn.disabled = true;
+  } else {
+    activateBtn.disabled = false;
+  };
+});
+
+
 // close the success box when clicked
 
 client_success_close_btn.addEventListener("click", () => {
@@ -138,9 +153,7 @@ signinFORM.addEventListener('submit', (e) => {
     if(loginUsername.value.trim() === "" && loginPwd.value.trim() === "") {
       client_error_msg_wrapper.style.display = "block";
         client_error_msg.innerHTML = "Username and password are required to signin";
-    } else {
-      signinFORM.submit();
-    };
+    }
 });
 
 activateAccountFORM.addEventListener('submit', (e) => {
@@ -149,9 +162,7 @@ activateAccountFORM.addEventListener('submit', (e) => {
     if(activationCode.value.trim() === "" && activationCode.value.trim().length < 6) {
       client_error_msg_wrapper.style.display = "block";
         client_error_msg.innerHTML = "Activation code is required";
-    } else {
-      activateAccountFORM.submit();
-    };
+    }
 });
 
 

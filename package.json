@@ -1,7 +1,7 @@
 {
-  "name": "paytr",
+  "name": "paysnap",
   "version": "1.0.0",
-  "description": "A payment app",
+  "description": "A demo transaction app",
   "main": "app.js",
   "scripts": {
     "test": "mocha || true",
