@@ -2,7 +2,7 @@
 // email validation check
 
 function isValidEmail(email:string) {
-    let email_regex = /[a-zA-Z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
+    let email_regex = /[a-z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
     return email_regex.test(email);
 }
 
@@ -16,6 +16,7 @@ let country = document.getElementById("full_name") as HTMLInputElement;
 // form fields signin
 let loginUsername = document.getElementById("lusername") as HTMLInputElement;
 let loginPwd = document.getElementById("lpwd") as HTMLInputElement;
+let loginBtn = document.getElementById("fbtn_submit_login") as HTMLButtonElement;
 
 // form field - activate account
 let activationCode = document.getElementById("tks") as HTMLInputElement;
@@ -30,29 +31,10 @@ let client_error_msg_wrapper = document.getElementById("client_error_wrapper")!;
 let client_success_msg_wrapper = document.getElementById("client_success_wrapper")!;
 let client_success_close_btn = document.getElementById("closeBtn") as HTMLButtonElement;
 
-// activationCode validation 
-
-
-let activateBtn = document.getElementById("fbtn_submit_activate") as HTMLButtonElement;
-
-
-activationCode.addEventListener('input', () => {
-  if(activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
-    activateBtn.disabled = true;
-  } else {
-    activateBtn.disabled = false;
-  };
-});
-
-
-// close the success box when clicked
-
-client_success_close_btn.addEventListener("click", () => {
-  client_success_msg_wrapper.style.display = "none";
-});
-
-// disabled submit button
-let signupBtn = document.getElementById("fbtn_submit_signup") as HTMLButtonElement;
+  // disabled submit button
+  let signupBtn = document.getElementById(
+    "fbtn_submit_signup"
+  ) as HTMLButtonElement;
 
 let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
 
@@ -104,27 +86,6 @@ async function validateFormInputs() {
               "Password must be at least 8 characters long, include at least a one number and a special character (?.!%&*$^)";
         }
     });
-
-    // let requiredFields = [email, username, pwd, fullName];
-
-    
-    
-    // requiredFields.forEach(f => {
-    //     f.addEventListener("input", () => {
-    //         if(f.value.trim() === ""  || f.value.length < 1) {
-    //             signupBtn.disabled = true;
-    //             // fieldRequiredMsg!.innerHTML = "These fields are required";
-    //         } else {
-    //             // fieldRequiredMsg!.innerHTML = "";
-    //             signupBtn.disabled = false;
-    //         }
-    //     }) 
-    // })
-
-    
-
-    
-
 }
 
 validateFormInputs();
@@ -146,31 +107,27 @@ signupFORM.addEventListener('submit', (e) => {
     };
 });
 
+// activationCode validation check
 
-signinFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
 
-    if(loginUsername.value.trim() === "" && loginPwd.value.trim() === "") {
-      client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Username and password are required to signin";
-    }
+let activateBtn = document.getElementById("fbtn_submit_activate") as HTMLButtonElement;
+
+
+activationCode.addEventListener('input', () => {
+  if(activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
+    activateBtn.disabled = true;
+  } else {
+    activateBtn.disabled = false;
+  };
 });
 
-activateAccountFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
+// close the success box when clicked
 
-    if(activationCode.value.trim() === "" && activationCode.value.trim().length < 6) {
-      client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Activation code is required";
-    }
+client_success_close_btn.addEventListener("click", () => {
+  client_success_msg_wrapper.style.display = "none";
 });
-
-
 
 // backend request check if email or username exists
-
-
-
 function checkEmail(email:string) {
         fetch(PAYSNAP_API_ENDPOINT, {
           method: "POST",

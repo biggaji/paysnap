@@ -10,8 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const indexController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    res.render("index", {
-        pageTitle: "Send money around the world to anyone, anywhere, anytime"
-    });
+    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+    if (isLoggedIn && isLoggedIn !== undefined) {
+        res.redirect('/dashboard');
+    }
+    else {
+        res.render("index", {
+            pageTitle: "Send money around the world to anyone, anywhere, anytime"
+        });
+    }
+    ;
 });
 exports.default = indexController;

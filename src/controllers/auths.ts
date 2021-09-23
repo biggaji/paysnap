@@ -29,7 +29,7 @@ export const signInController = async (req: Request, res: Response) => {
 export const activateAccountController = async (req: Request, res: Response) => {
 let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
 
-if(isLoggedIn) {
+if(isLoggedIn && isLoggedIn !== undefined) {
   res.redirect('/dashboard');
 } else {
     let encodedEmail = req.headers.authorization || req.cookies.ee;
@@ -172,11 +172,16 @@ export const LoginPostController = async (req: Request, res: Response) => {
 
   const { username, password } = req.body;
 
+  if(username.trim().length < 3 || password.trim().length < 8) {
+    req.flash("error", "Incorrect username or password");
+    res.redirect('/signin');
+  };
+
   const checkUserFirst = await checkUserByUsername(username);
 
   if(!checkUserFirst) {
     console.log('There is no user yet', checkUserFirst);
-    req.flash("error", "You don't have a Paysnap account, please create one.");
+    req.flash("error", "You don't have a Paysnap account");
     res.redirect('/signin');
   } else {
     const loginQuery = gql`
@@ -202,27 +207,21 @@ export const LoginPostController = async (req: Request, res: Response) => {
   
     graphqlClient.request(loginQuery,variables)
     .then(async resp => {
-
-      // compare password
-
-      let isPassword = await compare(password, resp.login.user.password);
-
-      if(!isPassword) {
-        console.log('Incorrect password');
-        req.flash("error", "Incorrect username or password");
-        res.redirect('/signin');
-      } else {
-        console.log(`login Payload `, resp.login.user.id);
-        res.cookie("x_user_token", resp.login.token, { httpOnly: true });
-        res.cookie('isLoggedIn', true, { httpOnly : true });
-        res.clearCookie("isLoggedOut");
-        res.redirect('/dashboard');
-      };
+      console.log(`login Payload `, resp.login.user.id);
+      res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+      res.cookie('isLoggedIn', true, { httpOnly : true });
+      res.clearCookie("isLoggedOut");
+      res.redirect('/dashboard');
     })
     .catch(e => {
       console.log(`Login error ,`, e);
-      req.flash("error", "An error occured during signin, please try again");
-      res.redirect('/signin');
+      if(e && e.response.errors) {
+        req.flash("error", e.response.errors[0].message);
+        res.redirect("/signin");
+      } else {
+        req.flash("error", "An error occured during signin, please try again");
+        res.redirect('/signin');
+      }
     });
   }
 };
