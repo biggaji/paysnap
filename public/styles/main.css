@@ -17,6 +17,10 @@ body {
   height: auto;
 }
 
+button {
+  outline: none;
+}
+
 @font-face {
   font-family: "future";
   src: url(../fonts/future.woff2) format("woff2-variations");

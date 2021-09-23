@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 // email validation check
 function isValidEmail(email) {
-    let email_regex = /[a-zA-Z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
+    let email_regex = /[a-z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
     return email_regex.test(email);
 }
 // form fields that needs validating - signup
@@ -22,6 +22,7 @@ let country = document.getElementById("full_name");
 // form fields signin
 let loginUsername = document.getElementById("lusername");
 let loginPwd = document.getElementById("lpwd");
+let loginBtn = document.getElementById("fbtn_submit_login");
 // form field - activate account
 let activationCode = document.getElementById("tks");
 // error msg elements
@@ -32,21 +33,6 @@ let client_error_msg = document.getElementById("client_error_msg");
 let client_error_msg_wrapper = document.getElementById("client_error_wrapper");
 let client_success_msg_wrapper = document.getElementById("client_success_wrapper");
 let client_success_close_btn = document.getElementById("closeBtn");
-// activationCode validation 
-let activateBtn = document.getElementById("fbtn_submit_activate");
-activationCode.addEventListener('input', () => {
-    if (activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
-        activateBtn.disabled = true;
-    }
-    else {
-        activateBtn.disabled = false;
-    }
-    ;
-});
-// close the success box when clicked
-client_success_close_btn.addEventListener("click", () => {
-    client_success_msg_wrapper.style.display = "none";
-});
 // disabled submit button
 let signupBtn = document.getElementById("fbtn_submit_signup");
 let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
@@ -102,18 +88,6 @@ function validateFormInputs() {
                     "Password must be at least 8 characters long, include at least a one number and a special character (?.!%&*$^)";
             }
         });
-        // let requiredFields = [email, username, pwd, fullName];
-        // requiredFields.forEach(f => {
-        //     f.addEventListener("input", () => {
-        //         if(f.value.trim() === ""  || f.value.length < 1) {
-        //             signupBtn.disabled = true;
-        //             // fieldRequiredMsg!.innerHTML = "These fields are required";
-        //         } else {
-        //             // fieldRequiredMsg!.innerHTML = "";
-        //             signupBtn.disabled = false;
-        //         }
-        //     }) 
-        // })
     });
 }
 validateFormInputs();
@@ -132,19 +106,20 @@ signupFORM.addEventListener('submit', (e) => {
     }
     ;
 });
-signinFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (loginUsername.value.trim() === "" && loginPwd.value.trim() === "") {
-        client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Username and password are required to signin";
+// activationCode validation check
+let activateBtn = document.getElementById("fbtn_submit_activate");
+activationCode.addEventListener('input', () => {
+    if (activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
+        activateBtn.disabled = true;
     }
+    else {
+        activateBtn.disabled = false;
+    }
+    ;
 });
-activateAccountFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (activationCode.value.trim() === "" && activationCode.value.trim().length < 6) {
-        client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Activation code is required";
-    }
+// close the success box when clicked
+client_success_close_btn.addEventListener("click", () => {
+    client_success_msg_wrapper.style.display = "none";
 });
 // backend request check if email or username exists
 function checkEmail(email) {

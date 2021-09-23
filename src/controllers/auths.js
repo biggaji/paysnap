@@ -14,7 +14,6 @@ const graphqlRequestConfig_1 = require("../../@utils/graphqlRequestConfig");
 const graphql_request_1 = require("graphql-request");
 const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const checkUserExists_1 = require("../../@utils/checkUserExists");
-const bcryptjs_1 = require("bcryptjs");
 const encrypter_1 = require("../../@utils/encrypter");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
@@ -40,7 +39,7 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-    if (isLoggedIn) {
+    if (isLoggedIn && isLoggedIn !== undefined) {
         res.redirect('/dashboard');
     }
     else {
@@ -170,10 +169,15 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
 exports.CreateAccountPostController = CreateAccountPostController;
 const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { username, password } = req.body;
+    if (username.trim().length < 3 || password.trim().length < 8) {
+        req.flash("error", "Incorrect username or password");
+        res.redirect('/signin');
+    }
+    ;
     const checkUserFirst = yield checkUserExists_1.checkUserByUsername(username);
     if (!checkUserFirst) {
         console.log('There is no user yet', checkUserFirst);
-        req.flash("error", "You don't have a Paysnap account, please create one.");
+        req.flash("error", "You don't have a Paysnap account");
         res.redirect('/signin');
     }
     else {
@@ -197,26 +201,22 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
         };
         graphqlRequestConfig_1.graphqlClient.request(loginQuery, variables)
             .then((resp) => __awaiter(void 0, void 0, void 0, function* () {
-            // compare password
-            let isPassword = yield bcryptjs_1.compare(password, resp.login.user.password);
-            if (!isPassword) {
-                console.log('Incorrect password');
-                req.flash("error", "Incorrect username or password");
-                res.redirect('/signin');
-            }
-            else {
-                console.log(`login Payload `, resp.login.user.id);
-                res.cookie("x_user_token", resp.login.token, { httpOnly: true });
-                res.cookie('isLoggedIn', true, { httpOnly: true });
-                res.clearCookie("isLoggedOut");
-                res.redirect('/dashboard');
-            }
-            ;
+            console.log(`login Payload `, resp.login.user.id);
+            res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+            res.cookie('isLoggedIn', true, { httpOnly: true });
+            res.clearCookie("isLoggedOut");
+            res.redirect('/dashboard');
         }))
             .catch(e => {
             console.log(`Login error ,`, e);
-            req.flash("error", "An error occured during signin, please try again");
-            res.redirect('/signin');
+            if (e && e.response.errors) {
+                req.flash("error", e.response.errors[0].message);
+                res.redirect("/signin");
+            }
+            else {
+                req.flash("error", "An error occured during signin, please try again");
+                res.redirect('/signin');
+            }
         });
     }
 });
