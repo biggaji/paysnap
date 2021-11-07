@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap");
 * {
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
@@ -8,17 +7,24 @@
 
 body {
   width: 100%;
-  font-family: "DM Sans", sans-serif;
-}
-
-.paysnap-container {
-  width: 100%;
-  padding: 0 10%;
-  height: auto;
+  font-size: 17px;
+  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 button {
   outline: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.25);
 }
 
 @font-face {
@@ -29,13 +35,28 @@ button {
   unicode-range: U+0000-007e;
 }
 
+@font-face {
+  font-family: "Atyp text";
+  src: url(../../fonts/AtypText-Regular.woff2) format("woff2");
+  font-display: swap;
+}
+
+.global-container {
+  width: 100%;
+  padding: 0 5%;
+}
+
+.global-margin {
+  margin: 60px 0;
+}
+
 .logo-container {
-  padding: 0.5rem 0;
+  width: 120px;
 }
 
 .logo-container .logo {
-  width: 130px;
-  height: auto;
+  width: 100%;
+  height: 32px;
   -o-object-fit: contain;
      object-fit: contain;
 }
@@ -50,15 +71,17 @@ button {
   line-height: 1.2;
   font-size: 1.9rem;
   letter-spacing: 0.02rem;
+  font-family: "Atyp text";
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
   margin: 0.7rem 0;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   line-height: 1.4;
   letter-spacing: 0.02rem;
   font-weight: 300;
   color: #898989;
+  font-family: "Atyp text" !important;
 }
 
 .hero-wrapper .hero-cta {
@@ -68,12 +91,11 @@ button {
 .hero-wrapper .hero-cta .hero-cta-link {
   color: #fff;
   line-height: 1.4;
-  background-color: #7670f7;
+  background-color: #057bc0;
   padding: 0.7rem 1.25rem;
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   text-decoration: none;
   letter-spacing: 0.02rem;
-  border-radius: 70px;
 }
 
 .hero-wrapper .hero-cta .hero-cta-link .arrow-right {
@@ -102,7 +124,7 @@ button {
 }
 
 .form-container .intro-note p {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   font-weight: 300;
   color: #898989;
 }
@@ -119,7 +141,6 @@ button {
   width: 100%;
   height: auto;
   padding: 10px;
-  border-radius: 12px;
   background-color: #fff2f4;
 }
 
@@ -133,7 +154,7 @@ button {
 
 .form-container .form-wrapper #client_success_wrapper #client_success_msg {
   vertical-align: middle;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #425466;
 }
 
@@ -154,7 +175,7 @@ button {
 
 .form-container .form-wrapper #server_error_wrapper #server_error_msg {
   vertical-align: middle;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #425466;
 }
 
@@ -166,7 +187,7 @@ button {
 .form-container .form-wrapper #client_error_wrapper #client_error_msg {
   vertical-align: middle;
   color: #425466;
-  font-size: 1rem;
+  font-size: 1.0625rem;
 }
 
 .form-container .form-wrapper .signup .fin-wrap,
@@ -179,7 +200,7 @@ button {
 .form-container .form-wrapper .signup .fin-wrap label,
 .form-container .form-wrapper .signin .fin-wrap label,
 .form-container .form-wrapper .activate .fin-wrap label {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #898989;
   letter-spacing: 0.025;
   line-height: 1.4;
@@ -197,7 +218,7 @@ button {
 .form-container .form-wrapper .activate .fin-wrap #pwdErrMsg {
   display: none;
   color: red;
-  font-size: 1rem;
+  font-size: 1.0625rem;
 }
 
 .form-container .form-wrapper .signup .fin-wrap .pwd-wrap,
@@ -214,7 +235,7 @@ button {
 .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
 .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
 .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-  font-size: 1rem;
+  font-size: 1.0625rem;
   text-decoration: none;
   letter-spacing: 0.025;
   text-decoration: underline;
@@ -225,7 +246,7 @@ button {
 .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp:hover,
 .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp:hover,
 .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp:hover {
-  color: #7670f7;
+  color: #057bc0;
 }
 
 .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
@@ -234,12 +255,12 @@ button {
   width: 100%;
   margin: 0.4rem 0;
   padding: 0.6rem 0.7rem;
-  border-radius: 0.5rem;
   letter-spacing: 0.025;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #898989;
+  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   outline: none;
-  border: 1px solid #425466;
+  border: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 .form-container .form-wrapper .signup .fbtn-wrap,
@@ -254,13 +275,13 @@ button {
 .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
   cursor: pointer;
   width: 100%;
+  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 0.8rem 1.25rem;
-  border-radius: 70px;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   border: none;
   letter-spacing: 0.025;
-  background-color: #7670f7;
+  background-color: #057bc0;
   color: #fff;
 }
 
@@ -283,27 +304,27 @@ button {
 .form-container .resend_code_box .resend_code_trigger {
   text-decoration: underline;
   color: #898989;
-  font-size: 0.95rem;
+  font-size: 1.0625rem;
   cursor: pointer;
 }
 
 .form-container .twister-box .twister-text {
   line-height: 1.4;
   letter-spacing: 0.025;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   color: #898989;
 }
 
 .form-container .twister-box .twister-link {
   line-height: 1.4;
   letter-spacing: 0.025;
-  font-size: 1rem;
+  font-size: 1.0625rem;
   text-decoration: underline;
   color: #898989;
 }
 
 .form-container .twister-box .twister-link:hover {
-  color: #7670f7;
+  color: #057bc0;
 }
 
 @media screen and (min-width: 300px) {
@@ -318,14 +339,14 @@ button {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     line-height: 1.4;
   }
   .hero-wrapper .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .hero-wrapper .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .hero-wrapper .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 3rem;
@@ -335,7 +356,7 @@ button {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     padding: 0.7rem 2.5rem;
   }
 }
@@ -352,21 +373,21 @@ button {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     line-height: 1.4;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     padding: 0.6rem 2.4rem;
   }
   .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 2rem;
@@ -386,42 +407,40 @@ button {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .hero-wrapper .hero-cta {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
     padding: 0.8rem 2rem;
   }
   .form-container {
     padding: 20px 60px;
-    border-radius: 15px;
     margin: 2rem 0;
-    background-color: rgba(179, 217, 255, 0.2);
   }
   .form-container .intro-note {
     line-height: 1.4;
     margin: 0.6rem 0;
   }
   .form-container .intro-note p {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #server_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 2rem;
@@ -431,7 +450,7 @@ button {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap,
   .form-container .form-wrapper .signin .fin-wrap,
@@ -442,7 +461,7 @@ button {
   .form-container .form-wrapper .signup .fin-wrap label,
   .form-container .form-wrapper .signin .fin-wrap label,
   .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap,
   .form-container .form-wrapper .signin .fin-wrap .pwd-wrap,
@@ -457,14 +476,14 @@ button {
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap,
   .form-container .form-wrapper .signin .fbtn-wrap,
@@ -479,10 +498,10 @@ button {
     padding: 0.9rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1.2rem;
+    font-size: 1.0625rem;
   }
 }
 
@@ -499,7 +518,7 @@ button {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     line-height: 1.4;
     width: 80%;
   }
@@ -507,39 +526,37 @@ button {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     padding: 0.8rem 2rem;
     font-weight: 700;
   }
   .form-container {
     width: 80%;
-    padding: 70px 80px;
+    padding: 50px;
     height: auto;
-    border-radius: 15px;
     margin: 2rem auto;
-    background-color: rgba(179, 217, 255, 0.2);
   }
   .form-container .intro-note {
     line-height: 1.4;
     margin: 0.6rem 0;
   }
   .form-container .intro-note p {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #server_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 2rem;
@@ -549,7 +566,7 @@ button {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap,
   .form-container .form-wrapper .signin .fin-wrap,
@@ -560,20 +577,20 @@ button {
   .form-container .form-wrapper .signup .fin-wrap label,
   .form-container .form-wrapper .signin .fin-wrap label,
   .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     letter-spacing: 0.025;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap,
   .form-container .form-wrapper .signin .fbtn-wrap,
@@ -586,14 +603,14 @@ button {
   .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     width: auto;
     font-weight: 700;
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
     padding: 0.9rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1.25rem;
+    font-size: 1.0625rem;
   }
 }
 
@@ -610,7 +627,7 @@ button {
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
     line-height: 1.2;
     width: 60%;
   }
@@ -618,38 +635,36 @@ button {
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
     padding: 0.8rem 2rem;
   }
   .form-container {
     width: 70%;
-    padding: 70px 80px;
+    padding: 50px;
     height: auto;
-    border-radius: 15px;
     margin: 2rem auto;
-    background-color: rgba(179, 217, 255, 0.2);
   }
   .form-container .intro-note {
     line-height: 1.4;
     margin: 0.6rem 0;
   }
   .form-container .intro-note p {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #server_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 2rem;
@@ -659,7 +674,7 @@ button {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap,
   .form-container .form-wrapper .signin .fin-wrap,
@@ -670,18 +685,18 @@ button {
   .form-container .form-wrapper .signup .fin-wrap label,
   .form-container .form-wrapper .signin .fin-wrap label,
   .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
     padding: 0.7rem 0.7rem;
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap,
   .form-container .form-wrapper .signin .fbtn-wrap,
@@ -693,75 +708,77 @@ button {
   .form-container .form-wrapper .signin .fbtn-wrap .fbtn-wrap-btn,
   .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     padding: 0.9rem 1.5rem;
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1.29rem;
+    font-size: 1.0625rem;
   }
 }
 
 @media screen and (min-width: 1366px) {
+  .global-container {
+    padding: 0 10%;
+  }
   .hero-wrapper {
     height: 50vh;
-    margin: 0.5rem 0;
-    padding: 6rem 0;
   }
   .hero-wrapper .hero-copy-wrapper .hero-copy {
     line-height: 1;
     font-size: 3.89rem;
-    width: 80%;
+    width: 70%;
   }
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
-    font-size: 1.1rem;
-    font-family: "DM Sans", sans-serif;
+    font-size: 1.0625rem;
+    font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     line-height: 1.2;
     color: #425466;
     font-weight: 300;
     width: 60%;
   }
   .hero-wrapper .hero-cta {
+    width: 200px;
     margin: 2rem 0 0.7rem 0;
   }
   .hero-wrapper .hero-cta .hero-cta-link {
-    font-size: 1rem;
+    width: 100%;
+    font-size: 1.0625rem;
     padding: 0.8rem 2.5rem;
-    font-weight: 700;
+    font-weight: 500;
   }
   .form-container {
     width: 45%;
-    padding: 70px 80px;
+    padding: 50px;
     height: auto;
-    border-radius: 15px;
     margin: 2rem auto;
-    background-color: rgba(179, 217, 255, 0.2);
+    border: 1px solid rgba(0, 0, 0, 0.15);
   }
   .form-container .intro-note {
     line-height: 1.4;
     margin: 0.6rem 0;
   }
   .form-container .intro-note p {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
     font-weight: 500;
     color: #898989;
   }
   .form-container .resend_code_box .resend_code_trigger {
-    font-size: 1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #server_error_wrapper {
     margin: 14px 0;
   }
   .form-container .form-wrapper #server_error_wrapper #server_error_msg {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper {
     margin: 10px 0;
   }
   .form-container .form-wrapper #client_success_wrapper #client_success_msg {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper #client_success_wrapper #closeBtn {
     font-size: 2rem;
@@ -771,7 +788,7 @@ button {
     margin: 14px 0;
   }
   .form-container .form-wrapper #client_error_wrapper #client_error_msg {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap,
   .form-container .form-wrapper .signin .fin-wrap,
@@ -782,7 +799,7 @@ button {
   .form-container .form-wrapper .signup .fin-wrap label,
   .form-container .form-wrapper .signin .fin-wrap label,
   .form-container .form-wrapper .activate .fin-wrap label {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
     color: #898989;
     letter-spacing: 0.025;
     line-height: 1.4;
@@ -800,14 +817,14 @@ button {
   .form-container .form-wrapper .signup .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .signin .fin-wrap .pwd-wrap .fgp,
   .form-container .form-wrapper .activate .fin-wrap .pwd-wrap .fgp {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .signin .fin-wrap .fin-wrap-input,
   .form-container .form-wrapper .activate .fin-wrap .fin-wrap-input {
-    padding: 0.7rem 0.7rem;
+    padding: 0.4rem 0.7rem;
     letter-spacing: 0.025;
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .form-wrapper .signup .fbtn-wrap,
   .form-container .form-wrapper .signin .fbtn-wrap,
@@ -820,14 +837,14 @@ button {
   .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
     font-weight: 700;
     width: auto;
-    font-size: 1rem;
-    padding: 0.8rem 1.5rem;
+    font-size: 1.0625rem;
+    padding: 0.4rem 1.5rem;
   }
   .form-container .twister-box .twister-text {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
   .form-container .twister-box .twister-link {
-    font-size: 1.1rem;
+    font-size: 1.0625rem;
   }
 }
 /*# sourceMappingURL=main.css.map */

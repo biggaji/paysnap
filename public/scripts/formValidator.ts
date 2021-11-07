@@ -38,10 +38,16 @@ let client_success_close_btn = document.getElementById("closeBtn") as HTMLButton
 
 let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
 
-async function validateFormInputs() {
+// function to check for empty required input fields
+function checkForEmptyFields(formField:HTMLInputElement) {
+    return formField.value.trim() !== "";
+};
 
+async function validateFormInputs() {
+  if(email) {
     email.addEventListener('input', () => {
         if(email.value.trim() === "") {
+            email.style.border = "1px solid red";
             emailErrMsg.style.display = "block";
             emailErrMsg.innerHTML = "Email is required";
         } else if(!isValidEmail(email.value.trim())) {
@@ -49,44 +55,53 @@ async function validateFormInputs() {
             emailErrMsg.innerHTML = "Please enter a valid email";
         } else {
             emailErrMsg.innerHTML = "Checking email...";
-            console.log(checkEmail(email.value.trim()));
+            email.style.border = "1px solid black";
             return checkEmail(email.value.trim());
         };
     });
+  };
 
+  if(username) {
     username.addEventListener("input", () => {
         let userName = username.value.trim();
         if(userName === "") {
+            username.style.border = "1px solid red";
             usernameErrMsg.style.display = "block";
             usernameErrMsg.innerHTML = "Username is required";
         } else if (userName.length < 3) {
             usernameErrMsg.style.display = "block";
+            username.style.border = "1px solid rgba(0,0,0,0.15)";
             usernameErrMsg.innerHTML = "Username must be greater than 3 characters";
         } else {
             usernameErrMsg.innerHTML = "Checking username...";
-            console.log( checkUsername(username.value.trim()));
+            username.style.border = "1px solid rgba(0,0,0,0.15)";
             return checkUsername(userName);
         };
     });
+  };
+
     
-    let password = pwd.value.trim();
-    let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
-    let passwordTest = password_regex.test(password);
-
+  if(pwd) {
     pwd.addEventListener("input", () => {
-
-        if(password === "") {
-            pwdErrMsg.style.display = "block";
-            pwdErrMsg.innerHTML = "Password is required";
-        } else if (passwordTest && password.length >= 8){
+    let password = pwd.value.trim();
+    let password_regex = /^[a-zA-Z]+\d{1,}\W{1,}/gi;
+    let passwordTest = password_regex.test(password);
+          if(password === "" || password.length < 1) {
+              pwd.style.border = "1px solid red";
+              pwdErrMsg.style.display = "block";
+              pwdErrMsg.innerHTML = "Password is required";
+          } else if (password.length >= 8 && passwordTest) {
             pwdErrMsg.style.display = "none";
-        } else {
+            pwd.style.border = "1px solid rgba(0,0,0,0.15)";
+            // pwdErrMsg.innerHTML = "";
+          } else {
             pwdErrMsg.style.display = "block";
             pwdErrMsg.innerHTML =
-              "Password must be at least 8 characters long, include at least a one number and a special character (?.!%&*$^)";
-        }
-    });
-}
+              "Password must be between 8 and 30 characters long, includes at least a numeric [0-9] and non-numeric value[?.!%&*$^].";
+          }
+      });
+    };
+};
 
 validateFormInputs();
 
@@ -96,36 +111,75 @@ let signupFORM = document.getElementById("signup") as HTMLFormElement;
 let signinFORM = document.getElementById("signin") as HTMLFormElement;
 let activateAccountFORM= document.getElementById("activate") as HTMLFormElement;
 
-signupFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
+if(signupBtn) {
+  signupBtn.disabled = true;
+}
 
-    if(email.value.trim() === "" && fullName.value.trim() === "" && username.value.trim() === "" && country.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
-      client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "All fields are required";
-    } else {
-      signupFORM.submit();
-    };
-});
+if(signupFORM) {
+      let signupFields:any[] = [];
+      signupFields.push(email, pwd, username, country, fullName);
+
+      signupFields.forEach(elem => {
+        elem.addEventListener("input", () => {
+            let isNotEmpty = signupFields.every(checkForEmptyFields);
+            if(elem.value.trim() === "") {
+              elem.style.border = "1px solid red";
+              elem.placeholder = "This field is required!";
+            } else {
+              elem.style.border = "1px solid rgba(0,0,0,0.15)";
+            }
+          if(isNotEmpty) {
+            signupBtn.disabled = false;
+          } else {
+            signupBtn.disabled = true;
+          };
+      });
+  });
+}
+
+
+if(loginBtn) {
+  loginBtn.disabled = true;
+}
+
+if(signinFORM) {
+  let signInFields:any[] = [];
+  signInFields.push(loginUsername, loginPwd);
+  
+  signInFields.forEach(inputElem => {
+    inputElem.addEventListener("input", () => {
+      let isNotEmpty = signInFields.every(checkForEmptyFields);
+      if(isNotEmpty) {
+        loginBtn.disabled = false;
+      } else {
+        loginBtn.disabled = true;
+      }
+    });
+  });
+};
 
 // activationCode validation check
 
 
 let activateBtn = document.getElementById("fbtn_submit_activate") as HTMLButtonElement;
 
-
-activationCode.addEventListener('input', () => {
-  if(activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
-    activateBtn.disabled = true;
-  } else {
-    activateBtn.disabled = false;
-  };
-});
+if(activationCode) {
+  activationCode.addEventListener('input', () => {
+    if(activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
+      activateBtn.disabled = true;
+    } else {
+      activateBtn.disabled = false;
+    };
+  });
+}
 
 // close the success box when clicked
 
-client_success_close_btn.addEventListener("click", () => {
-  client_success_msg_wrapper.style.display = "none";
-});
+if(client_success_close_btn) {
+  client_success_close_btn.addEventListener("click", () => {
+    client_success_msg_wrapper.style.display = "none";
+  });
+};
 
 // backend request check if email or username exists
 function checkEmail(email:string) {

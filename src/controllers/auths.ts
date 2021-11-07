@@ -1,48 +1,55 @@
 import { Request, Response } from "express";
 import { graphqlClient } from '../../@utils/graphqlRequestConfig';
-import request, { gql } from "graphql-request";
+import { gql } from "graphql-request";
 import { asteriskMail } from "../../@utils/asteriskEmail";
 import { checkUserByEmail, checkUserByUsername } from "../../@utils/checkUserExists";
-import { compare } from "bcryptjs";
 import { decrypt, encrypt } from "../../@utils/encrypter";
 
 export const signUpController = async (req:Request, res:Response) => {
-  let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-
-  if (isLoggedIn) {
-    res.redirect("/dashboard");
+  if(req.headers.authorization || req.headers.isLoggedIn) {
+    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+    if (isLoggedIn) {
+      res.redirect("/dashboard");
+    } else {
+      res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
+    }
   } else {
     res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
   };
 };
 
 export const signInController = async (req: Request, res: Response) => {
-  let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+  if (req.headers.authorization || req.cookies.isLoggedIn) {
+    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
 
-  if (isLoggedIn) {
-    res.redirect("/dashboard");
+    if (isLoggedIn) {
+      res.redirect("/dashboard");
+    } else {
+      res.render("login", {pageTitle: "Sign in",server_error_msg: req.flash("error"),});
+    }
   } else {
-    res.render("login", { pageTitle: "Sign in" , server_error_msg: req.flash("error")});
-  };
+    res.render("login", {pageTitle: "Sign in",server_error_msg: req.flash("error"),});
+  }
 };
 
 export const activateAccountController = async (req: Request, res: Response) => {
-let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-
-if(isLoggedIn && isLoggedIn !== undefined) {
-  res.redirect('/dashboard');
-} else {
-    let encodedEmail = req.headers.authorization || req.cookies.ee;
-    let hashedEmail, email;
-  
-    email = await decrypt(encodedEmail);
-  
-    if(encodedEmail && encodedEmail !== undefined) {
-      hashedEmail = await asteriskMail(email);
+  if (req.headers.authorization || req.cookies.isLoggedIn) {
+    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+    if(isLoggedIn && isLoggedIn !== undefined) {
+      res.redirect('/dashboard');
+    } else {
+        let encodedEmail = req.headers.authorization || req.cookies.ee;
+        let hashedEmail, email;
+      
+        email = await decrypt(encodedEmail);
+      
+        if(encodedEmail && encodedEmail !== undefined) {
+          hashedEmail = await asteriskMail(email);
+        };
+      
+        res.render("activate", { pageTitle: "Activate your account", hashedEmail , server_error_msg: req.flash("error")});
     };
-  
-    res.render("activate", { pageTitle: "Activate your account", hashedEmail , server_error_msg: req.flash("error")});
-};
+  };
 };
 
 export const resetPasswordController = async (
@@ -96,7 +103,7 @@ export const RedenderDashboardController = async (
         res.redirect("/signin");
       };
     })
-  } catch (e) {
+  } catch (e:any) {
     console.log("DASHBOARD_ERROR", e.message);
     req.flash("error", `An error occured while fetching dashboard`);
     res.redirect("/signin");
@@ -280,7 +287,5 @@ export const ActivateAccountPostController = async (req: Request, res: Response)
             res.redirect('/activate');
       }
     });
-
-  }
-
+  };
 };
