@@ -16,9 +16,14 @@ const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const checkUserExists_1 = require("../../@utils/checkUserExists");
 const encrypter_1 = require("../../@utils/encrypter");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-    if (isLoggedIn) {
-        res.redirect("/dashboard");
+    if (req.headers.authorization || req.headers.isLoggedIn) {
+        let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+        if (isLoggedIn) {
+            res.redirect("/dashboard");
+        }
+        else {
+            res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
+        }
     }
     else {
         res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
@@ -27,30 +32,37 @@ const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, functio
 });
 exports.signUpController = signUpController;
 const signInController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-    if (isLoggedIn) {
-        res.redirect("/dashboard");
+    if (req.headers.authorization || req.cookies.isLoggedIn) {
+        let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+        if (isLoggedIn) {
+            res.redirect("/dashboard");
+        }
+        else {
+            res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error"), });
+        }
     }
     else {
-        res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error") });
+        res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error"), });
     }
-    ;
 });
 exports.signInController = signInController;
 const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
-    if (isLoggedIn && isLoggedIn !== undefined) {
-        res.redirect('/dashboard');
-    }
-    else {
-        let encodedEmail = req.headers.authorization || req.cookies.ee;
-        let hashedEmail, email;
-        email = yield encrypter_1.decrypt(encodedEmail);
-        if (encodedEmail && encodedEmail !== undefined) {
-            hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+    if (req.headers.authorization || req.cookies.isLoggedIn) {
+        let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
+        if (isLoggedIn && isLoggedIn !== undefined) {
+            res.redirect('/dashboard');
+        }
+        else {
+            let encodedEmail = req.headers.authorization || req.cookies.ee;
+            let hashedEmail, email;
+            email = yield encrypter_1.decrypt(encodedEmail);
+            if (encodedEmail && encodedEmail !== undefined) {
+                hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+            }
+            ;
+            res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
         }
         ;
-        res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
     }
     ;
 });
@@ -271,5 +283,6 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
             }
         });
     }
+    ;
 });
 exports.ActivateAccountPostController = ActivateAccountPostController;

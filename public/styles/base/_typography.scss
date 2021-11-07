@@ -1,8 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap');
 @font-face {
     font-family: "future";
     src: url(../fonts/future.woff2) format('woff2-variations');
     font-display: block;
     font-weight:1 1000;
     unicode-range:U+0000-007e;
+}
+
+@font-face {
+    font-family: "Atyp text";
+    src: url(../../fonts/AtypText-Regular.woff2) format('woff2');
+    font-display: swap;
 }
