@@ -1,3 +1,7 @@
-<h1 id="greeting_text_UI"></h1> <h1> @{{dashboardData.username}}</h1>
-
-<script src="/scripts/daySwitchGreeter.js"></script>
+<div class="global-container">
+    <div class="welcome-box">
+    <p id="greeting_text_UI"></p>
+     <p class="username-display">{{dashboardData.username}}</p>
+    </div>
+{{> mobile_dashboard}}
+<script src="/scripts/daySwitchGreeter.js" async></script>

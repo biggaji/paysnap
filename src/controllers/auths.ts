@@ -6,13 +6,13 @@ import { checkUserByEmail, checkUserByUsername } from "../../@utils/checkUserExi
 import { decrypt, encrypt } from "../../@utils/encrypter";
 
 export const signUpController = async (req:Request, res:Response) => {
-  if(req.headers.authorization || req.headers.isLoggedIn) {
+  if (req.headers.authorization || req.cookies.isLoggedIn) {
     let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
     if (isLoggedIn) {
       res.redirect("/dashboard");
     } else {
       res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
-    }
+    };
   } else {
     res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error")});
   };
