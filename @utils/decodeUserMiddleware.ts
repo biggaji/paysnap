@@ -11,12 +11,15 @@ import { NextFunction, Request, Response  } from "express";
  */
 
 export default async function decodeUser(req:Request, res: Response, next:NextFunction) {
-    let userToken = req.headers.authorization || req.cookies.x_user_token;
     try {
+        let userToken = req.headers.authorization || req.cookies.x_user_token;
         if(userToken) {
             let user = await verify(userToken, process.env.JWT_SECRET!);
             req.user = user;
             next();
+        } else {
+            res.cookie("isLoggedOut", true);
+            res.redirect("/signin");
         }
     } catch (e) {
         // handle expiry error here

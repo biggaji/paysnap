@@ -16,19 +16,24 @@ const asteriskEmail_1 = require("../../@utils/asteriskEmail");
 const checkUserExists_1 = require("../../@utils/checkUserExists");
 const encrypter_1 = require("../../@utils/encrypter");
 const signUpController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    if (req.headers.authorization || req.headers.isLoggedIn) {
+    if (req.headers.authorization || req.cookies.isLoggedIn) {
         let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
         if (isLoggedIn) {
             res.redirect("/dashboard");
         }
         else {
-            res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
+            res.render("signup", {
+                pageTitle: "Sign up",
+                server_error_msg: req.flash("error"),
+            });
         }
     }
     else {
-        res.render("signup", { pageTitle: "Sign up", server_error_msg: req.flash("error") });
+        res.render("signup", {
+            pageTitle: "Sign up",
+            server_error_msg: req.flash("error"),
+        });
     }
-    ;
 });
 exports.signUpController = signUpController;
 const signInController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -38,11 +43,17 @@ const signInController = (req, res) => __awaiter(void 0, void 0, void 0, functio
             res.redirect("/dashboard");
         }
         else {
-            res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error"), });
+            res.render("login", {
+                pageTitle: "Sign in",
+                server_error_msg: req.flash("error"),
+            });
         }
     }
     else {
-        res.render("login", { pageTitle: "Sign in", server_error_msg: req.flash("error"), });
+        res.render("login", {
+            pageTitle: "Sign in",
+            server_error_msg: req.flash("error"),
+        });
     }
 });
 exports.signInController = signInController;
@@ -50,7 +61,7 @@ const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0
     if (req.headers.authorization || req.cookies.isLoggedIn) {
         let isLoggedIn = req.headers.authorization || req.cookies.isLoggedIn;
         if (isLoggedIn && isLoggedIn !== undefined) {
-            res.redirect('/dashboard');
+            res.redirect("/dashboard");
         }
         else {
             let encodedEmail = req.headers.authorization || req.cookies.ee;
@@ -59,12 +70,13 @@ const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0
             if (encodedEmail && encodedEmail !== undefined) {
                 hashedEmail = yield asteriskEmail_1.asteriskMail(email);
             }
-            ;
-            res.render("activate", { pageTitle: "Activate your account", hashedEmail, server_error_msg: req.flash("error") });
+            res.render("activate", {
+                pageTitle: "Activate your account",
+                hashedEmail,
+                server_error_msg: req.flash("error"),
+            });
         }
-        ;
     }
-    ;
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -77,17 +89,17 @@ const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void
         let tokenPayload = req.headers.authorization || req.cookies.x_user_token;
         // get user data database
         let dashboardPayload = graphql_request_1.gql `
-      query dashboardData {
-        me {
-          username
-          fullname
-          avatar
-          accountbalance
-          pin
-          isactivated
-        }
+    query dashboardData {
+      me {
+        username
+        fullname
+        avatar
+        accountbalance
+        pin
+        isactivated
       }
-    `;
+    }
+  `;
         let request_header = {
             "x_user_token": tokenPayload
         };
@@ -123,11 +135,11 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
     // mutation for create user
     try {
         let checkUser = yield checkUserExists_1.checkUserByEmail(email);
-        console.log('User with email Exist ', checkUser);
+        console.log("User with email Exist ", checkUser);
         if (!checkUser) {
             const createAccountMutation = graphql_request_1.gql `
         mutation createAccount($Opts: CreateAccountInputs!) {
-            createAccount(opts:$Opts) {
+          createAccount(opts: $Opts) {
             code
             success
             message
@@ -145,10 +157,11 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
                     email,
                     username,
                     country,
-                    password
-                }
+                    password,
+                },
             };
-            graphqlRequestConfig_1.graphqlClient.request(createAccountMutation, variables)
+            graphqlRequestConfig_1.graphqlClient
+                .request(createAccountMutation, variables)
                 .then((result) => __awaiter(void 0, void 0, void 0, function* () {
                 console.log(`Payload data: `, result.createAccount.message);
                 const { user, token } = result.createAccount;
@@ -156,9 +169,9 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
                 let ee = yield encrypter_1.encrypt(user.email);
                 res.cookie("ee", ee, { secure: true });
                 res.cookie("x_user_token", token, { httpOnly: true });
-                res.redirect('/activate');
+                res.redirect("/activate");
             }))
-                .catch(e => {
+                .catch((e) => {
                 // console.log(`payload data error: `, e);
                 console.log(`payload data error: `, e.response.errors[0].message);
                 req.flash("error", "An error occured while creating account, please try again");
@@ -170,12 +183,11 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
             req.flash("error", "A user with this account already exist, please sign-in instead");
             res.redirect("/signup");
         }
-        ;
     }
     catch (e) {
         // console.log(`An error occured checking email `, e);
         req.flash("error", "An error occured while creating account");
-        res.redirect('/signup');
+        res.redirect("/signup");
     }
 });
 exports.CreateAccountPostController = CreateAccountPostController;
@@ -183,43 +195,43 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
     const { username, password } = req.body;
     if (username.trim().length < 3 || password.trim().length < 8) {
         req.flash("error", "Incorrect username or password");
-        res.redirect('/signin');
+        res.redirect("/signin");
     }
-    ;
     const checkUserFirst = yield checkUserExists_1.checkUserByUsername(username);
     if (!checkUserFirst) {
-        console.log('There is no user yet', checkUserFirst);
+        console.log("There is no user yet", checkUserFirst);
         req.flash("error", "You don't have a Paysnap account");
-        res.redirect('/signin');
+        res.redirect("/signin");
     }
     else {
         const loginQuery = graphql_request_1.gql `
-        query Signin($opts: LoginInputs!) {
-          login(opts:$opts) {
-            user {
-              id
-              isactivated
-              password
-            }
-            token
+      query Signin($opts: LoginInputs!) {
+        login(opts: $opts) {
+          user {
+            id
+            isactivated
+            password
           }
+          token
         }
+      }
     `;
         let variables = {
             opts: {
                 username,
-                password
-            }
+                password,
+            },
         };
-        graphqlRequestConfig_1.graphqlClient.request(loginQuery, variables)
+        graphqlRequestConfig_1.graphqlClient
+            .request(loginQuery, variables)
             .then((resp) => __awaiter(void 0, void 0, void 0, function* () {
             console.log(`login Payload `, resp.login.user.id);
             res.cookie("x_user_token", resp.login.token, { httpOnly: true });
-            res.cookie('isLoggedIn', true, { httpOnly: true });
+            res.cookie("isLoggedIn", true, { httpOnly: true });
             res.clearCookie("isLoggedOut");
-            res.redirect('/dashboard');
+            res.redirect("/dashboard");
         }))
-            .catch(e => {
+            .catch((e) => {
             console.log(`Login error ,`, e);
             if (e && e.response.errors) {
                 req.flash("error", e.response.errors[0].message);
@@ -227,7 +239,7 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
             }
             else {
                 req.flash("error", "An error occured during signin, please try again");
-                res.redirect('/signin');
+                res.redirect("/signin");
             }
         });
     }
@@ -237,52 +249,52 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
     const { code } = req.body;
     if (code === "" || code.toString().length < 6) {
         req.flash("error", "Incorrect activation Code");
-        res.redirect('/activate');
+        res.redirect("/activate");
     }
     else {
         // get token form cookie
         let tokenPayload = (yield req.headers.authorization) || req.cookies.x_user_token;
         // send token to database
         const activateAccountMutation = graphql_request_1.gql `
-        mutation activateAccount($code: String!) {
-          activateAccount(code: $code) {
-            code
-            message
-            success
-            user {
-              isactivated
-            }
+      mutation activateAccount($code: String!) {
+        activateAccount(code: $code) {
+          code
+          message
+          success
+          user {
+            isactivated
           }
         }
+      }
     `;
         const variables = {
-            code
+            code,
         };
         const request_header = {
-            "x_user_token": tokenPayload
+            x_user_token: tokenPayload,
         };
-        graphqlRequestConfig_1.graphqlClient.request(activateAccountMutation, variables, request_header)
-            .then(resp => {
+        graphqlRequestConfig_1.graphqlClient
+            .request(activateAccountMutation, variables, request_header)
+            .then((resp) => {
             let data = resp.activateAccount;
             console.log(`Account activated, `, data.user.isactivated);
             // clear user email from cookie
             res.clearCookie("ee");
             res.cookie("isLoggedIn", true, { httpOnly: true });
             // redirect to dashboard
-            res.redirect('/dashboard');
+            res.redirect("/dashboard");
         })
-            .catch(e => {
+            .catch((e) => {
             console.log(`Activate Account error: `, e.response.errors[0].message);
             if (e && e.response.errors) {
                 req.flash("error", e.response.errors[0].message);
-                res.redirect('/activate');
+                res.redirect("/activate");
             }
             else {
                 req.flash("error", "An error occured while activating account, please try again");
-                res.redirect('/activate');
+                res.redirect("/activate");
             }
         });
     }
-    ;
 });
 exports.ActivateAccountPostController = ActivateAccountPostController;
