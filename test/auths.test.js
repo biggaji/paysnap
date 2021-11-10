@@ -15,19 +15,20 @@
 //     describe("GET /create_account", () => {
 
 //         it("it should return status 200", (done) => {
-//             chai.request(app)
-//                 .get('/create_account')
-//                 .end((err, res) => {
-//                     res.should.have.status(200);
-//                     done();
-//                 })
-//         })
-//     }),
-
-//         describe("POST /create_account", () => {
-
-//             it("It should create a paytr user account", (done) => {
-//                 chai.request(app)
+    //             chai.request(app)
+    //                 .get('/create_account')
+    //                 .end((err, res) => {
+        //                     res.should.have.status(200);
+        //                     done();
+        //                 })
+        //         })
+        //     }),
+        
+        //         describe("POST /create_account", () => {
+            
+            //             it("It should create a paytr user account", (done) => {
+                console.log(chai.request(app)) 
+                //                 chai.request(app)
 //                     .post('/create_account')
 //                     .send({
 //                         firstname: "Paytr",

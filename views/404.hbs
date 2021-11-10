@@ -1,1 +1,11 @@
-<h2 class="page-not-found">404 - page not found</h2>
+<h2 class="page-not-found">404</h2>
+<p>The page you are looking for is not available</p>
+<a id="back" style="text-decoration: underline; color: #858585; cursor:pointer;">Go back</a>
+{{> 404_footer}}
+
+<script async>
+    let goBack = document.getElementById("back");
+    goBack.addEventListener("click", () => {
+        history.back();
+    });
+</script>   

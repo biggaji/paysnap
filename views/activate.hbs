@@ -1,4 +1,4 @@
-<div class="paysnap-container">
+<div class="global-container">
     <div class="logo-container">
         <a href="/" class="site-logo">
             <img src="/assets/logo.svg" alt="paysnap logo" class="logo"  loading = "lazy">
@@ -25,14 +25,14 @@
             <div id="client_success_wrapper">
                 <small id="client_success_msg"></small> <span id="closeBtn">+</span>
             </div>
-            <form action="/activate" method="POST" class="activate" id="activate">
+            <form action="/activate" method="POST" class="activate" id="activate" autocomplete="off">
                 <div class="fin-wrap">
                     <label for="tks">Activation code</label><br>
-                    <input type="text" class="fin-wrap-input" name="code"
+                    <input type="text" class="fin-wrap-input" name="code" placeholder="6-digit code"
                         id="tks">
                 </div>
                 <div class="fbtn-wrap">
-                    <button class="fbtn-wrap-btn" id="fbtn_submit" type="submit">Activate account <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
+                    <button class="fbtn-wrap-btn" id="fbtn_submit_activate" disabled type="submit">Activate account <svg class="arrow-right" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"
                         width="16" height="16">
                         <path fill-rule="evenodd"
                             d="M6.22 3.22a.75.75 0 011.06 0l4.25 4.25a.75.75 0 010 1.06l-4.25 4.25a.75.75 0 01-1.06-1.06L9.94 8 6.22 4.28a.75.75 0 010-1.06z">
@@ -42,7 +42,7 @@
             </form>
         </div>
         <div class="resend_code_box">
-            <a class="resend_code_trigger" id="resend_code_trigger">Re-send code</a>
+            <a class="resend_code_trigger" id="resend_code_trigger">Resend code</a>
         </div>
     </div>
 </div>

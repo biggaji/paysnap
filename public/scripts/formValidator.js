@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 // email validation check
 function isValidEmail(email) {
-    let email_regex = /[a-zA-Z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
+    let email_regex = /[a-z0-9]+@[a-z]{1,}\W{1}[a-z]{2,}/gi;
     return email_regex.test(email);
 }
 // form fields that needs validating - signup
@@ -22,6 +22,7 @@ let country = document.getElementById("full_name");
 // form fields signin
 let loginUsername = document.getElementById("lusername");
 let loginPwd = document.getElementById("lpwd");
+let loginBtn = document.getElementById("fbtn_submit_login");
 // form field - activate account
 let activationCode = document.getElementById("tks");
 // error msg elements
@@ -32,117 +33,160 @@ let client_error_msg = document.getElementById("client_error_msg");
 let client_error_msg_wrapper = document.getElementById("client_error_wrapper");
 let client_success_msg_wrapper = document.getElementById("client_success_wrapper");
 let client_success_close_btn = document.getElementById("closeBtn");
-// close the success box when clicked
-client_success_close_btn.addEventListener("click", () => {
-    client_success_msg_wrapper.style.display = "none";
-});
 // disabled submit button
 let signupBtn = document.getElementById("fbtn_submit_signup");
 let PAYSNAP_API_ENDPOINT = "https://api-paysnap.herokuapp.com/graphql";
+// function to check for empty required input fields
+function checkForEmptyFields(formField) {
+    return formField.value.trim() !== "";
+}
+;
 function validateFormInputs() {
     return __awaiter(this, void 0, void 0, function* () {
-        email.addEventListener('input', () => {
-            if (email.value.trim() === "") {
-                emailErrMsg.style.display = "block";
-                emailErrMsg.innerHTML = "Email is required";
-            }
-            else if (!isValidEmail(email.value.trim())) {
-                emailErrMsg.style.display = "block";
-                emailErrMsg.innerHTML = "Please enter a valid email";
-            }
-            else {
-                emailErrMsg.innerHTML = "Checking email...";
-                console.log(checkEmail(email.value.trim()));
-                return checkEmail(email.value.trim());
-            }
-            ;
-        });
-        username.addEventListener("input", () => {
-            let userName = username.value.trim();
-            if (userName === "") {
-                usernameErrMsg.style.display = "block";
-                usernameErrMsg.innerHTML = "Username is required";
-            }
-            else if (userName.length < 3) {
-                usernameErrMsg.style.display = "block";
-                usernameErrMsg.innerHTML = "Username must be greater than 3 characters";
-            }
-            else {
-                usernameErrMsg.innerHTML = "Checking username...";
-                console.log(checkUsername(username.value.trim()));
-                return checkUsername(userName);
-            }
-            ;
-        });
-        let password = pwd.value.trim();
-        let password_regex = /[a-zA-Z]+\d{1,}\W{1,}/gi;
-        let passwordTest = password_regex.test(password);
-        pwd.addEventListener("input", () => {
-            if (password === "") {
-                pwdErrMsg.style.display = "block";
-                pwdErrMsg.innerHTML = "Password is required";
-            }
-            else if (passwordTest && password.length >= 8) {
-                pwdErrMsg.style.display = "none";
-            }
-            else {
-                pwdErrMsg.style.display = "block";
-                pwdErrMsg.innerHTML =
-                    "Password must be at least 8 characters long, include at least a one number and a special character (?.!%&*$^)";
-            }
-        });
-        // let requiredFields = [email, username, pwd, fullName];
-        // requiredFields.forEach(f => {
-        //     f.addEventListener("input", () => {
-        //         if(f.value.trim() === ""  || f.value.length < 1) {
-        //             signupBtn.disabled = true;
-        //             // fieldRequiredMsg!.innerHTML = "These fields are required";
-        //         } else {
-        //             // fieldRequiredMsg!.innerHTML = "";
-        //             signupBtn.disabled = false;
-        //         }
-        //     }) 
-        // })
+        if (email) {
+            email.addEventListener('input', () => {
+                if (email.value.trim() === "") {
+                    email.style.border = "1px solid red";
+                    emailErrMsg.style.display = "block";
+                    emailErrMsg.style.color = "red";
+                    emailErrMsg.innerHTML = "Email is required";
+                }
+                else if (!isValidEmail(email.value.trim())) {
+                    emailErrMsg.style.display = "block";
+                    emailErrMsg.style.color = "red";
+                    emailErrMsg.innerHTML = "Please enter a valid email";
+                }
+                else {
+                    emailErrMsg.style.color = "black";
+                    emailErrMsg.innerHTML = "Checking email...";
+                    email.style.border = "1px solid black";
+                    return checkEmail(email.value.trim());
+                }
+                ;
+            });
+        }
+        ;
+        if (username) {
+            username.addEventListener("input", () => {
+                let userName = username.value.trim();
+                if (userName === "") {
+                    username.style.border = "1px solid red";
+                    usernameErrMsg.style.display = "block";
+                    usernameErrMsg.style.color = "red";
+                    usernameErrMsg.innerHTML = "Username is required";
+                }
+                else if (userName.length < 3) {
+                    usernameErrMsg.style.display = "block";
+                    usernameErrMsg.style.color = "red";
+                    username.style.border = "1px solid rgba(0,0,0,0.15)";
+                    usernameErrMsg.innerHTML = "Username must be greater than 3 characters";
+                }
+                else {
+                    usernameErrMsg.style.color = "black";
+                    usernameErrMsg.innerHTML = "Checking username...";
+                    username.style.border = "1px solid rgba(0,0,0,0.15)";
+                    return checkUsername(userName);
+                }
+                ;
+            });
+        }
+        ;
+        if (pwd) {
+            pwd.addEventListener("input", () => {
+                let password = pwd.value.trim();
+                let password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+                let passwordTest = password_regex.test(password);
+                if (password === "" || password.length < 1) {
+                    pwd.style.border = "1px solid red";
+                    pwdErrMsg.style.display = "block";
+                    pwdErrMsg.innerHTML = "Password is required";
+                }
+                else if (password.length >= 8 && passwordTest) {
+                    pwdErrMsg.style.display = "none";
+                    pwd.style.border = "1px solid rgba(0,0,0,0.15)";
+                    // pwdErrMsg.innerHTML = "";
+                }
+                else {
+                    pwdErrMsg.style.display = "block";
+                    pwdErrMsg.innerHTML =
+                        "Password must be between 8 and 30 characters long, includes at least a numeric [0-9] and non-numeric value[?.!%&*$^].";
+                }
+            });
+        }
+        ;
     });
 }
+;
 validateFormInputs();
 // forms
 let signupFORM = document.getElementById("signup");
 let signinFORM = document.getElementById("signin");
 let activateAccountFORM = document.getElementById("activate");
-signupFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (email.value.trim() === "" && fullName.value.trim() === "" && username.value.trim() === "" && country.value.trim() === "" && pwd.value.trim() === "" && fullName.value.trim() === "") {
-        client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "All fields are required";
-    }
-    else {
-        signupFORM.submit();
-    }
-    ;
-});
-signinFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (loginUsername.value.trim() === "" && loginPwd.value.trim() === "") {
-        client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Username and password are required to signin";
-    }
-    else {
-        signinFORM.submit();
-    }
-    ;
-});
-activateAccountFORM.addEventListener('submit', (e) => {
-    e.preventDefault();
-    if (activationCode.value.trim() === "" && activationCode.value.trim().length < 6) {
-        client_error_msg_wrapper.style.display = "block";
-        client_error_msg.innerHTML = "Activation code is required";
-    }
-    else {
-        activateAccountFORM.submit();
-    }
-    ;
-});
+if (signupBtn) {
+    signupBtn.disabled = true;
+}
+if (signupFORM) {
+    let signupFields = [];
+    signupFields.push(email, pwd, username, country, fullName);
+    signupFields.forEach(elem => {
+        elem.addEventListener("input", () => {
+            let isNotEmpty = signupFields.every(checkForEmptyFields);
+            if (elem.value.trim() === "") {
+                elem.style.border = "1px solid red";
+                elem.placeholder = "This field is required!";
+            }
+            else {
+                elem.style.border = "1px solid rgba(0,0,0,0.15)";
+            }
+            if (isNotEmpty) {
+                signupBtn.disabled = false;
+            }
+            else {
+                signupBtn.disabled = true;
+            }
+            ;
+        });
+    });
+}
+if (loginBtn) {
+    loginBtn.disabled = true;
+}
+if (signinFORM) {
+    let signInFields = [];
+    signInFields.push(loginUsername, loginPwd);
+    signInFields.forEach(inputElem => {
+        inputElem.addEventListener("input", () => {
+            let isNotEmpty = signInFields.every(checkForEmptyFields);
+            if (isNotEmpty) {
+                loginBtn.disabled = false;
+            }
+            else {
+                loginBtn.disabled = true;
+            }
+        });
+    });
+}
+;
+// activationCode validation check
+let activateBtn = document.getElementById("fbtn_submit_activate");
+if (activationCode) {
+    activationCode.addEventListener('input', () => {
+        if (activationCode.value.trim().length < 6 || activationCode.value.trim().length > 6) {
+            activateBtn.disabled = true;
+        }
+        else {
+            activateBtn.disabled = false;
+        }
+        ;
+    });
+}
+// close the success box when clicked
+if (client_success_close_btn) {
+    client_success_close_btn.addEventListener("click", () => {
+        client_success_msg_wrapper.style.display = "none";
+    });
+}
+;
 // backend request check if email or username exists
 function checkEmail(email) {
     fetch(PAYSNAP_API_ENDPOINT, {
@@ -164,10 +208,22 @@ function checkEmail(email) {
         return resp.json();
     })
         .then((user) => {
-        return (user.data !== null) ? true : false;
+        let dataState;
+        if (user.data.checkIfEmailExist !== null) {
+            dataState = true;
+            emailErrMsg.style.color = "red";
+            emailErrMsg.innerHTML = "email is not available for use";
+        }
+        else {
+            dataState = false;
+            emailErrMsg.style.color = "green";
+            emailErrMsg.innerHTML = "email is available";
+        }
+        return dataState;
     })
         .catch((e) => {
         console.log(`Email Check Error`, e.message);
+        return false;
     });
 }
 ;
@@ -191,10 +247,23 @@ function checkUsername(username) {
         return resp.json();
     })
         .then((user) => {
-        return (user.data !== null) ? true : false;
+        let dataState;
+        if (user.data.checkIfUsernameExist !== null) {
+            dataState = true;
+            usernameErrMsg.style.color = "red";
+            usernameErrMsg.innerHTML = "username is not available for use";
+        }
+        else {
+            dataState = false;
+            usernameErrMsg.style.color = "green";
+            usernameErrMsg.innerHTML = "username is available";
+        }
+        ;
+        return dataState;
     })
         .catch((e) => {
         console.log(`Username Check Error`, e.message);
+        return false;
     });
 }
 ;

@@ -19,12 +19,17 @@ const jsonwebtoken_1 = require("jsonwebtoken");
  */
 function decodeUser(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
-        let userToken = req.headers.authorization || req.cookies.x_user_token;
         try {
+            let userToken = req.headers.authorization || req.cookies.x_user_token;
             if (userToken) {
                 let user = yield jsonwebtoken_1.verify(userToken, process.env.JWT_SECRET);
                 req.user = user;
                 next();
+            }
+            else {
+                // if token is not found , make them signin again to create a token
+                res.cookie("isLoggedOut", true);
+                res.redirect("/signin");
             }
         }
         catch (e) {
