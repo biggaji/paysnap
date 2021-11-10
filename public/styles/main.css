@@ -925,9 +925,25 @@ button {
   margin-top: 4rem;
 }
 
+.activity_section .page_title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.activity_section .site_wide_msg {
+  width: 100%;
+}
+
+.activity_section .site_wide_msg .error_msg_container .error_msg {
+  color: red;
+}
+
 .set-pin-mobile-popup {
   width: 100%;
-  height: 250px;
+  height: 300px;
   border: 1px solid tomato;
 }
 
@@ -976,7 +992,13 @@ button {
 
 .set-pin-mobile-popup .pin-form-cont form .pin_numbers .pin-row-numbers-flex .numbers {
   border: 1px solid lime;
-  padding: 0.4rem 0.8rem;
   border-radius: 100%;
+}
+
+.set-pin-mobile-popup .pin-form-cont form .pin_numbers .pin-row-numbers-flex .numbers .number {
+  padding: 0.4rem 0.6rem;
+  border-radius: 100%;
+  background-color: #fff;
+  border: none;
 }
 /*# sourceMappingURL=main.css.map */
