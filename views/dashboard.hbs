@@ -4,9 +4,17 @@
         <p class="username-display">{{dashboardData.username}}</p>
     </div>
     <div class="activity_section">
+        <div class="page_title mobile-only">
+            <p class="title">{{pagetitle}}</p>
+        </div>
+        <div class="site_wide_msg">
+            <div class="error_msg_container">
+                <p class="error_msg"></p>
+            </div>
+        </div>
         {{!-- show account balance --}}
         <div class="account_summary">
-            <p class="account_balance">${{dashboardData.accountbalance}}</p>
+            <p class="account_balance">Account balance: ${{dashboardData.accountbalance}}</p>
         </div>
         {{!-- check if user has set pin --}}
         {{#if hasSetPin}} 
@@ -22,4 +30,5 @@
 
     {{> mobile_dashboard}}  
 </div>  
+<script src="/scripts/dashboard_controller.js" async></script>
 <script src="/scripts/daySwitchGreeter.js" async></script>

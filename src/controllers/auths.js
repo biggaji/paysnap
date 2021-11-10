@@ -128,7 +128,7 @@ const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void
                 hasSetPin = false;
             }
             ;
-            res.render("dashboard", { pageTitle: `${username}`, dashboardData: user.me, hasSetPin });
+            res.render("dashboard", { pageTitle: `${username}`, dashboardData: user.me, hasSetPin, pagetitle: "Dashboard Feed" });
         })
             .catch(e => {
             console.log(`FETCH ERROR: `, e);
