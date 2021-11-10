@@ -18,6 +18,7 @@ export default async function decodeUser(req:Request, res: Response, next:NextFu
             req.user = user;
             next();
         } else {
+            // if token is not found , make them signin again to create a token
             res.cookie("isLoggedOut", true);
             res.redirect("/signin");
         }

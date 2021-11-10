@@ -48,13 +48,16 @@ function validateFormInputs() {
                 if (email.value.trim() === "") {
                     email.style.border = "1px solid red";
                     emailErrMsg.style.display = "block";
+                    emailErrMsg.style.color = "red";
                     emailErrMsg.innerHTML = "Email is required";
                 }
                 else if (!isValidEmail(email.value.trim())) {
                     emailErrMsg.style.display = "block";
+                    emailErrMsg.style.color = "red";
                     emailErrMsg.innerHTML = "Please enter a valid email";
                 }
                 else {
+                    emailErrMsg.style.color = "black";
                     emailErrMsg.innerHTML = "Checking email...";
                     email.style.border = "1px solid black";
                     return checkEmail(email.value.trim());
@@ -69,14 +72,17 @@ function validateFormInputs() {
                 if (userName === "") {
                     username.style.border = "1px solid red";
                     usernameErrMsg.style.display = "block";
+                    usernameErrMsg.style.color = "red";
                     usernameErrMsg.innerHTML = "Username is required";
                 }
                 else if (userName.length < 3) {
                     usernameErrMsg.style.display = "block";
+                    usernameErrMsg.style.color = "red";
                     username.style.border = "1px solid rgba(0,0,0,0.15)";
                     usernameErrMsg.innerHTML = "Username must be greater than 3 characters";
                 }
                 else {
+                    usernameErrMsg.style.color = "black";
                     usernameErrMsg.innerHTML = "Checking username...";
                     username.style.border = "1px solid rgba(0,0,0,0.15)";
                     return checkUsername(userName);
@@ -88,7 +94,7 @@ function validateFormInputs() {
         if (pwd) {
             pwd.addEventListener("input", () => {
                 let password = pwd.value.trim();
-                let password_regex = /^[a-zA-Z]+\d{1,}\W{1,}/gi;
+                let password_regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
                 let passwordTest = password_regex.test(password);
                 if (password === "" || password.length < 1) {
                     pwd.style.border = "1px solid red";
@@ -202,10 +208,22 @@ function checkEmail(email) {
         return resp.json();
     })
         .then((user) => {
-        return (user.data !== null) ? true : false;
+        let dataState;
+        if (user.data.checkIfEmailExist !== null) {
+            dataState = true;
+            emailErrMsg.style.color = "red";
+            emailErrMsg.innerHTML = "email is not available for use";
+        }
+        else {
+            dataState = false;
+            emailErrMsg.style.color = "green";
+            emailErrMsg.innerHTML = "email is available";
+        }
+        return dataState;
     })
         .catch((e) => {
         console.log(`Email Check Error`, e.message);
+        return false;
     });
 }
 ;
@@ -229,10 +247,23 @@ function checkUsername(username) {
         return resp.json();
     })
         .then((user) => {
-        return (user.data !== null) ? true : false;
+        let dataState;
+        if (user.data.checkIfUsernameExist !== null) {
+            dataState = true;
+            usernameErrMsg.style.color = "red";
+            usernameErrMsg.innerHTML = "username is not available for use";
+        }
+        else {
+            dataState = false;
+            usernameErrMsg.style.color = "green";
+            usernameErrMsg.innerHTML = "username is available";
+        }
+        ;
+        return dataState;
     })
         .catch((e) => {
         console.log(`Username Check Error`, e.message);
+        return false;
     });
 }
 ;
