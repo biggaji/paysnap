@@ -72,6 +72,21 @@ export const activateAccountController = async (
         server_error_msg: req.flash("error"),
       });
     }
+  } else {
+    let encodedEmail = req.headers.authorization || req.cookies.ee;
+    let hashedEmail, email;
+
+    email = await decrypt(encodedEmail);
+
+    if (encodedEmail && encodedEmail !== undefined) {
+      hashedEmail = await asteriskMail(email);
+    }
+
+    res.render("activate", {
+      pageTitle: "Activate your account",
+      hashedEmail,
+      server_error_msg: req.flash("error"),
+    });
   }
 };
 
@@ -109,8 +124,14 @@ export const RedenderDashboardController = async (
   .then(user => {
     console.log('Dashboard rendered for @ ', user.me.username);
     let { username } = user.me;
+    let hasSetPin;
+    if(user.me.pin !== null) {
+      hasSetPin = true;
+    } else {
+      hasSetPin = false;
+    };
 
-    res.render("dashboard", { pageTitle: `${username}` , dashboardData: user.me });
+    res.render("dashboard", { pageTitle: `${username}` , dashboardData: user.me, hasSetPin });
   })
   .catch(e => {
     console.log(`FETCH ERROR: `, e);
@@ -327,4 +348,13 @@ export const ActivateAccountPostController = async (
         }
       });
   }
+};
+
+// logout
+export const logout = async (req:Request, res:Response) => {
+  // clear all session data and cookies related to a active user
+  res.clearCookie("x_user_token");
+  res.clearCookie("isLoggedIn");
+  res.cookie("isLoggedOut", true);
+  res.redirect("/");
 };

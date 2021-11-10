@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ActivateAccountPostController = exports.LoginPostController = exports.CreateAccountPostController = exports.RedenderDashboardController = exports.resetPasswordController = exports.activateAccountController = exports.signInController = exports.signUpController = void 0;
+exports.logout = exports.ActivateAccountPostController = exports.LoginPostController = exports.CreateAccountPostController = exports.RedenderDashboardController = exports.resetPasswordController = exports.activateAccountController = exports.signInController = exports.signUpController = void 0;
 const graphqlRequestConfig_1 = require("../../@utils/graphqlRequestConfig");
 const graphql_request_1 = require("graphql-request");
 const asteriskEmail_1 = require("../../@utils/asteriskEmail");
@@ -77,6 +77,19 @@ const activateAccountController = (req, res) => __awaiter(void 0, void 0, void 0
             });
         }
     }
+    else {
+        let encodedEmail = req.headers.authorization || req.cookies.ee;
+        let hashedEmail, email;
+        email = yield encrypter_1.decrypt(encodedEmail);
+        if (encodedEmail && encodedEmail !== undefined) {
+            hashedEmail = yield asteriskEmail_1.asteriskMail(email);
+        }
+        res.render("activate", {
+            pageTitle: "Activate your account",
+            hashedEmail,
+            server_error_msg: req.flash("error"),
+        });
+    }
 });
 exports.activateAccountController = activateAccountController;
 const resetPasswordController = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -107,7 +120,15 @@ const RedenderDashboardController = (req, res) => __awaiter(void 0, void 0, void
             .then(user => {
             console.log('Dashboard rendered for @ ', user.me.username);
             let { username } = user.me;
-            res.render("dashboard", { pageTitle: `${username}`, dashboardData: user.me });
+            let hasSetPin;
+            if (user.me.pin !== null) {
+                hasSetPin = true;
+            }
+            else {
+                hasSetPin = false;
+            }
+            ;
+            res.render("dashboard", { pageTitle: `${username}`, dashboardData: user.me, hasSetPin });
         })
             .catch(e => {
             console.log(`FETCH ERROR: `, e);
@@ -298,3 +319,12 @@ const ActivateAccountPostController = (req, res) => __awaiter(void 0, void 0, vo
     }
 });
 exports.ActivateAccountPostController = ActivateAccountPostController;
+// logout
+const logout = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    // clear all session data and cookies related to a active user
+    res.clearCookie("x_user_token");
+    res.clearCookie("isLoggedIn");
+    res.cookie("isLoggedOut", true);
+    res.redirect("/");
+});
+exports.logout = logout;

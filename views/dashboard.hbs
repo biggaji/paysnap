@@ -1,7 +1,25 @@
 <div class="global-container">
     <div class="welcome-box">
-    <p id="greeting_text_UI"></p>
-     <p class="username-display">{{dashboardData.username}}</p>
+        <p id="greeting_text_UI"></p>
+        <p class="username-display">{{dashboardData.username}}</p>
     </div>
-{{> mobile_dashboard}}
+    <div class="activity_section">
+        {{!-- show account balance --}}
+        <div class="account_summary">
+            <p class="account_balance">${{dashboardData.accountbalance}}</p>
+        </div>
+        {{!-- check if user has set pin --}}
+        {{#if hasSetPin}} 
+            <p>User has set pin</p>
+            {{  else}}
+            <p>Please set your pin</p>
+            <button>Set pin</button>
+            {{!-- create a pin dialog looks like phone call app --}}
+            {{> setup_pin}}
+        {{/if}}
+    </div>
+    <a href="/exit">Logout</a>
+
+    {{> mobile_dashboard}}  
+</div>  
 <script src="/scripts/daySwitchGreeter.js" async></script>
