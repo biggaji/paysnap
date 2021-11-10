@@ -13,7 +13,9 @@
             <p>User has set pin</p>
             {{  else}}
             <p>Please set your pin</p>
+            <button>Set pin</button>
             {{!-- create a pin dialog looks like phone call app --}}
+            {{> setup_pin}}
         {{/if}}
     </div>
     <a href="/exit">Logout</a>
