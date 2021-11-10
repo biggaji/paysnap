@@ -131,7 +131,7 @@ export const RedenderDashboardController = async (
       hasSetPin = false;
     };
 
-    res.render("dashboard", { pageTitle: `${username}` , dashboardData: user.me, hasSetPin });
+    res.render("dashboard", { pageTitle: `${username}` , dashboardData: user.me, hasSetPin, pagetitle: "Dashboard Feed" });
   })
   .catch(e => {
     console.log(`FETCH ERROR: `, e);
