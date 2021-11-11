@@ -28,7 +28,7 @@ function decodeUser(req, res, next) {
             }
             else {
                 // if token is not found , make them signin again to create a token
-                res.cookie("isLoggedOut", true);
+                // res.cookie("isLoggedOut", true);
                 res.redirect("/signin");
             }
         }

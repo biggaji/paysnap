@@ -2,9 +2,9 @@
 <div class="set-pin-mobile-popup mobile-only">
     <p class="impo">Set pin</p>
     <div class="pin-form-cont">
-        <form action="#" method="post">
+        <form action="/o" method="post" class="setupPinForm">
             <label for="pinOutPut" hidden></label>
-            <input type="password" name="pin" id="pinOutPut" class="pin_output_display" placeholder="Enter a 4 digit pin e.g 0000">
+            <input type="text" name="pin" id="pinOutPut" class="pin_output_display" placeholder="Enter a 4 digit pin e.g 0000" maxlength="4">
             <div class="pin_numbers">
                 <div class="pin-row-numbers-flex">
                     <div class="numbers">
@@ -53,6 +53,8 @@
             </div>
             <div class="submit_btn_wrap">
                 <button type="submit" class="submit_pin">Set pin</button>
+                <img src="/assets/spinning-circles.svg" alt="spinning-circle" loading=lazy
+                    width="16px" height="16px" class="spinning-circle">
             </div>
         </form>
     </div>

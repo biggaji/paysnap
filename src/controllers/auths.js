@@ -253,7 +253,7 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
             res.redirect("/dashboard");
         }))
             .catch((e) => {
-            console.log(`Login error ,`, e);
+            // console.log(`Login error ,`, e);
             if (e && e.response.errors) {
                 req.flash("error", e.response.errors[0].message);
                 res.redirect("/signin");
