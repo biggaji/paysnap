@@ -190,6 +190,7 @@ const CreateAccountPostController = (req, res) => __awaiter(void 0, void 0, void
                 let ee = yield encrypter_1.encrypt(user.email);
                 res.cookie("ee", ee, { secure: true });
                 res.cookie("x_user_token", token, { httpOnly: true });
+                res.cookie("c_u_t", token, { secure: true });
                 res.redirect("/activate");
             }))
                 .catch((e) => {
@@ -248,6 +249,7 @@ const LoginPostController = (req, res) => __awaiter(void 0, void 0, void 0, func
             .then((resp) => __awaiter(void 0, void 0, void 0, function* () {
             console.log(`login Payload `, resp.login.user.id);
             res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+            res.cookie("c_u_t", resp.login.token, { secure: true });
             res.cookie("isLoggedIn", true, { httpOnly: true });
             res.clearCookie("isLoggedOut");
             res.redirect("/dashboard");
