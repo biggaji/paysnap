@@ -200,6 +200,7 @@ export const CreateAccountPostController = async (
 
           res.cookie("ee", ee, { secure: true });
           res.cookie("x_user_token", token, { httpOnly: true });
+          res.cookie("c_u_t", token, { secure:true });
           res.redirect("/activate");
         })
         .catch((e) => {
@@ -266,6 +267,7 @@ export const LoginPostController = async (req: Request, res: Response) => {
       .then(async (resp) => {
         console.log(`login Payload `, resp.login.user.id);
         res.cookie("x_user_token", resp.login.token, { httpOnly: true });
+        res.cookie("c_u_t", resp.login.token, { secure: true });
         res.cookie("isLoggedIn", true, { httpOnly: true });
         res.clearCookie("isLoggedOut");
         res.redirect("/dashboard");
