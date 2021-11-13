@@ -1,4 +1,5 @@
 let PAYSNAP_API_POINT = "https://api-paysnap.herokuapp.com/graphql";
+let cut = document.cookie.split("=")[1];
 // get all buttons with class name number
 let pinBtns =  Array.from(document.getElementsByClassName('number'));
 let error_msg_notifier = document.querySelector('.error_msg') as HTMLParagraphElement; 
@@ -43,7 +44,7 @@ async function setPin(pin: number) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // Accept: "application/json",
+        "x_user_token": cut,
       },
       body: JSON.stringify({
         query: `mutation SetTransactPin {
