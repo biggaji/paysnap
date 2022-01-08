@@ -356,6 +356,7 @@ export const ActivateAccountPostController = async (
 export const logout = async (req:Request, res:Response) => {
   // clear all session data and cookies related to a active user
   res.clearCookie("x_user_token");
+  res.clearCookie("c_u_t");
   res.clearCookie("isLoggedIn");
   res.cookie("isLoggedOut", true);
   res.redirect("/");

@@ -3,6 +3,7 @@
           box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: Gordita, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif !important;
 }
 
 body {
@@ -41,6 +42,12 @@ button {
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Gordita";
+  src: url(../../fonts/gordita.ttf);
+  font-display: swap;
+}
+
 .global-container {
   width: 100%;
   padding: 0 5%;
@@ -71,7 +78,7 @@ button {
   line-height: 1.2;
   font-size: 1.9rem;
   letter-spacing: 0.02rem;
-  font-family: "Atyp text";
+  font-family: Gordita, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
@@ -81,7 +88,7 @@ button {
   letter-spacing: 0.02rem;
   font-weight: 300;
   color: #898989;
-  font-family: "Atyp text" !important;
+  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
 .hero-wrapper .hero-cta {
@@ -258,7 +265,7 @@ button {
   letter-spacing: 0.025;
   font-size: 1.0625rem;
   color: #898989;
-  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Gordita, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   outline: none;
   border: 1px solid rgba(0, 0, 0, 0.15);
 }
@@ -275,7 +282,7 @@ button {
 .form-container .form-wrapper .activate .fbtn-wrap .fbtn-wrap-btn {
   cursor: pointer;
   width: 100%;
-  font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: Gordita, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   padding: 0.8rem 1.25rem;
   font-weight: 700;
   font-size: 1.0625rem;
@@ -733,7 +740,7 @@ button {
   .hero-wrapper .hero-copy-wrapper .hero-intro-copy {
     margin: 0.7rem 0;
     font-size: 1.0625rem;
-    font-family: "Atyp text", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    font-family: Gordita, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
     line-height: 1.2;
     color: #425466;
     font-weight: 300;
