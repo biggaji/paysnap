@@ -28,6 +28,7 @@ export default async function decodeUser(req:Request, res: Response, next:NextFu
         req.flash("error", "You session has expired, login again.");
         res.clearCookie("x_user_token");
         res.clearCookie("isLoggedIn");
+        res.clearCookie("c_u_t");
         res.cookie("isLoggedOut", true);
         res.redirect('/signin');
     }

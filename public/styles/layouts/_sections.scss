@@ -30,7 +30,7 @@
       line-height: 1.2;
       font-size: $smhfs;
       letter-spacing: 0.02rem;
-      font-family: "Atyp text";
+      font-family: $gordita;
     }
     .hero-intro-copy {
       margin: 0.7rem 0;
@@ -39,7 +39,7 @@
       letter-spacing: 0.02rem;
       font-weight: 300;
       color: $fontColor;
-      font-family: "Atyp text" !important;
+      font-family: $Aytp;
     }
   }
   .hero-cta {
@@ -183,7 +183,7 @@
           letter-spacing: 0.025;
           font-size: $smpfs;
           color: $fontColor;
-          font-family: $Aytp;
+          font-family: $gordita;
           outline: none;
           border: 1px solid $borderColor;
         }
@@ -194,7 +194,7 @@
         .fbtn-wrap-btn {
           cursor: pointer;
           width: 100%;
-          font-family: $Aytp;
+          font-family: $gordita;
           padding: 0.8rem 1.25rem;
           font-weight: 700;
           font-size: $smafs;
@@ -694,7 +694,7 @@
       .hero-intro-copy {
         margin: 0.7rem 0;
         font-size: $dpfs;
-        font-family: $Aytp;
+        font-family: $gordita;
         line-height: 1.2;
         color: #425466;
         font-weight: 300;
